@@ -22,7 +22,6 @@
     window.dataLayer = window.dataLayer || [];
     function gtag() { dataLayer.push(arguments); }
     gtag('js', new Date());
-
     gtag('config', 'G-SXELHG62RJ');
   </script>
 </head>
@@ -112,7 +111,7 @@
         <div id="buildIcons"></div>
       </div>
     </div>
-    <div class="footerBar">Build Order Tool v0.2 for the latest Age of Empires instalment. Copyright 2021 <a
+    <div class="footerBar">Build Order Tool v0.3 for the latest Age of Empires instalment. Copyright 2022 <a
         target="_blank" rel="noopener" data-track-outgoing="true" href="http://lenpolygon.com">LEN polygon</a>.
       Age of Empires IV and all its icons, artwork, and flair are property of Relic Entertainment, World's Edge &
       Xbox Game
@@ -122,7 +121,7 @@
     //////////////////////////////////////////////////
     // DEFINE civilizations
     //////////////////////////////////////////////////
-    var civilizations = [
+    const civilizations = [
       {
         "civilization": "Abbasid Dynasty",
         "abbr": "AD",
@@ -185,6 +184,44 @@
     ];
 
     //////////////////////////////////////////////////
+    // DEFINE menu structure
+    //////////////////////////////////////////////////
+    var headerData =
+    {
+      "Units": {
+        "Land Unit": [],
+        "Water Unit": []
+      },
+      "Buildings": {
+        "Structure": [],
+        "Landmark": []
+      },
+      "Technologies": {
+        "Technology": [],
+        "Empl": [],
+        "Blacksmith": [],
+        "Upgrade": []
+      },
+      "Miscellaneous": {
+        "Resource": [],
+        "Age": [],
+        "Ability": [],
+        "Dynasty": [],
+        "Flag": [],
+        "Formation": [],
+        "Influence": [],
+        "Move": [],
+        "Victory": [],
+        "Misc": []
+      }
+    };
+    for (var header in headerData) {
+      for (var genre in headerData[header]) {
+        headerData[header][genre] = [[], [], [], []]; // add ages
+      }
+    }
+
+    //////////////////////////////////////////////////
     // READ URLSearchParams data
     //////////////////////////////////////////////////
     var selectedciv = null;
@@ -205,8 +242,7 @@
     // INITIALIZE
     //////////////////////////////////////////////////
     var buildingTimeModifier = selectedciv.abbr == "CH" ? 0.5 : 1;
-    const headersData = ["Units", "Buildings", "Technologies", "miscellaneous"];
-    const dataCategories = ["Land Unit", "Water Unit", "Structure", "Landmark", "Technology", "Upgrade", "Resource"];
+    const upgradeDSTimeModifier = [3, 3.5, 5, 15];
     var str = "";
     var index; // of table
 
@@ -236,7 +272,6 @@
           this.classList.toggle("selected");
         };
       }
-
     }
 
     //////////////////////////////////////////////////
@@ -282,26 +317,39 @@
     }
 
     //////////////////////////////////////////////////
-    // FOPRMAT and PRINT image
+    // CONVERT seconds to time
+    //////////////////////////////////////////////////
+    function sToTime(input) {
+      var output = "";
+      if (input >= 60)
+      {
+        output += Math.floor(input / 60) + "m ";
+      }
+      output += Math.round(input % 60) + "s"
+      return output;
+    }
+
+    //////////////////////////////////////////////////
+    // FORMAT and PRINT image
     //////////////////////////////////////////////////
     const imgstr = ["<a class=\"tooltip\" ><img src=\"img/", ".png\" class=\"icon\" data-index=\"", "\" alt=\"", "\" style=\"background: radial-gradient(circle, rgba(60,68,66,0.8) 0%, ", " 80%);", "\"></img>", "</a>"]
     const tableitems = [["food", "resourcefoodicon"], ["wood", "resourcewoodicon"], ["gold", "resourcegoldicon"], ["stone", "resourcestoneicon"], ["pop", "house"], ["time", "timetobuild"]];
-    function formatImage(reference, value, k, showTooltip) {
+    function formatImage(reference, value, showTooltip) {
       var tooltip = "";
       if (showTooltip) {
-        tooltip = "<span><h3><b>" + reference.name + "</b></h3>" + reference.description + "<br/>";
+        tooltip = "<span><h3><b>" + reference.name + " (age: " + reference.age + ")</b></h3>" + reference.description + "<br/>";
         for (let h = 0; h < tableitems.length; h++) {
-          if (reference[tableitems[h][0]] != 0) {
-            if (k == 1 && tableitems[h][0] == "time") {
-              tooltip += "<img src=\"img/" + tableitems[h][1] + ".png\">" + reference[tableitems[h][0]] * buildingTimeModifier + "<br/>";
+          if (reference[tableitems[h][0]]) {
+            if (selectedciv.abbr == "CH" && (reference.genre == "Building" || reference.genre == "Landmark") && tableitems[h][0] == "time") { // Chinese building modifier
+              tooltip += "<img src=\"img/" + tableitems[h][1] + ".png\">" + sToTime(reference[tableitems[h][0]] * buildingTimeModifier) + "<br/>";
             }
-            else if (k == 2 && selectedciv.abbr == "DS") {
+            else if (selectedciv.abbr == "DS" && (reference.genre == "Technology" || reference.genre == "Upgrade" || reference.genre == "Blacksmith")) { // Dehli upgrade modifier
               if (tableitems[h][0] == "time") {
-                tooltip += "<img src=\"img/" + tableitems[h][1] + ".png\">" + reference[tableitems[h][0]] * 5 + "<br/>";
+                tooltip += "<img src=\"img/" + tableitems[h][1] + ".png\">" + sToTime(reference[tableitems[h][0]] * upgradeDSTimeModifier[reference.age - 1]) + "<br/>";
               }
             }
             else {
-              tooltip += "<img src=\"img/" + tableitems[h][1] + ".png\">" + reference[tableitems[h][0]] + "<br/>";
+              tooltip += "<img src=\"img/" + tableitems[h][1] + ".png\">" + (tableitems[h][0] == "time" ? sToTime(reference[tableitems[h][0]]) : reference[tableitems[h][0]]) + "<br/>";
             }
           }
         }
@@ -342,8 +390,7 @@
         var array2 = array[k].split("}");
         if (Number.isInteger(parseInt(array2[0]))) {
           const i = parseInt(array2[0]);
-          var sorterNo = dataCategories.indexOf(data[i].genre) < 0 ? 7 : dataCategories.indexOf(data[i].genre);
-          output += formatImage(data[i], i, Math.floor(sorterNo / 2), false);
+          output += formatImage(data[i], i, false);
         }
         for (let j = 1; j < array2.length; j++) {
           output += array2[j];
@@ -378,14 +425,22 @@
     async function loadiconsJSON() {
       const response = await fetch("icons.json");
       const data = await response.json();
-      var sortedData = [[], [], [], [], [], [], [], []];
-      for (let i = 0; i < sortedData.length; i++) {
-        sortedData[i] = [[], [], [], []];
-      }
       for (let i = 0; i < data.length; i++) {
-        if (data[i][selectedciv.abbr] != "") {
-          var sorterNo = dataCategories.indexOf(data[i].genre) < 0 ? 7 : dataCategories.indexOf(data[i].genre);
-          sortedData[sorterNo][data[i].age - 1].push(i);
+        var matching = true;
+        if (data[i][selectedciv.abbr]) {
+          for (var header in headerData) {
+            for (var genre in headerData[header]) {
+              if (data[i].genre == genre) {
+                headerData[header][genre][data[i].age - 1].push(i);
+                matching = false;
+                break;
+              }
+            }
+            if (!matching) break;
+          }
+          if (matching) {
+            headerData["Miscellaneous"]["Misc"][data[i].age - 1].push(i);
+          }
         }
       }
 
@@ -405,8 +460,7 @@
       document.getElementById("civilizationName").innerHTML = str;
       str = "";
       selectedciv.uniqueunits.forEach(element => {
-        var sorterNo = dataCategories.indexOf(data[element].genre) < 0 ? 7 : dataCategories.indexOf(data[element].genre);
-        str += formatImage(data[element], element, Math.floor(sorterNo / 2), true);
+        str += formatImage(data[element], element, true);
       });
       document.getElementById("civilizationUniqueUnits").innerHTML = str;
 
@@ -438,12 +492,12 @@
       // WRITE icons menu
       //////////////////////////////////////////////////
       var str = "";
-      for (let k = 0; k < headersData.length; k++) {
-        str += "<section><header class=\"fold\">" + headersData[k] + "</header><article class=\"boxed\">";
-        for (let j = k * 2; j < k * 2 + 2; j++) {
+      for (var header in headerData) {
+        str += "<section><header class=\"fold\">" + header + "</header><article class=\"boxed\">";
+        for (var genre in headerData[header]) {
           for (let age = 0; age < 4; age++) {
-            for (let i = 0; i < sortedData[j][age].length; i++) {
-              str += formatImage(data[sortedData[j][age][i]], sortedData[j][age][i], k, true);
+            for (let i = 0; i < headerData[header][genre][age].length; i++) {
+              str += formatImage(data[headerData[header][genre][age][i]], headerData[header][genre][age][i], true);
             }
           }
         }
