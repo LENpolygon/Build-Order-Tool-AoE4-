@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <title>AoE IV Build Order Tool</title>
+  <link rel="stylesheet" media="all" href="style.css">
+  <meta name="keywords" content="AoE4, Age IV, Age of Empires 4, Build Orders" />
+  <meta name="description" content="View, Create, and Share Build Orders for Age of Empires IV" />
+  <meta name="author" content="LEN polygon" />
+  <meta name="locale" content="en" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="theme-color" content="#11141D" />
+  <link rel="icon" type="image/png" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <link rel="android-chrome-icon-precomposed" sizes="192x192" href="/assets/android-chrome-192x192.png" />
+  <link rel="android-chrome-icon-precomposed" sizes="512x512" href="/assets/android-chrome-512x512.png" />
+</head>
+
+<body>
+  <div class="titleBar">
+    <div class="containerInner">
+      <a class="titleLine" href="index.html">Age of Empires IV<br />Build Order Tool</a>
+      <div class="titleDonate">
+        <a href="http://lenpolygon.com" style="color:#fff;"
+          title="This website is on Github, check out the code and build onto it!">Donate Code<img
+            src="assets/GitHub-Mark/PNG/GitHub-Mark-Light-64px.png" class="icon"
+            alt="This website is on Github, check out the code and build onto it!"></a>
+        <a href="https://ko-fi.com/lenpolygon" title="This website is Ad-Free, consider donating to maintain it!">Donate
+          Coin<img src="img/dropofftax.png" class="icon"
+            alt="This website is Ad-Free, consider donating to maintain it!"></a>
+      </div>
+    </div>
+  </div>
+  <div class="containerInner" id="background">
+    <nav class="civBar">
+      <ul id="civilizationsMenu"></ul>
+    </nav>
+    <div class="civBox">
+      <div class="civFlag">
+        <a id="civilizationFlag"></a>
+      </div>
+      <div class="civStats">
+        <h1 id="civilizationName"></h1><small id="civilizationFocus"></small>
+      </div>
+      <div class="civStatsMore" id="civilizationUniqueUnits">
+      </div>
+    </div>
+    <div class="contentInner">
+      <div class="buildOrder">
+        <section>
+          <header>Build Order</header>
+          <article>
+            <table id="buildTable">
+              <thead>
+                <tr>
+                  <th class="buildTime">Step</th>
+                  <th>
+                    <header>
+                      <div class="buildActions">
+                        <button onclick="upNdown('up');">&ShortUpArrow;</button>
+                        <button onclick="upNdown('down');">&ShortDownArrow;</button>
+                        <button onclick="createRow()">&plus;</button>
+                        <button onclick="deleteRow()">x</button>
+                        <button onclick="saveToURL()">save & copy</button>
+                        <button onclick="clearRow()">clear</button>
+                      </div>
+                    </header>
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td contenteditable="true">!</td>
+                  <td contenteditable="true">This tools allows you to view, edit and share Age of
+                    Empires IV builds</td>
+                </tr>
+                <tr>
+                  <td contenteditable="true">></td>
+                  <td contenteditable="true">To use it, please enable Javascript / Scripts in your
+                    webbrowser</td>
+                </tr>
+                <tr>
+                  <td contenteditable="true">?</td>
+                  <td contenteditable="true">You can verify the source code for yourself, it's just
+                    this one page</td>
+                </tr>
+              </tbody>
+            </table>
+          </article>
+        </section>
+      </div>
+      <div class="buildMenu">
+        <section>
+          <header class="fold">How to use this tool</header>
+          <article class="boxed">
+            <p>Click on the table and edit the content. Drag and drop icons from the menus
+              below. When you're ready press "Save & Copy to Clipboard" and share (paste) your
+              Build Order online!</p>
+          </article>
+        </section>
+        <div id="buildIcons"></div>
+      </div>
+    </div>
+    <div class="footerBar">Build Order Tool v0.2 for the latest Age of Empires instalment. Copyright 2021 <a
+        target="_blank" rel="noopener" data-track-outgoing="true" href="http://lenpolygon.com">LEN polygon</a>.
+      Age of Empires IV and all its icons, artwork, and flair are property of Relic Entertainment, World's Edge &
+      Xbox Game
+      Studios.<br />This website is for educational purposes only.</div>
+  </div>
+  <script type="text/javascript">
+    //////////////////////////////////////////////////
+    // DEFINE civilizations
+    //////////////////////////////////////////////////
+    var civilizations = [
+      {
+        "civilization": "Abbasid Dynasty",
+        "abbr": "AD",
+        "focus": "Technology, Camels and City Planning",
+        "difficulty": 2,
+        "icon": "flagAD.png",
+        "uniqueunits": [306, 176]
+      },
+      {
+        "civilization": "Chinese",
+        "abbr": "CH",
+        "focus": "Dynasties, Gunpowder and Expansion",
+        "difficulty": 3,
+        "icon": "flagCH.png",
+        "uniqueunits": [310, 307, 52, 287, 175, 437, 261]
+      },
+      {
+        "civilization": "Delhi Sultanate",
+        "abbr": "DS",
+        "focus": "Military, Research and Defense",
+        "difficulty": 3,
+        "icon": "flagDS.png",
+        "uniqueunits": [59, 136, 311, 300]
+      },
+      {
+        "civilization": "French",
+        "abbr": "FR",
+        "focus": "Trade, Cavalry and Keeps",
+        "difficulty": 1,
+        "uniqueunits": [181, 301, 410, 432]
+      },
+      {
+        "civilization": "English",
+        "abbr": "EN",
+        "focus": "Defense, Longbows and Economy",
+        "difficulty": 1,
+        "uniqueunits": [174]
+      },
+      {
+        "civilization": "Holy Roman Empire",
+        "abbr": "HR",
+        "focus": "Infantry, Religion and Defense",
+        "difficulty": 2,
+        "uniqueunits": [58, 305]
+      },
+      {
+        "civilization": "Mongols",
+        "abbr": "MO",
+        "focus": "Aggression, Nomadic and Mobility",
+        "difficulty": 3,
+        "uniqueunits": [60, 177, 292, 262]
+      },
+      {
+        "civilization": "Rus",
+        "abbr": "RU",
+        "focus": "Expansion, Cavalry and Hunting",
+        "difficulty": 2,
+        "uniqueunits": [440, 304, 295, 138, 255, 252, 263, 415]
+      }
+    ];
+
+    //////////////////////////////////////////////////
+    // READ URLSearchParams data
+    //////////////////////////////////////////////////
+    var selectedciv = null;
+    var usp = new URLSearchParams(window.location.search);
+    if (isNaN(usp.get("c"))) {
+      for (let i = 0; i < civilizations.length; i++) {
+        if (usp.get("c") == civilizations[i].abbr) {
+          selectedciv = civilizations[i];
+          break;
+        }
+      }
+    }
+    if (!selectedciv) {
+      window.location.href = "index.html?c=EN&b=0:00|First%206%20{53}%20to%20{75}|0:00|Next%20{53}%20to%20{75}|0:20|Then%202%20{53}%20build%20{84}%20+%20{97}%20and%20mine%20{70}|1:00|3%20{53}%20build%20{93}%20and%20cut%20{68}|2:00|4%20{53}%20build%20{97}%20and%20mine%20{69}|3:20|{13}%20next%20{53}%20to%20{68}|3:30|Build%20{110}%20with%202%20{53}%20from%20{70}|3:40|After%20300%20{69}%20send%20all%20{53}%20from%20{69}%20to%20{68}|5:00|Build%20{188}%20with%204%20{53}%20from%20{68}|";
+    }
+
+    //////////////////////////////////////////////////
+    // INITIALIZE
+    //////////////////////////////////////////////////
+    var buildingTimeModifier = selectedciv.abbr == "CH" ? 0.5 : 1;
+    const headersData = ["Units", "Buildings", "Technologies", "miscellaneous"];
+    const dataCategories = ["Land Unit", "Water Unit", "Structure", "Landmark", "Technology", "Upgrade", "Resource"];
+    var str = "";
+    var index; // of table
+
+    //////////////////////////////////////////////////
+    // WRITE civilizations menu
+    //////////////////////////////////////////////////
+    for (let i = 0; i < civilizations.length; i++) {
+      str += "<li";
+      if (civilizations[i].abbr == selectedciv.abbr) {
+        str += " class=\"active\"";
+      }
+      str += "><a href=\"index.html?c=" + civilizations[i].abbr + "\">" + civilizations[i].civilization + "</a></li>";
+    }
+    document.getElementById("civilizationsMenu").innerHTML = str;
+
+    //////////////////////////////////////////////////
+    // SELECT row
+    //////////////////////////////////////////////////
+    function getSelectedRow() {
+      var table = document.getElementById("buildTable");
+      for (var i = 1; i < table.rows.length; i++) {
+        table.rows[i].onclick = function () {
+          if (typeof index !== "undefined") {
+            table.rows[index].classList.toggle("selected");
+          }
+          index = this.rowIndex;
+          this.classList.toggle("selected");
+        };
+      }
+
+    }
+
+    //////////////////////////////////////////////////
+    // MANIPULATE table
+    //////////////////////////////////////////////////
+    function upNdown(direction) {
+      var rows = document.getElementById("buildTable").rows;
+      var parent = rows[index].parentNode;
+      if (direction === "up") {
+        if (index > 1) {
+          parent.insertBefore(rows[index], rows[index - 1]);
+          index--;
+        }
+      }
+      if (direction === "down") {
+        if (index < rows.length - 1) {
+          parent.insertBefore(rows[index + 1], rows[index]);
+          index++;
+        }
+      }
+      parent.focus();
+    }
+    function createRow() {
+      if (typeof index !== "undefined") {
+        var row = document.getElementById("buildTable").insertRow(index + 1);
+        row.innerHTML = "<td contenteditable=\"true\">0:00</td><td contenteditable=\"true\"></td>";
+        getSelectedRow();
+      }
+      row.focus();
+    }
+    function deleteRow() {
+      if (typeof index !== "undefined") {
+        document.getElementById("buildTable").deleteRow(index);
+        getSelectedRow();
+        index = undefined;
+      }
+    }
+    function clearRow() {
+      var rows = document.getElementById("buildTable").rows;
+      for (let i = 0; i < (rows.length - 1); i++) {
+        rows[i + 1].innerHTML = "<td contenteditable=\"true\"></td><td contenteditable=\"true\"></td>";
+      }
+    }
+
+    //////////////////////////////////////////////////
+    // FOPRMAT and PRINT image
+    //////////////////////////////////////////////////
+    const imgstr = ["<a class=\"tooltip\" ><img src=\"img/", ".png\" class=\"icon\" data-index=\"", "\" alt=\"", "\" style=\"background: radial-gradient(circle, rgba(60,68,66,0.8) 0%, ", " 80%);", "\"></img>", "</a>"]
+    const tableitems = [["food", "resourcefoodicon"], ["wood", "resourcewoodicon"], ["gold", "resourcegoldicon"], ["stone", "resourcestoneicon"], ["pop", "house"], ["time", "timetobuild"]];
+    function formatImage(reference, value, k, showTooltip) {
+      var tooltip = "";
+      if (showTooltip) {
+        tooltip = "<span><h3><b>" + reference.name + "</b></h3>" + reference.description + "<br/>";
+        for (let h = 0; h < tableitems.length; h++) {
+          if (reference[tableitems[h][0]] != 0) {
+            if (k == 1 && tableitems[h][0] == "time") {
+              tooltip += "<img src=\"img/" + tableitems[h][1] + ".png\">" + reference[tableitems[h][0]] * buildingTimeModifier + "<br/>";
+            }
+            else if (k == 2 && selectedciv.abbr == "DS") {
+              if (tableitems[h][0] == "time") {
+                tooltip += "<img src=\"img/" + tableitems[h][1] + ".png\">" + reference[tableitems[h][0]] * 5 + "<br/>";
+              }
+            }
+            else {
+              tooltip += "<img src=\"img/" + tableitems[h][1] + ".png\">" + reference[tableitems[h][0]] + "<br/>";
+            }
+          }
+        }
+        tooltip += "<br/>";
+      }
+      return reference.color == "transparent"
+        ? (imgstr[0] + reference[selectedciv.abbr] + imgstr[1] + value + imgstr[2] + reference.name + imgstr[5] + tooltip + imgstr[6])
+        : (imgstr[0] + reference[selectedciv.abbr] + imgstr[1] + value + imgstr[2] + reference.name + imgstr[3] + reference.color + imgstr[4] + imgstr[5] + tooltip + imgstr[6]);
+    }
+
+    //////////////////////////////////////////////////
+    // SANITIZE and CONVERT images to values
+    //////////////////////////////////////////////////
+    function sanitizeNconvert(input) {
+      input = " " + input;
+      var array = input.split("<");
+      var output = array[0].substring(1);
+      for (let i = 1; i < array.length; i++) {
+        var array2 = array[i].split(">");
+        if (/data-index+\S+/.test(array2[0])) {
+          output += "{" + array2[0].match(/data-index+\S+/)[0].split("\"")[1] + "}";
+        }
+        for (let j = 1; j < array2.length; j++) {
+          output += array2[j];
+        }
+      }
+      return output.replace(/&nbsp;/g, " ").replace(/&/g, "");
+    }
+
+    //////////////////////////////////////////////////
+    // CONVERT value back to image
+    //////////////////////////////////////////////////
+    function convertBack(input, data) {
+      input = " " + input;
+      var array = input.split("{");
+      var output = array[0].substring(1);
+      for (let k = 1; k < array.length; k++) {
+        var array2 = array[k].split("}");
+        if (Number.isInteger(parseInt(array2[0]))) {
+          const i = parseInt(array2[0]);
+          var sorterNo = dataCategories.indexOf(data[i].genre) < 0 ? 7 : dataCategories.indexOf(data[i].genre);
+          output += formatImage(data[i], i, Math.floor(sorterNo / 2), false);
+        }
+        for (let j = 1; j < array2.length; j++) {
+          output += array2[j];
+        }
+      }
+      return output;
+    }
+
+    //////////////////////////////////////////////////
+    // SAVE event
+    //////////////////////////////////////////////////
+    function saveToURL() {
+      var rows = document.getElementById("buildTable").rows;
+      var str = "";
+      for (let i = 1; i < rows.length; i++) {
+        str += sanitizeNconvert(rows[i].cells[0].innerHTML);
+        str += "|";
+        str += sanitizeNconvert(rows[i].cells[1].innerHTML);
+        str += "|";
+      }
+      window.history.replaceState("Home", "AGE OF EMPIRES 4 - BUILD ORDER TOOL", 'index.html?c=' + selectedciv.abbr + "&b=" + str);
+      navigator.clipboard.writeText(window.location.href).then(function () {
+        console.log('Async: Copying to clipboard was successful!');
+      }, function (err) {
+        console.error('Async: Could not copy text: ', err);
+      });
+    }
+
+    //////////////////////////////////////////////////
+    // READ icons.JSON data
+    //////////////////////////////////////////////////
+    async function loadiconsJSON() {
+      const response = await fetch("icons.json");
+      const data = await response.json();
+      var sortedData = [[], [], [], [], [], [], [], []];
+      for (let i = 0; i < sortedData.length; i++) {
+        sortedData[i] = [[], [], [], []];
+      }
+      for (let i = 0; i < data.length; i++) {
+        if (data[i][selectedciv.abbr] != "") {
+          var sorterNo = dataCategories.indexOf(data[i].genre) < 0 ? 7 : dataCategories.indexOf(data[i].genre);
+          sortedData[sorterNo][data[i].age - 1].push(i);
+        }
+      }
+
+      //////////////////////////////////////////////////
+      // WRITE current civ
+      //////////////////////////////////////////////////
+      document.getElementById("civilizationFocus").innerHTML = selectedciv.focus;
+      document.getElementById("civilizationFlag").innerHTML = "<img src=\"img/flag" + selectedciv.abbr + ".png\"></img>";
+      var str = selectedciv.civilization + " ";
+      for (let i = 0; i < 3; i++) {
+        if (selectedciv.difficulty == i) {
+          str += "<span style=\"color: #11141D\">";
+        }
+        str += "★";
+      }
+      str += "</span>";
+      document.getElementById("civilizationName").innerHTML = str;
+      str = "";
+      selectedciv.uniqueunits.forEach(element => {
+        var sorterNo = dataCategories.indexOf(data[element].genre) < 0 ? 7 : dataCategories.indexOf(data[element].genre);
+        str += formatImage(data[element], element, Math.floor(sorterNo / 2), true);
+      });
+      document.getElementById("civilizationUniqueUnits").innerHTML = str;
+
+      //////////////////////////////////////////////////
+      // LOAD event
+      //////////////////////////////////////////////////
+      var buildarray;
+      if (isNaN(usp.get("b"))) {
+        buildarray = sanitizeNconvert(usp.get("b")).split("|");
+      }
+      else {
+        let vilval = selectedciv.abbr == "FR" ? 54 : 53;
+        let str = "0:00|Click here to start editing your own build (only on PC for now...)|0:00|You can add icons by dragging them from the menu: {" + vilval + "} |0:00|When you're happy press \"Save and Copy\" and share your build!|";
+        window.history.replaceState("Home", "AGE OF EMPIRES 4 - BUILD ORDER TOOL", 'index.html?c=' + selectedciv.abbr + "&b=" + str);
+        buildarray = sanitizeNconvert(str).split("|");
+      }
+      var rows = document.getElementById("buildTable").rows;
+      for (let i = buildarray.length / 2 - (rows.length - 1); i > 1; i--) {
+        document.getElementById("buildTable").insertRow(2);
+      }
+      var rows = document.getElementById("buildTable").rows;
+      for (let i = 0; i < (rows.length - 1); i++) {
+        rows[i + 1].innerHTML = "<td contenteditable=\"true\">"
+          + convertBack(buildarray[i * 2], data) + "</td><td contenteditable=\"true\">"
+          + convertBack(buildarray[(i * 2) + 1], data) + "</td>";
+      }
+
+      //////////////////////////////////////////////////
+      // WRITE icons menu
+      //////////////////////////////////////////////////
+      var str = "";
+      for (let k = 0; k < headersData.length; k++) {
+        str += "<section><header class=\"fold\">" + headersData[k] + "</header><article class=\"boxed\">";
+        for (let j = k * 2; j < k * 2 + 2; j++) {
+          for (let age = 0; age < 4; age++) {
+            for (let i = 0; i < sortedData[j][age].length; i++) {
+              str += formatImage(data[sortedData[j][age][i]], sortedData[j][age][i], k, true);
+            }
+          }
+        }
+        str += "</article></section>";
+      }
+      document.getElementById("buildIcons").innerHTML = str;
+
+      //////////////////////////////////////////////////
+      // COLLAPSE
+      //////////////////////////////////////////////////
+      var coll = document.getElementsByClassName("fold");
+      for (let i = 0; i < coll.length; i++) {
+        coll[i].addEventListener("click", function () {
+          this.classList.toggle("unfold");
+          var content = this.nextElementSibling;
+          if (content.style.maxHeight) {
+            content.style.maxHeight = null;
+          } else {
+            content.style.maxHeight = content.scrollHeight + "px";
+          }
+        });
+      }
+      coll[0].click();
+      //////////////////////////////////////////////////
+
+      getSelectedRow();
+    }
+    loadiconsJSON();
+    //////////////////////////////////////////////////
+
+    //////////////////////////////////////////////////
+    // RANDOMIZE background
+    //////////////////////////////////////////////////
+    const backgroundOptions = ["02celebration", "03focuslongbowmen", "04lordrobertsb", "07raisedstakestwoknights", "10mongoltrebuchet", "11chinesetradecaravans", "12mongolscharging", "15paytributeb", "alarm"];
+    document.getElementById("background").style.backgroundImage = "url(img/" + backgroundOptions[Math.floor(Math.random() * backgroundOptions.length)] + ".png)";
+  </script>
+</body>
+
+</html>
