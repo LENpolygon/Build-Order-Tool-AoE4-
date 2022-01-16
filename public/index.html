@@ -24,6 +24,7 @@
     gtag('js', new Date());
     gtag('config', 'G-SXELHG62RJ');
   </script>
+  <script language="javascript" src="lz-string.min.js"></script>
 </head>
 
 <body>
@@ -197,10 +198,11 @@
         "Landmark": []
       },
       "Technologies": {
-        "Technology": [],
-        "Empl": [],
+        "Economic": [],
         "Blacksmith": [],
-        "Upgrade": []
+        "Upgrade": [],
+        "Technology": [],
+        "Empl": []
       },
       "Miscellaneous": {
         "Resource": [],
@@ -225,6 +227,7 @@
     // READ URLSearchParams data
     //////////////////////////////////////////////////
     var selectedciv = null;
+    var buildorder = null;
     var usp = new URLSearchParams(window.location.search);
     if (isNaN(usp.get("c"))) {
       for (let i = 0; i < civilizations.length; i++) {
@@ -234,8 +237,15 @@
         }
       }
     }
+    if (isNaN(usp.get("s"))) {
+      buildorder = LZString.decompressFromEncodedURIComponent(usp.get("s"));
+    }
+    else if (isNaN(usp.get("b")))
+    {
+      buildorder = usp.get("b");
+    }
     if (!selectedciv) {
-      window.location.href = "index.html?c=EN&b=0:00|First%206%20{53}%20to%20{75}|0:00|Next%20{53}%20to%20{75}|0:20|Then%202%20{53}%20build%20{84}%20+%20{97}%20and%20mine%20{70}|1:00|3%20{53}%20build%20{93}%20and%20cut%20{68}|2:00|4%20{53}%20build%20{97}%20and%20mine%20{69}|3:20|{13}%20next%20{53}%20to%20{68}|3:30|Build%20{110}%20with%202%20{53}%20from%20{70}|3:40|After%20300%20{69}%20send%20all%20{53}%20from%20{69}%20to%20{68}|5:00|Build%20{188}%20with%204%20{53}%20from%20{68}|";
+      window.location.href = "index.html?c=EN&s=AwLmwHwMQSwJwM4BcAEA2FBvArAZgL4pID2WA7NvhKOBAHICmAHqjgUaZhVaAEyQAVABYMAdil5Y8hAEYBXGABsAJlgAcAFkIosATjKEAhqNUBbGKIblgVAIxhIuKe3lLVmXe2OqAxnNZoalS8DhAazrIKKnoGKN4o5pZYaLpUuCD8EJi27JYsERzJQRDpuJAAQlHutrY2KADuMEhCEgUAZnDEptZpIBqQAIJtSAxwKGXAyakoCGKqhoqK7Z3dmCmEJEVU2KGVbli2akENTS3hbIQdXVsQQA";
     }
 
     //////////////////////////////////////////////////
@@ -321,8 +331,7 @@
     //////////////////////////////////////////////////
     function sToTime(input) {
       var output = "";
-      if (input >= 60)
-      {
+      if (input >= 60) {
         output += Math.floor(input / 60) + "m ";
       }
       output += Math.round(input % 60) + "s"
@@ -411,7 +420,7 @@
         str += sanitizeNconvert(rows[i].cells[1].innerHTML);
         str += "|";
       }
-      window.history.replaceState("Home", "AGE OF EMPIRES 4 - BUILD ORDER TOOL", 'index.html?c=' + selectedciv.abbr + "&b=" + str);
+      window.history.replaceState("Home", "AGE OF EMPIRES 4 - BUILD ORDER TOOL", 'index.html?c=' + selectedciv.abbr + "&a=" + LZString.compressToEncodedURIComponent(str));
       navigator.clipboard.writeText(window.location.href).then(function () {
         console.log('Async: Copying to clipboard was successful!');
       }, function (err) {
@@ -468,8 +477,8 @@
       // LOAD event
       //////////////////////////////////////////////////
       var buildarray;
-      if (isNaN(usp.get("b"))) {
-        buildarray = sanitizeNconvert(usp.get("b")).split("|");
+      if (buildorder) {
+        buildarray = sanitizeNconvert(buildorder).split("|");
       }
       else {
         let vilval = selectedciv.abbr == "FR" ? 54 : 53;
