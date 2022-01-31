@@ -53,7 +53,7 @@ a {
     background: #11141D;
     margin-bottom: 10px;
     display: block;
-    position: relative;    
+    position: relative;
     text-transform: uppercase;
 }
 
@@ -285,38 +285,48 @@ table th {
 
 .tooltip span {
     display: none;
-    -moz-border-radius: 2px;
-    -webkit-border-radius: 2px;
-    border-radius: 2px;
-    color: black;
-    background: rgba(255, 255, 255, .9);
-    position: absolute;
-    overflow: visible;
 }
 
-.tooltip span img {
+.tooltipContainer {
+    position: absolute;
+    max-width: 400px;
+}
+
+.tooltipBox {
+    box-shadow: 0 0 3px rgba(10, 10, 10, .4);
+    border: 1px solid #11141D;
+    background: rgb(17,20,29);
+background: linear-gradient(0deg, rgba(17,20,29,1) 0%, rgba(30,37,54,1) 100%);
+    position: relative;
+    padding: 8px;
+    margin: 13px 0 0 0;
+}
+
+.tooltipBox img {
     margin: 0;
     padding: 0;
     overflow: visible;
     object-fit: contain;
-    width: 21px;
-    max-width: 21px;
 }
 
-.tooltip:hover span {
-    display: block;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: 9999;
-    width: 300px;
-    max-width: 600px;
-    min-height: 128px;
-    border: 1px solid black;
-    margin-top: 12px;
-    margin-left: 32px;
-    overflow: visible;
-    padding: 8px;
+.smallIcons img {
+    width: 24px;
+    max-width: 24px;
+}
+
+.tooltipColumn1 {
+    display: inline-block;
+    width: 68px;
+}
+
+.tooltipColumn2 {
+    display: inline-block;
+    max-width: 312px;
+    vertical-align: top;
+}
+
+.tooltipColumn2 header {
+    text-transform: uppercase;
 }
 
 @media (min-width:800px) {

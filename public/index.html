@@ -30,7 +30,7 @@
 <body>
   <div class="titleBar">
     <div class="containerInner">
-      <a class="titleLine" href="index.html">Age of Empires IV<br />Build Order Tool</a>
+      <a class="titleLine" href="https://age4builder.com/index.html">Age of Empires IV<br />Build Order Tool</a>
       <div class="titleDonate">
         <a href="https://github.com/LENpolygon/Build-Order-Tool-AoE4-" style="color:#fff;"
           title="This website is on Github, check out the code and build onto it!">Donate Code<img
@@ -73,7 +73,11 @@
                         <button onclick="createRow()">&plus;</button>
                         <button onclick="deleteRow()">x</button>
                         <button onclick="saveToURL()">save & copy</button>
-                        <button onclick="clearRow()">clear</button>
+                        <span class="tooltip">
+                          <button onclick="clearRow()">clear</button>
+                          <span>
+                            <p>This clears the entire build and gives a blank table to start over fresh.</p>
+                          </span>
                       </div>
                     </header>
                   </th>
@@ -92,8 +96,7 @@
                 </tr>
                 <tr>
                   <td contenteditable="true">?</td>
-                  <td contenteditable="true">You can verify the source code for yourself, it's just
-                    this one page</td>
+                  <td contenteditable="true">You can verify the source code for yourself, it's on Github!</td>
                 </tr>
               </tbody>
             </table>
@@ -112,11 +115,15 @@
         <div id="buildIcons"></div>
       </div>
     </div>
-    <div class="footerBar">Build Order Tool v0.3 for the latest Age of Empires instalment. Copyright 2022 <a
+    <div class="footerBar">Build Order Tool v0.5 for the latest Age of Empires instalment. Copyright 2022 <a
         target="_blank" rel="noopener" data-track-outgoing="true" href="http://lenpolygon.com">LEN polygon</a>.
       Age of Empires IV and all its icons, artwork, and flair are property of Relic Entertainment, World's Edge &
       Xbox Game
       Studios.<br />This website is for educational purposes only.</div>
+  </div>
+  <div id="tooltipContainer" class="tooltipContainer">
+    <div id="tooltipBox" class="tooltipBox">
+    </div>
   </div>
   <script type="text/javascript">
     //////////////////////////////////////////////////
@@ -240,8 +247,7 @@
     if (isNaN(usp.get("s"))) {
       buildorder = LZString.decompressFromEncodedURIComponent(usp.get("s"));
     }
-    else if (isNaN(usp.get("b")))
-    {
+    else if (isNaN(usp.get("b"))) {
       buildorder = usp.get("b");
     }
     if (!selectedciv) {
@@ -282,6 +288,19 @@
           this.classList.toggle("selected");
         };
       }
+    }
+
+    //////////////////////////////////////////////////
+    // GET page width
+    //////////////////////////////////////////////////
+    function getWidth() {
+      return Math.max(
+        document.body.scrollWidth,
+        document.documentElement.scrollWidth,
+        document.body.offsetWidth,
+        document.documentElement.offsetWidth,
+        document.documentElement.clientWidth
+      );
     }
 
     //////////////////////////////////////////////////
@@ -342,11 +361,12 @@
     // FORMAT and PRINT image
     //////////////////////////////////////////////////
     const imgstr = ["<a class=\"tooltip\" ><img src=\"img/", ".png\" class=\"icon\" data-index=\"", "\" alt=\"", "\" style=\"background: radial-gradient(circle, rgba(60,68,66,0.8) 0%, ", " 80%);", "\"></img>", "</a>"]
-    const tableitems = [["food", "resourcefoodicon"], ["wood", "resourcewoodicon"], ["gold", "resourcegoldicon"], ["stone", "resourcestoneicon"], ["pop", "house"], ["time", "timetobuild"]];
+    const tableitems = [["food", "resourcefoodicon"], ["wood", "resourcewoodicon"], ["gold", "resourcegoldicon"], ["stone", "resourcestoneicon"], ["time", "timetobuild"], ["pop", "house"]];
     function formatImage(reference, value, showTooltip) {
       var tooltip = "";
       if (showTooltip) {
-        tooltip = "<span><h3><b>" + reference.name + " (age: " + reference.age + ")</b></h3>" + reference.description + "<br/>";
+        tooltip = "<span><div class=\"tooltipColumn1\">";
+        tooltip += "<img src=\"img/" + reference[selectedciv.abbr] + ".png\"></img><br/><div class=\"smallIcons\">";
         for (let h = 0; h < tableitems.length; h++) {
           if (reference[tableitems[h][0]]) {
             if (selectedciv.abbr == "CH" && (reference.genre == "Building" || reference.genre == "Landmark") && tableitems[h][0] == "time") { // Chinese building modifier
@@ -362,7 +382,7 @@
             }
           }
         }
-        tooltip += "<br/>";
+        tooltip += "</div></div><div class=\"tooltipColumn2\"><header>" + reference.name + " (age: " + reference.age + "+)</header></br></br>" + reference.description + "</div>";
       }
       return reference.color == "transparent"
         ? (imgstr[0] + reference[selectedciv.abbr] + imgstr[1] + value + imgstr[2] + reference.name + imgstr[5] + tooltip + imgstr[6])
@@ -399,7 +419,7 @@
         var array2 = array[k].split("}");
         if (Number.isInteger(parseInt(array2[0]))) {
           const i = parseInt(array2[0]);
-          output += formatImage(data[i], i, false);
+          output += formatImage(data[i], i, true);
         }
         for (let j = 1; j < array2.length; j++) {
           output += array2[j];
@@ -530,12 +550,29 @@
         });
       }
       coll[0].click();
-      //////////////////////////////////////////////////
+      coll[1].click();
+
+      ///////////////////////////////////////////////////
+      // SHOW tooltips
+      ///////////////////////////////////////////////////
+      let tooltipContainer = document.getElementById('tooltipContainer');
+      const tooltipBox = document.getElementById('tooltipBox');
+      document.addEventListener('mousemove', function checkHover(e) {
+        tooltipContainer.style.left = getWidth() > e.pageX + 400 ? e.pageX + 2 + 'px' : e.pageX - 402 + 'px';
+        tooltipContainer.style.top = e.pageY + 2 + 'px';
+        const allTooltips = document.getElementsByClassName('tooltip');
+        for (var i = 0; i < allTooltips.length; i++) {
+          if (allTooltips.item(i).querySelector(':hover')) {
+            tooltipBox.innerHTML = allTooltips.item(i).lastChild.innerHTML; tooltipBox.style.display = "block"; return;
+          }
+        }
+        tooltipBox.innerHTML = ""; tooltipBox.style.display = "none";
+      });
 
       getSelectedRow();
-    }
+    } //////////////////////////////////////////////////
     loadiconsJSON();
-    //////////////////////////////////////////////////
+    document.getElementById('tooltipBox').style.display = "none";
 
     //////////////////////////////////////////////////
     // RANDOMIZE background
