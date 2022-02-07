@@ -166,6 +166,7 @@ a {
 }
 
 .icon {
+    cursor: move;
     object-fit: contain;
     height: 48px;
     width: 48px;
