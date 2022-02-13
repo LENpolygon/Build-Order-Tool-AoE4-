@@ -440,7 +440,7 @@
         str += sanitizeNconvert(rows[i].cells[1].innerHTML);
         str += "|";
       }
-      window.history.replaceState("Home", "AGE OF EMPIRES 4 - BUILD ORDER TOOL", 'index.html?c=' + selectedciv.abbr + "&a=" + LZString.compressToEncodedURIComponent(str));
+      window.history.replaceState("Home", "AGE OF EMPIRES 4 - BUILD ORDER TOOL", 'index.html?c=' + selectedciv.abbr + "&s=" + LZString.compressToEncodedURIComponent(str));
       navigator.clipboard.writeText(window.location.href).then(function () {
         console.log('Async: Copying to clipboard was successful!');
       }, function (err) {
