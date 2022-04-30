@@ -145,6 +145,8 @@ if (civilizations[i].abbr == selectedciv.abbr) {
 }
 str += "><a href=\"index.html?c=" + civilizations[i].abbr + "\">" + civilizations[i].civilization + "</a></li>";
 }
+str+="<li><div id=\"favorite_build_button_container\"></div></li>"
+
 document.getElementById("civilizationsMenu").innerHTML = str;
 
 //////////////////////////////////////////////////
