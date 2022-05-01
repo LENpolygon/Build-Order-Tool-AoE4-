@@ -61,6 +61,7 @@ const civilizations = [
         "difficulty": 2,
         "uniqueunits": [440, 304, 295, 138, 255, 252, 263, 415]
     }
+<<<<<<< HEAD
     ];
     
     //////////////////////////////////////////////////
@@ -94,6 +95,52 @@ const civilizations = [
         "Move": [],
         "Victory": [],
         "Misc": []
+=======
+}
+}
+if (isNaN(usp.get("s"))) {
+buildorder = LZString.decompressFromEncodedURIComponent(usp.get("s"));
+}
+else if (isNaN(usp.get("b"))) {
+buildorder = usp.get("b");
+}
+if (!selectedciv) {
+window.location.href = "index.html?c=EN&s=AwLmwHwMQSwJwM4BcAEA2FBvArAZgL4pID2WA7NvhKOBAHICmAHqjgUaZhVaAEyQAVABYMAdil5Y8hAEYBXGABsAJlgAcAFkIosATjKEAhqNUBbGKIblgVAIxhIuKe3lLVmXe2OqAxnNZoalS8DhAazrIKKnoGKN4o5pZYaLpUuCD8EJi27JYsERzJQRDpuJAAQlHutrY2KADuMEhCEgUAZnDEptZpIBqQAIJtSAxwKGXAyakoCGKqhoqK7Z3dmCmEJEVU2KGVbli2akENTS3hbIQdXVsQQA";
+}
+
+//////////////////////////////////////////////////
+// INITIALIZE
+//////////////////////////////////////////////////
+var buildingTimeModifier = selectedciv.abbr == "CH" ? 0.5 : 1;
+const upgradeDSTimeModifier = [3, 3.5, 5, 15];
+var str = "";
+var index; // of table
+var tooltipindex = -1;
+
+//////////////////////////////////////////////////
+// WRITE civilizations menu
+//////////////////////////////////////////////////
+for (let i = 0; i < civilizations.length; i++) {
+str += "<li";
+if (civilizations[i].abbr == selectedciv.abbr) {
+    str += " class=\"active\"";
+}
+str += "><a href=\"index.html?c=" + civilizations[i].abbr + "\">" + civilizations[i].civilization + "</a></li>";
+}
+str+="<li><div id=\"favorite_build_button_container\"></div></li>"
+
+document.getElementById("civilizationsMenu").innerHTML = str;
+
+//////////////////////////////////////////////////
+// SELECT row
+//////////////////////////////////////////////////
+function getSelectedRow() {
+var table = document.getElementById("buildTable");
+for (var i = 1; i < table.rows.length; i++) {
+    table.rows[i].onclick = function () {
+    if (typeof index !== "undefined") {
+        table.rows[index].classList.toggle("selected");
+>>>>>>> 5a00d5ab701f59b258fde4e348ce90b2140bc181
     }
     };
     for (var header in headerData) {
