@@ -23,8 +23,4 @@ class FavoriteBuildButton extends React.Component {
 
 const domContainer = document.querySelector('#favorite_build_button_container');
 const root = ReactDOM.createRoot(domContainer);
-<<<<<<< HEAD
 root.render(e(FavoriteBuildButton));
-=======
-root.render(e(FavoriteBuildButton));
->>>>>>> 5a00d5ab701f59b258fde4e348ce90b2140bc181
