@@ -1,35 +1,42 @@
-import { getFirestore, setDoc, doc } from 'firebase/firestore'
+import { getFirestore, setDoc,addDoc, doc,collection } from 'firebase/firestore'
+
 import Head from 'next/head'
 import Link from 'next/link'
-import { useEffect } from 'react'
+import { useEffect, useState, Suspense } from 'react'
 import { useUser } from '../context/userContext'
 import Image from 'next/image'
+import Container from '@mui/material/Container';
+import Typography from '@mui/material/Typography';
+import { Button } from '@mui/material'
 
 export default function Home() {
   // Our custom hook to get context values
   const { loadingUser, user } = useUser()
 
-  const profile = { username: 'nextjs_user', message: 'Awesome!!' }
+  const buildOrder = { name: 'Default English Build order',
+  description: 'Just for testing',
+  civ: 'English',
+  url: 'AwLmwHwMQSwJwM4BcAEA2FBvArAZgL4pID2WA7NvhKOBAHICmAHqjgUaZhVaAEyQAVABYMAdil5Y8hAEYBXGABsAJlgAcAFkIosATjKEAhqNUBbGKIblgVAIxhIuKe3lLVmXe2OqAxnNZoalS8DhAazrIKKnoGKN4o5pZYaLpUuCD8EJi27JYsERzJQRDpuJAAQlHutrY2KADuMEhCEgUAZnDEptZpIBqQAIJtSAxwKGXAyakoCGKqhoqK7Z3dmCmEJEVU2KGVbli2akENTS3hbIQdXVsQQA'
+ }
 
   useEffect(() => {
     if (!loadingUser) {
       // You know that the user is loaded: either logged in or out!
       console.log(user)
-    }
+      return;
+    } 
     // You also have your firebase app initialized
   }, [loadingUser, user])
 
-  const createUser = async () => {
+  const createBuildOrder = async () => {
     const db = getFirestore()
-    await setDoc(doc(db, 'profile', profile.username), profile)
-
-    alert('User created!!')
+    await addDoc(collection(db, 'aoe4_build_order'), buildOrder)
   }
-
+  
   return (
     <div>
       <Head>
-        <title>Favorite Build Orders</title>
+        <title>Aoe4 Favorite Build Orders</title>
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
@@ -45,6 +52,16 @@ export default function Home() {
       </div>
     </div>
   </div>
+  <Container maxWidth="lg">
+  <Button onClick={createBuildOrder}>Create A New Build Order</Button>
+
+  <Button href="/buildOrderTable">
+  <Typography component="h2" variant="h6" color="primary">
+  AOE4 Build Orders 
+    </Typography>
+    </Button>
+
+</Container>
       </main>
 
       <style jsx>{`
