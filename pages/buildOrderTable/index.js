@@ -6,9 +6,22 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import Link from 'next/link'
-
-import { getAllBuildOrderData } from './getAllBuildOrderData'
 import { Container } from '@mui/material';
+import admin from '../../firebase/nodeApp'
+
+const getAllBuildOrderData = async () => {
+  const db = admin.firestore()
+  const buildOrderCollection = db.collection('aoe4_build_order')
+  let rows=[];
+
+  let allBuildOrders = await buildOrderCollection.get();
+  for(const buildOrder of allBuildOrders.docs){
+    rows.push(buildOrder.data());
+  }
+
+  return rows;
+}
+
 
 export default function BuildOrderTable({ data }) {
   const { rows } = data
