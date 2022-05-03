@@ -329,6 +329,13 @@ navigator.clipboard.writeText(window.location.href).then(function () {
 });
 }
 
+function uploadBuildOrder(){
+    saveToURL();
+    urlString = window.location.href;
+    let paramString = urlString.split('?')[1];
+    window.location = '/uploadBuildOrder/?'+paramString;
+}
+
 //////////////////////////////////////////////////
 // READ icons.JSON data
 //////////////////////////////////////////////////
