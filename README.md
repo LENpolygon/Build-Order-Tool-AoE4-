@@ -1,39 +1,48 @@
-# Build Order Tool for Age of Empires IV
+# Firebase Example
 
-This Build Order Tool will allow users to view, create, and share build orders standard format via the web app.
-The web app can be found on: https://age4builder.com/
+This is a simple set up for Firebase for client side applications.
 
-## Goals of the Build Order Tool
+The firebase app is initialized in `firebase/clientApp.js`, to use you just have to import it anywhere in the app
 
-This tool started mainly as a coding challenge and to learn some Javascript along the way.
-Now I've identified the following goals for this tool to fulfill:
+The React Context API is used to provide user state.
 
-1. Viewing builds
-   - Tool must work on both computers and mobile devices
-   - Must be quick and responsive for mobile devices
-   - Images and text must be easy to be read at glance
-   - (FUTURE) Make builds "play" in Real-time with voice-over
+## Deploy your own
 
-2. Creating builds
-   - Creating builds must work on computers (because one requires a computer for AoE 4)
-   - A 'standardized' format must be given to allow for creators to use a similar format, this will help with readability of each build
-   - Icons can be dragged into the build and together with text make up the final build
-   - Standard formatting tools for tables
-   - (FUTURE) Make it possible to edit builds on mobile devices
-   - (FUTURE) Add in game-specifics like Map-type or oppossing Civilizations 
+Deploy the example using [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example):
 
-3. Sharing builds
-   - Share created builds with other via custom URLs
-   - (FUTURE) Allow users to browse popular builds
+[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/git/external?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-firebase&project-name=with-firebase&repository-name=with-firebase)
 
-## Why Github?
+## How to use
 
-As per request I figured out how to put the project on Github. 
-I will use this to track issues for myself and allow others to help building this tool into something amazing!
+Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init) or [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/) to bootstrap the example:
 
-## Contact
+```bash
+npx create-next-app --example with-firebase with-firebase-app
+# or
+yarn create next-app --example with-firebase with-firebase-app
+# or
+pnpm create next-app -- --example with-firebase with-firebase-app
+```
 
-I'm sure you can contact me through here. If you're looking for something else then you can find me on lenpolygon.com
+## Configuration
 
-Once again, the Build Order Tool can be found on: https://age4builder.com/
-Now go make some awesome builds and enjoy the game!
+1. [Create a Firebase project](https://console.firebase.google.com/u/0/) and add a new app to it.
+2. Create a `.env.local` file and copy the contents of `.env.local.example` into it:
+
+```bash
+cp .env.local.example .env.local
+```
+
+3. Set each variable on `.env.local` with your Firebase Configuration (found in "Project settings").
+
+4. If you want to check the SSR page, get your account credentials from the Firebase console at _Project settings > Service accounts_, where you can click on _Generate new private key_ and download the credentials as a json file. Then set `FIREBASE_CLIENT_EMAIL` and `FIREBASE_PRIVATE_KEY` in `.env.local`
+
+## Deploy on Vercel
+
+You can deploy this app to the cloud with [Vercel](https://vercel.com?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
+
+### Deploy Your Local Project
+
+To deploy your local project to Vercel, push it to GitHub/GitLab/Bitbucket and [import to Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example).
+
+**Important**: When you import your project on Vercel, make sure to click on **Environment Variables** and set them to match your `.env.local` file.
