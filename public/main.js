@@ -358,7 +358,7 @@ const civilizations = [
     // WRITE current civ
     //////////////////////////////////////////////////
     document.getElementById("civilizationFocus").innerHTML = selectedciv.focus;
-    document.getElementById("civilizationFlag").innerHTML = "<img src=\"img/flag" + selectedciv.abbr + ".png\"></img>";
+    document.getElementById("civilizationFlag").innerHTML = "<img src=\"img/flag" + selectedciv.abbr + ".png\" onerror=\"this.src = 'placeholder.png';\"></img>";
     var str = selectedciv.civilization + " ";
     for (let i = 0; i < 3; i++) {
         if (selectedciv.difficulty == i) {
