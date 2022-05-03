@@ -134,6 +134,7 @@ const civilizations = [
     var str = "";
     var index; // of table
     var tooltipindex = -1;
+    var alignment = "center";
     
     //////////////////////////////////////////////////
     // WRITE civilizations menu
@@ -327,6 +328,28 @@ const civilizations = [
     }, function (err) {
         console.error('Async: Could not copy text: ', err);
     });
+    }
+
+    //////////////////////////////////////////////////
+    // TOGGLE alignment
+    //////////////////////////////////////////////////
+    function toggleAlign() {
+        if (alignment == "left")
+        {
+            alignment = "center";
+        }
+        else
+        {
+            alignment = "left";
+        }
+        document.getElementById("buildTable").style.textAlign = alignment
+    }
+
+    //////////////////////////////////////////////////
+    // SWITCH step/vill count
+    //////////////////////////////////////////////////
+    function switchStepVill() {
+        // TO DO; add code, use rows per material and/or backing image of material. Maybe light image up if more than 0 or better; light image up if it is different from previous!
     }
     
     //////////////////////////////////////////////////
