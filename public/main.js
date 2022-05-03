@@ -236,7 +236,7 @@ const civilizations = [
     // FORMAT and PRINT image
     //////////////////////////////////////////////////
     const imgstr = ["<a class=\"tooltip\"><img src=\"img/",
-    ".png\" class=\"icon\" data-index=\"",
+    ".png\" onerror=\"this.src = 'placeholder.png';\" class=\"icon\" data-index=\"",
     "\" data-info=\"",
     "\" alt=\"",
     "\" style=\"background: radial-gradient(circle, rgba(60,68,66,0.8) 0%, ",
@@ -247,19 +247,19 @@ const civilizations = [
     var tooltip = "";
     if (showTooltip) {
         tooltip = "<div class=\"tooltipColumn1\">";
-        tooltip += "<img src=\"img/" + reference[selectedciv.abbr] + ".png\"></img><br/><div class=\"smallIcons\">";
+        tooltip += "<img src=\"img/" + reference[selectedciv.abbr] + ".png\" onerror=\"this.src = 'placeholder.png';\"></img><br/><div class=\"smallIcons\">";
         for (let h = 0; h < tableitems.length; h++) {
         if (reference[tableitems[h][0]]) {
             if (selectedciv.abbr == "CH" && (reference.genre == "Building" || reference.genre == "Landmark") && tableitems[h][0] == "time") { // Chinese building modifier
-            tooltip += "<img src=\"img/" + tableitems[h][1] + ".png\">" + sToTime(reference[tableitems[h][0]] * buildingTimeModifier) + "<br/>";
+            tooltip += "<img src=\"img/" + tableitems[h][1] + ".png\" onerror=\"this.src = 'placeholder.png';\">" + sToTime(reference[tableitems[h][0]] * buildingTimeModifier) + "<br/>";
             }
             else if (selectedciv.abbr == "DS" && (reference.genre == "Technology" || reference.genre == "Upgrade" || reference.genre == "Blacksmith")) { // Dehli upgrade modifier
             if (tableitems[h][0] == "time") {
-                tooltip += "<img src=\"img/" + tableitems[h][1] + ".png\">" + sToTime(reference[tableitems[h][0]] * upgradeDSTimeModifier[reference.age - 1]) + "<br/>";
+                tooltip += "<img src=\"img/" + tableitems[h][1] + ".png\" onerror=\"this.src = 'placeholder.png';\">" + sToTime(reference[tableitems[h][0]] * upgradeDSTimeModifier[reference.age - 1]) + "<br/>";
             }
             }
             else {
-            tooltip += "<img src=\"img/" + tableitems[h][1] + ".png\">" + (tableitems[h][0] == "time" ? sToTime(reference[tableitems[h][0]]) : reference[tableitems[h][0]]) + "<br/>";
+            tooltip += "<img src=\"img/" + tableitems[h][1] + ".png\" onerror=\"this.src = 'placeholder.png';\">" + (tableitems[h][0] == "time" ? sToTime(reference[tableitems[h][0]]) : reference[tableitems[h][0]]) + "<br/>";
             }
         }
         }
