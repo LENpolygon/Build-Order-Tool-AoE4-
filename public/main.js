@@ -61,13 +61,13 @@ const civilizations = [
         "difficulty": 2,
         "uniqueunits": [440, 304, 295, 138, 255, 252, 263, 415]
     }
-    ];
-    
-    //////////////////////////////////////////////////
-    // DEFINE menu structure
-    //////////////////////////////////////////////////
-    var headerData =
-    {
+];
+
+//////////////////////////////////////////////////
+// DEFINE menu structure
+//////////////////////////////////////////////////
+var headerData =
+{
     "Units": {
         "Land Unit": [],
         "Water Unit": []
@@ -95,81 +95,81 @@ const civilizations = [
         "Victory": [],
         "Misc": []
     }
-    };
-    for (var header in headerData) {
+};
+for (var header in headerData) {
     for (var genre in headerData[header]) {
         headerData[header][genre] = [[], [], [], []]; // add ages
     }
-    }
-    
-    //////////////////////////////////////////////////
-    // READ URLSearchParams data
-    //////////////////////////////////////////////////
-    var selectedciv = null;
-    var buildorder = null;
-    var usp = new URLSearchParams(window.location.search);
-    if (isNaN(usp.get("c"))) {
+}
+
+//////////////////////////////////////////////////
+// READ URLSearchParams data
+//////////////////////////////////////////////////
+var selectedciv = null;
+var buildorder = null;
+var usp = new URLSearchParams(window.location.search);
+if (isNaN(usp.get("c"))) {
     for (let i = 0; i < civilizations.length; i++) {
         if (usp.get("c") == civilizations[i].abbr) {
-        selectedciv = civilizations[i];
-        break;
+            selectedciv = civilizations[i];
+            break;
         }
     }
-    }
-    if (isNaN(usp.get("s"))) {
+}
+if (isNaN(usp.get("s"))) {
     buildorder = LZString.decompressFromEncodedURIComponent(usp.get("s"));
-    }
-    else if (isNaN(usp.get("b"))) {
+}
+else if (isNaN(usp.get("b"))) {
     buildorder = usp.get("b");
-    }
-    if (!selectedciv) {
+}
+if (!selectedciv) {
     window.location.href = "index.html?c=EN&s=AwLmwHwMQSwJwM4BcAEA2FBvArAZgL4pID2WA7NvhKOBAHICmAHqjgUaZhVaAEyQAVABYMAdil5Y8hAEYBXGABsAJlgAcAFkIosATjKEAhqNUBbGKIblgVAIxhIuKe3lLVmXe2OqAxnNZoalS8DhAazrIKKnoGKN4o5pZYaLpUuCD8EJi27JYsERzJQRDpuJAAQlHutrY2KADuMEhCEgUAZnDEptZpIBqQAIJtSAxwKGXAyakoCGKqhoqK7Z3dmCmEJEVU2KGVbli2akENTS3hbIQdXVsQQA";
-    }
-    
-    //////////////////////////////////////////////////
-    // INITIALIZE
-    //////////////////////////////////////////////////
-    var buildingTimeModifier = selectedciv.abbr == "CH" ? 0.5 : 1;
-    const upgradeDSTimeModifier = [3, 3.5, 5, 15];
-    var str = "";
-    var index; // of table
-    var tooltipindex = -1;
-    var alignment = "center";
-    
-    //////////////////////////////////////////////////
-    // WRITE civilizations menu
-    //////////////////////////////////////////////////
-    for (let i = 0; i < civilizations.length; i++) {
+}
+
+//////////////////////////////////////////////////
+// INITIALIZE
+//////////////////////////////////////////////////
+var buildingTimeModifier = selectedciv.abbr == "CH" ? 0.5 : 1;
+const upgradeDSTimeModifier = [3, 3.5, 5, 15];
+var str = "";
+var index; // of table
+var tooltipindex = -1;
+var alignment = "center";
+
+//////////////////////////////////////////////////
+// WRITE civilizations menu
+//////////////////////////////////////////////////
+for (let i = 0; i < civilizations.length; i++) {
     str += "<li";
     if (civilizations[i].abbr == selectedciv.abbr) {
         str += " class=\"active\"";
     }
     str += "><a href=\"index.html?c=" + civilizations[i].abbr + "\">" + civilizations[i].civilization + "</a></li>";
-    }
-    str+="<li><div id=\"favorite_build_button_container\"></div></li>"
-    
-    document.getElementById("civilizationsMenu").innerHTML = str;
-    
-    //////////////////////////////////////////////////
-    // SELECT row
-    //////////////////////////////////////////////////
-    function getSelectedRow() {
+}
+str += "<li><div id=\"favorite_build_button_container\"></div></li>"
+
+document.getElementById("civilizationsMenu").innerHTML = str;
+
+//////////////////////////////////////////////////
+// SELECT row
+//////////////////////////////////////////////////
+function getSelectedRow() {
     var table = document.getElementById("buildTable");
     for (var i = 1; i < table.rows.length; i++) {
         table.rows[i].onclick = function () {
-        if (typeof index !== "undefined") {
-            table.rows[index].classList.toggle("selected");
-        }
-        index = this.rowIndex;
-        this.classList.toggle("selected");
+            if (typeof index !== "undefined") {
+                table.rows[index].classList.toggle("selected");
+            }
+            index = this.rowIndex;
+            this.classList.toggle("selected");
         };
     }
-    }
-    
-    //////////////////////////////////////////////////
-    // GET page width
-    //////////////////////////////////////////////////
-    function getWidth() {
+}
+
+//////////////////////////////////////////////////
+// GET page width
+//////////////////////////////////////////////////
+function getWidth() {
     return Math.max(
         document.body.scrollWidth,
         document.documentElement.scrollWidth,
@@ -177,143 +177,145 @@ const civilizations = [
         document.documentElement.offsetWidth,
         document.documentElement.clientWidth
     );
-    }
-    
-    //////////////////////////////////////////////////
-    // MANIPULATE table
-    //////////////////////////////////////////////////
-    function upNdown(direction) {
+}
+
+//////////////////////////////////////////////////
+// MANIPULATE table
+//////////////////////////////////////////////////
+function upNdown(direction) {
     var rows = document.getElementById("buildTable").rows;
     var parent = rows[index].parentNode;
     if (direction === "up") {
         if (index > 1) {
-        parent.insertBefore(rows[index], rows[index - 1]);
-        index--;
+            parent.insertBefore(rows[index], rows[index - 1]);
+            index--;
         }
     }
     if (direction === "down") {
         if (index < rows.length - 1) {
-        parent.insertBefore(rows[index + 1], rows[index]);
-        index++;
+            parent.insertBefore(rows[index + 1], rows[index]);
+            index++;
         }
     }
     parent.focus();
-    }
-    function createRow() {
+}
+function createRow() {
     if (typeof index !== "undefined") {
         var row = document.getElementById("buildTable").insertRow(index + 1);
         row.innerHTML = "<td contenteditable=\"true\">0:00</td><td contenteditable=\"true\"></td>";
         getSelectedRow();
     }
     row.focus();
-    }
-    function deleteRow() {
+}
+function deleteRow() {
     if (typeof index !== "undefined") {
         document.getElementById("buildTable").deleteRow(index);
         getSelectedRow();
         index = undefined;
     }
-    }
-    function clearRow() {
+}
+function clearRow() {
     var rows = document.getElementById("buildTable").rows;
     for (let i = 0; i < (rows.length - 1); i++) {
         rows[i + 1].innerHTML = "<td contenteditable=\"true\"></td><td contenteditable=\"true\"></td>";
     }
-    }
-    
-    //////////////////////////////////////////////////
-    // CONVERT seconds to time
-    //////////////////////////////////////////////////
-    function sToTime(input) {
+}
+
+//////////////////////////////////////////////////
+// CONVERT seconds to time
+//////////////////////////////////////////////////
+function sToTime(input) {
     var output = "";
     if (input >= 60) {
         output += Math.floor(input / 60) + "m ";
     }
     output += Math.round(input % 60) + "s"
     return output;
-    }
-    
-    //////////////////////////////////////////////////
-    // FORMAT and PRINT image
-    //////////////////////////////////////////////////
-    const imgstr = ["<a class=\"tooltip\"><img src=\"img/",
-    ".png\" onerror=\"this.src = 'placeholder.png';\" class=\"icon\" data-index=\"",
+}
+
+//////////////////////////////////////////////////
+// FORMAT and PRINT image
+//////////////////////////////////////////////////
+const imgstr = ["<a class=\"tooltip\">",
+    "<img src=\"img/",
+    ".png\" onerror=\"this.src = 'placeholder.png';\"",
+    "class=\"icon\" data-index=\"",
     "\" data-info=\"",
     "\" alt=\"",
     "\" style=\"background: radial-gradient(circle, rgba(60,68,66,0.8) 0%, ",
     " 80%); ",
     "\"\></a>"];
-    const tableitems = [["food", "resourcefoodicon"], ["wood", "resourcewoodicon"], ["gold", "resourcegoldicon"], ["stone", "resourcestoneicon"], ["time", "timetobuild"], ["pop", "house"]];
-    function formatImage(reference, value, showTooltip) {
+const tableitems = [["food", "resourcefoodicon"], ["wood", "resourcewoodicon"], ["gold", "resourcegoldicon"], ["stone", "resourcestoneicon"], ["time", "timetobuild"], ["pop", "house"]];
+function formatImage(reference, value, showTooltip) {
     var tooltip = "";
     if (showTooltip) {
         tooltip = "<div class=\"tooltipColumn1\">";
-        tooltip += "<img src=\"img/" + reference[selectedciv.abbr] + ".png\" onerror=\"this.src = 'placeholder.png';\"></img><br/><div class=\"smallIcons\">";
+        tooltip += imgstr[1] + reference[selectedciv.abbr] + imgstr[2] +"></img><br/><div class=\"smallIcons\">";
         for (let h = 0; h < tableitems.length; h++) {
-        if (reference[tableitems[h][0]]) {
-            if (selectedciv.abbr == "CH" && (reference.genre == "Building" || reference.genre == "Landmark") && tableitems[h][0] == "time") { // Chinese building modifier
-            tooltip += "<img src=\"img/" + tableitems[h][1] + ".png\" onerror=\"this.src = 'placeholder.png';\">" + sToTime(reference[tableitems[h][0]] * buildingTimeModifier) + "<br/>";
+            if (reference[tableitems[h][0]]) {
+                if (selectedciv.abbr == "CH" && (reference.genre == "Building" || reference.genre == "Landmark") && tableitems[h][0] == "time") { // Chinese building modifier
+                    tooltip += imgstr[1] + tableitems[h][1] + imgstr[2] +">" + sToTime(reference[tableitems[h][0]] * buildingTimeModifier) + "<br/>";
+                }
+                else if (selectedciv.abbr == "DS" && (reference.genre == "Technology" || reference.genre == "Upgrade" || reference.genre == "Blacksmith")) { // Dehli upgrade modifier
+                    if (tableitems[h][0] == "time") {
+                        tooltip += imgstr[1] + tableitems[h][1] + imgstr[2] +">" + sToTime(reference[tableitems[h][0]] * upgradeDSTimeModifier[reference.age - 1]) + "<br/>";
+                    }
+                }
+                else {
+                    tooltip += imgstr[1] + tableitems[h][1] + imgstr[2] +">" + (tableitems[h][0] == "time" ? sToTime(reference[tableitems[h][0]]) : reference[tableitems[h][0]]) + "<br/>";
+                }
             }
-            else if (selectedciv.abbr == "DS" && (reference.genre == "Technology" || reference.genre == "Upgrade" || reference.genre == "Blacksmith")) { // Dehli upgrade modifier
-            if (tableitems[h][0] == "time") {
-                tooltip += "<img src=\"img/" + tableitems[h][1] + ".png\" onerror=\"this.src = 'placeholder.png';\">" + sToTime(reference[tableitems[h][0]] * upgradeDSTimeModifier[reference.age - 1]) + "<br/>";
-            }
-            }
-            else {
-            tooltip += "<img src=\"img/" + tableitems[h][1] + ".png\" onerror=\"this.src = 'placeholder.png';\">" + (tableitems[h][0] == "time" ? sToTime(reference[tableitems[h][0]]) : reference[tableitems[h][0]]) + "<br/>";
-            }
-        }
         }
         tooltip += "</div></div><div class=\"tooltipColumn2\"><header>" + reference.name + " (age: " + reference.age + "+)</header></br></br>" + reference.description + "</div>";
     }
     return reference.color == "transparent"
-        ? (imgstr[0] + reference[selectedciv.abbr] + imgstr[1] + value + imgstr[2] + LZString.compressToEncodedURIComponent(tooltip) + imgstr[3] + reference.name + imgstr[6])
-        : (imgstr[0] + reference[selectedciv.abbr] + imgstr[1] + value + imgstr[2] + LZString.compressToEncodedURIComponent(tooltip) + imgstr[3] + reference.name + imgstr[4] + reference.color + imgstr[5] + imgstr[6]);
-    }
-    
-    //////////////////////////////////////////////////
-    // SANITIZE and CONVERT images to values
-    //////////////////////////////////////////////////
-    function sanitizeNconvert(input) {
+        ? (imgstr[0] + imgstr[1] + reference[selectedciv.abbr] + imgstr[2] + imgstr[3] + value + imgstr[4] + LZString.compressToEncodedURIComponent(tooltip) + imgstr[5] + reference.name + imgstr[8])
+        : (imgstr[0] + imgstr[1] + reference[selectedciv.abbr] + imgstr[2] + imgstr[3] + value + imgstr[4] + LZString.compressToEncodedURIComponent(tooltip) + imgstr[5] + reference.name + imgstr[6] + reference.color + imgstr[7] + imgstr[8]);
+}
+
+//////////////////////////////////////////////////
+// SANITIZE and CONVERT images to values
+//////////////////////////////////////////////////
+function sanitizeNconvert(input) {
     input = " " + input;
     var array = input.split("<");
     var output = array[0].substring(1);
     for (let i = 1; i < array.length; i++) {
         var array2 = array[i].split(">");
         if (/data-index+\S+/.test(array2[0])) {
-        output += "{" + array2[0].match(/data-index+\S+/)[0].split("\"")[1] + "}";
+            output += "{" + array2[0].match(/data-index+\S+/)[0].split("\"")[1] + "}";
         }
         for (let j = 1; j < array2.length; j++) {
-        output += array2[j];
+            output += array2[j];
         }
     }
-    return output.replace(/&nbsp;/g, " ").replace(/&/g, "");
-    }
-    
-    //////////////////////////////////////////////////
-    // CONVERT value back to image
-    //////////////////////////////////////////////////
-    function convertBack(input, data) {
+    return output.replace(/&nbsp;/g, " ");
+}
+
+//////////////////////////////////////////////////
+// CONVERT value back to image
+//////////////////////////////////////////////////
+function convertBack(input, data) {
     input = " " + input;
     var array = input.split("{");
     var output = array[0].substring(1);
     for (let k = 1; k < array.length; k++) {
         var array2 = array[k].split("}");
         if (Number.isInteger(parseInt(array2[0]))) {
-        const i = parseInt(array2[0]);
-        output += formatImage(data[i], i, true);
+            const i = parseInt(array2[0]);
+            output += formatImage(data[i], i, true);
         }
         for (let j = 1; j < array2.length; j++) {
-        output += array2[j];
+            output += array2[j];
         }
     }
     return output;
-    }
-    
-    //////////////////////////////////////////////////
-    // SAVE event
-    //////////////////////////////////////////////////
-    function saveToURL() {
+}
+
+//////////////////////////////////////////////////
+// SAVE event
+//////////////////////////////////////////////////
+function saveToURL() {
     var rows = document.getElementById("buildTable").rows;
     var str = "";
     for (let i = 1; i < rows.length; i++) {
@@ -328,55 +330,53 @@ const civilizations = [
     }, function (err) {
         console.error('Async: Could not copy text: ', err);
     });
-    }
+}
 
-    //////////////////////////////////////////////////
-    // TOGGLE alignment
-    //////////////////////////////////////////////////
-    function toggleAlign() {
-        if (alignment == "left")
-        {
-            alignment = "center";
-        }
-        else
-        {
-            alignment = "left";
-        }
-        document.getElementById("buildTable").style.textAlign = alignment
+//////////////////////////////////////////////////
+// TOGGLE alignment
+//////////////////////////////////////////////////
+function toggleAlign() {
+    if (alignment == "left") {
+        alignment = "center";
     }
+    else {
+        alignment = "left";
+    }
+    document.getElementById("buildTable").style.textAlign = alignment
+}
 
-    //////////////////////////////////////////////////
-    // SWITCH step/vill count
-    //////////////////////////////////////////////////
-    function switchStepVill() {
-        // TO DO; add code, use rows per material and/or backing image of material. Maybe light image up if more than 0 or better; light image up if it is different from previous!
-    }
-    
-    //////////////////////////////////////////////////
-    // READ icons.JSON data
-    //////////////////////////////////////////////////
-    async function loadiconsJSON() {
+//////////////////////////////////////////////////
+// SWITCH step/vill count
+//////////////////////////////////////////////////
+function switchStepVill() {
+    // TO DO; add code, use rows per material and/or backing image of material. Maybe light image up if more than 0 or better; light image up if it is different from previous!
+}
+
+//////////////////////////////////////////////////
+// READ icons.JSON data
+//////////////////////////////////////////////////
+async function loadiconsJSON() {
     const response = await fetch("icons.json");
     const data = await response.json();
     for (let i = 0; i < data.length; i++) {
         var matching = true;
         if (data[i][selectedciv.abbr]) {
-        for (var header in headerData) {
-            for (var genre in headerData[header]) {
-            if (data[i].genre == genre) {
-                headerData[header][genre][data[i].age - 1].push(i);
-                matching = false;
-                break;
+            for (var header in headerData) {
+                for (var genre in headerData[header]) {
+                    if (data[i].genre == genre) {
+                        headerData[header][genre][data[i].age - 1].push(i);
+                        matching = false;
+                        break;
+                    }
+                }
+                if (!matching) break;
             }
+            if (matching) {
+                headerData["Miscellaneous"]["Misc"][data[i].age - 1].push(i);
             }
-            if (!matching) break;
-        }
-        if (matching) {
-            headerData["Miscellaneous"]["Misc"][data[i].age - 1].push(i);
-        }
         }
     }
-    
+
     //////////////////////////////////////////////////
     // WRITE current civ
     //////////////////////////////////////////////////
@@ -385,7 +385,7 @@ const civilizations = [
     var str = selectedciv.civilization + " ";
     for (let i = 0; i < 3; i++) {
         if (selectedciv.difficulty == i) {
-        str += "<span style=\"color: #11141D\">";
+            str += "<span style=\"color: #11141D\">";
         }
         str += "★";
     }
@@ -396,7 +396,7 @@ const civilizations = [
         str += formatImage(data[element], element, true);
     });
     document.getElementById("civilizationUniqueUnits").innerHTML = str;
-    
+
     //////////////////////////////////////////////////
     // LOAD event
     //////////////////////////////////////////////////
@@ -417,10 +417,10 @@ const civilizations = [
     var rows = document.getElementById("buildTable").rows;
     for (let i = 0; i < (rows.length - 1); i++) {
         rows[i + 1].innerHTML = "<td contenteditable=\"true\">"
-        + convertBack(buildarray[i * 2], data) + "</td><td contenteditable=\"true\">"
-        + convertBack(buildarray[(i * 2) + 1], data) + "</td>";
+            + convertBack(buildarray[i * 2], data) + "</td><td contenteditable=\"true\">"
+            + convertBack(buildarray[(i * 2) + 1], data) + "</td>";
     }
-    
+
     //////////////////////////////////////////////////
     // WRITE icons menu
     //////////////////////////////////////////////////
@@ -428,34 +428,34 @@ const civilizations = [
     for (var header in headerData) {
         str += "<section><header class=\"fold\">" + header + "</header><article class=\"boxed\">";
         for (var genre in headerData[header]) {
-        for (let age = 0; age < 4; age++) {
-            for (let i = 0; i < headerData[header][genre][age].length; i++) {
-            str += formatImage(data[headerData[header][genre][age][i]], headerData[header][genre][age][i], true);
+            for (let age = 0; age < 4; age++) {
+                for (let i = 0; i < headerData[header][genre][age].length; i++) {
+                    str += formatImage(data[headerData[header][genre][age][i]], headerData[header][genre][age][i], true);
+                }
             }
-        }
         }
         str += "</article></section>";
     }
     document.getElementById("buildIcons").innerHTML = str;
-    
+
     //////////////////////////////////////////////////
     // COLLAPSE
     //////////////////////////////////////////////////
     var coll = document.getElementsByClassName("fold");
     for (let i = 0; i < coll.length; i++) {
         coll[i].addEventListener("click", function () {
-        this.classList.toggle("unfold");
-        var content = this.nextElementSibling;
-        if (content.style.maxHeight) {
-            content.style.maxHeight = null;
-        } else {
-            content.style.maxHeight = content.scrollHeight + "px";
-        }
+            this.classList.toggle("unfold");
+            var content = this.nextElementSibling;
+            if (content.style.maxHeight) {
+                content.style.maxHeight = null;
+            } else {
+                content.style.maxHeight = content.scrollHeight + "px";
+            }
         });
     }
     coll[0].click();
     coll[1].click();
-    
+
     ///////////////////////////////////////////////////
     // SHOW tooltips
     ///////////////////////////////////////////////////
@@ -466,29 +466,29 @@ const civilizations = [
         tooltipContainer.style.top = e.pageY + 2 + 'px';
         const allTooltips = document.getElementsByClassName('tooltip');
         if (tooltipindex < 0 || !allTooltips.item(tooltipindex).querySelector(':hover')) {
-        for (var i = 0; i < allTooltips.length; i++) {
-            if (allTooltips.item(i).querySelector(':hover')) {
-            console.log(allTooltips.item(i).firstChild.getAttribute('data-info'));
-            tooltipBox.innerHTML = LZString.decompressFromEncodedURIComponent(allTooltips.item(i).firstChild.getAttribute('data-info'));
-            tooltipBox.style.display = "block";
-            tooltipindex = i;
-            return;
+            for (var i = 0; i < allTooltips.length; i++) {
+                if (allTooltips.item(i).querySelector(':hover')) {
+                    console.log(allTooltips.item(i).firstChild.getAttribute('data-info'));
+                    tooltipBox.innerHTML = LZString.decompressFromEncodedURIComponent(allTooltips.item(i).firstChild.getAttribute('data-info'));
+                    tooltipBox.style.display = "block";
+                    tooltipindex = i;
+                    return;
+                }
             }
+            tooltipBox.innerHTML = "";
+            tooltipBox.style.display = "none";
+            tooltipindex = -1;
         }
-        tooltipBox.innerHTML = "";
-        tooltipBox.style.display = "none";
-        tooltipindex = -1;
-        }
-    
+
     });
-    
+
     getSelectedRow();
-    } //////////////////////////////////////////////////
-    loadiconsJSON();
-    document.getElementById('tooltipBox').style.display = "none";
-    
-    //////////////////////////////////////////////////
-    // RANDOMIZE background
-    //////////////////////////////////////////////////
-    const backgroundOptions = ["02celebration", "03focuslongbowmen", "04lordrobertsb", "07raisedstakestwoknights", "10mongoltrebuchet", "11chinesetradecaravans", "12mongolscharging", "15paytributeb", "alarm"];
-    document.getElementById("background").style.backgroundImage = "url(img/" + backgroundOptions[Math.floor(Math.random() * backgroundOptions.length)] + ".png)";
+} //////////////////////////////////////////////////
+loadiconsJSON();
+document.getElementById('tooltipBox').style.display = "none";
+
+//////////////////////////////////////////////////
+// RANDOMIZE background
+//////////////////////////////////////////////////
+const backgroundOptions = ["02celebration", "03focuslongbowmen", "04lordrobertsb", "07raisedstakestwoknights", "10mongoltrebuchet", "11chinesetradecaravans", "12mongolscharging", "15paytributeb", "alarm"];
+document.getElementById("background").style.backgroundImage = "url(img/" + backgroundOptions[Math.floor(Math.random() * backgroundOptions.length)] + ".png)";
