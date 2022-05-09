@@ -68,15 +68,15 @@
                   <th>
                     <header>
                       <div class="buildActions">
-                        <button onclick="upNdown('up');">&ShortUpArrow;</button>
-                        <button onclick="upNdown('down');">&ShortDownArrow;</button>
-                        <button onclick="createRow()">&plus;</button>
-                        <button onclick="deleteRow()">x</button>
-                        <button onclick="saveToURL()">save & copy</button>
-                        <button onclick="toggleAlign()">align</button>
-                        <button onclick="switchStepVill()">switch vill#</button>
+                        <button title="Move up" onclick="upNdown('up');">&ShortUpArrow;</button>
+                        <button title="Move down" onclick="upNdown('down');">&ShortDownArrow;</button>
+                        <button title="Add row" onclick="createRow()">&plus;</button>
+                        <button title="Delete row" onclick="deleteRow()">x</button>
+                        <button title="Save and copy" onclick="saveToURL()">save & copy</button>
+                        <button title="Toggle alignment" onclick="toggleAlign()">align</button>
+                        <button title="Switch villager" onclick="switchStepVill()">switch vill#</button>
                         <span class="tooltip">
-                          <button onclick="clearRow()">clear</button>
+                          <button title="Clear" onclick="clearRow()">clear</button>
                           <span>
                             <p>This clears the entire build and gives a blank table to start over fresh.</p>
                           </span>
@@ -92,7 +92,7 @@
                     Empires IV builds</td>
                 </tr>
                 <tr>
-                  <td contenteditable="true">></td>
+                  <td contenteditable="true"></td>
                   <td contenteditable="true">To use it, please enable Javascript / Scripts in your
                     webbrowser</td>
                 </tr>
