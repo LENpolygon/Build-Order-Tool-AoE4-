@@ -2,8 +2,7 @@ import Head from 'next/head'
 import Router, { useRouter } from 'next/router'
 import React, { useState } from 'react';
 import { Button, Container, TextField, Box } from '@mui/material';
-import { getFirestore,addDoc,collection } from 'firebase/firestore'
-
+import { getFirestore,addDoc,collection,serverTimestamp } from 'firebase/firestore'
 
 export default function uploadBuildOrderPage({ data }) {
     const router = useRouter()
@@ -15,14 +14,17 @@ export default function uploadBuildOrderPage({ data }) {
     const { c, s } = router.query;
 
     const uploadBuildOrder = async () => {
+        const db = getFirestore()
+
         const buildOrder = {
             name: name,
             description: description,
             author: author,
             civ: c,
-            url: s
+            url: s,
+            like_count: 0,
+            timestamp: serverTimestamp(),
         }
-        const db = getFirestore()
         await addDoc(collection(db, 'aoe4_build_order'), buildOrder)
 
         Router.push('/buildOrderTable');

@@ -25,7 +25,6 @@ const getAllBuildOrderData = async () => {
 
 export default function BuildOrderTable({ data }) {
   const { rows } = data
-
   return (
     <Container maxWidth="lg">
       <h1> All Build Orders</h1>
@@ -64,6 +63,7 @@ export async function getServerSideProps() {
   if (!rows) {
     return { notFound: true }
   }
+  rows.forEach(row => row.timestamp=JSON.parse(JSON.stringify(row.timestamp)));
   return { props: { data: { rows } } }
 }
 

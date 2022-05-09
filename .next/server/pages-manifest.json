@@ -1,8 +1,7 @@
 {
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
-  "/uploadBuildOrder": "pages/uploadBuildOrder.html",
-  "/buildOrderTable": "pages/buildOrderTable.js",
   "/_document": "pages/_document.js",
-  "/404": "pages/404.html"
+  "/buildOrderTable": "pages/buildOrderTable.js",
+  "/buildOrderTable/[civ]": "pages/buildOrderTable/[civ].js"
 }
