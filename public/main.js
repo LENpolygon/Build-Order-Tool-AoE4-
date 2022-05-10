@@ -134,7 +134,7 @@ const upgradeDSTimeModifier = [3, 3.5, 5, 15];
 var str = "";
 var index; // of table
 var tooltipindex = -1;
-var alignment = "center";
+var alignment = "left";
 
 //////////////////////////////////////////////////
 // WRITE civilizations menu

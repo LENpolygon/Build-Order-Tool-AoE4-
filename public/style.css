@@ -1,6 +1,5 @@
 a, article, b, body, code, dd, div, dl, dt, footer, h1, h2, h3, h4, h5, h6, header, html, i, img, li, menu, nav, p, s, section, small, span, table, tbody, td, th, thead, time, tr, u, ul, var {
     border: 0;
-    font-size: 100%;
     font: inherit;
     vertical-align: baseline;
     margin: 0;
@@ -24,11 +23,12 @@ table {
 html {
     background: #181C29;
     color: #fff;
-    font-size: 14px;
+    font-size: 10px;
     font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
 }
 
 p {
+    font-size: 1.4rem;
     line-height: 1.5em;
     padding-left: 5px;
     padding-right: 5px;
@@ -60,12 +60,18 @@ a {
 .titleLine {
     color: #ffdb88;
     font-family: 'Times New Roman', Times, serif;
-    font-size: 24px;
+    font-size: 2.4rem;
     padding: 6px 8px;
     height: 47px;
     display: inline-block;
     vertical-align: middle;
     letter-spacing: 4px;
+}
+
+.titleDonate {
+    position: absolute;
+    top: 0px;
+    right: 0px;
 }
 
 .titleDonate img {
@@ -76,6 +82,7 @@ a {
 }
 
 .titleDonate a {
+    font-size: 1.4rem;
     color: #ffdb88;
 }
 
@@ -84,7 +91,7 @@ a {
     border: 1px solid #11141D;
     background: #1E2536;
     display: block;
-    font-size: 13px
+    font-size: 1.3rem;
 }
 
 .civBar ul li {
@@ -128,24 +135,47 @@ a {
 }
 
 .civStats {
+    font-size: 1.4rem;
     display: inline-block;
     vertical-align: top
 }
 
 .civStats h1 {
-    font-size: 30px;
+    font-size: 3rem;
     padding-bottom: 5px;
+}
+
+.civStatsMore {
+    position: absolute;
+    top: 8px;
+    right: 8px;
 }
 
 .buildActions {
     position: absolute;
     right: 0px;
     top: 0px;
-    font-size: 11px;
+    font-size: 1.1rem;
+}
+
+.contentInner {
+    display: grid;
+    width: 100%;
+    grid-template-columns: repeat(3, 1fr);
+    grid-column-gap: 10px;
+}
+
+.buildOrder {
+    grid-column: span 2
 }
 
 .buildMenu {
-    display: none
+    grid-column: span 1;
+    display: block
+}
+
+table .buildTime {
+    width: 36px
 }
 
 .footerBar {
@@ -154,7 +184,7 @@ a {
     position: relative;
     margin: 6px 0 0 0;
     padding: 4px 0;
-    font-size: 12px
+    font-size: 1.2rem;
 }
 
 .footerBar a {
@@ -169,8 +199,8 @@ a {
     cursor: move;
     object-fit: contain;
     height: 48px;
-    width: 48px;
-    max-width: 48px;
+    max-height: 48px;
+    width: auto;
     margin: 3px;
     margin-left: 4.5px;
     /*background: rgb(30,34,33);*/
@@ -178,9 +208,9 @@ a {
 
 .buildActions button {
     cursor: pointer;
-    display: none;
+    display: inline-block;
     font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
-    font-size: 13px;
+    font-size: 1.3rem;
     letter-spacing: .5px;
     line-height: 13px;
     padding: 9px 13px;
@@ -203,7 +233,7 @@ section {
 }
 
 section header {
-    font-size: 16px;
+    font-size: 1.6rem;
     font-family: 'Times New Roman', Times, serif;
     text-transform: uppercase;
     padding: 6px 4px;
@@ -218,8 +248,8 @@ section article {
 
 table {
     width: 100%;
-    font-size: 22px;
-    text-align: center;
+    font-size: 2.2rem;
+    text-align: left;
     line-height: 50px;
     vertical-align: bottom;
 }
@@ -330,40 +360,84 @@ background: linear-gradient(0deg, rgba(17,20,29,1) 0%, rgba(30,37,54,1) 100%);
     text-transform: uppercase;
 }
 
-@media (min-width:800px) {
-    .titleDonate {
-        position: absolute;
-        top: 0px;
-        right: 0px;
+@media screen and (max-width:800px) {
+    html {
+        font-size: 6.7px;
     }
 
+    .titleLine {
+        height: 32px;
+    }
+
+    .titleDonate img {
+        height: 32px;
+        max-height: 32px;
+        width: auto;
+    }
+
+    .titleDonate a {
+        font-size: 0
+    }
+
+    .civBar ul li a {
+        padding: 5px 8px
+    }
+
+    .civBar ul li {
+        font-size: 1.9rem;
+        margin-right: 10px
+    }
+
+    .civFlag img {
+        height: 32px;
+    }
+    
+    .civStats h1 {
+        padding-bottom: 3px;
+    }
+    
     .civStatsMore {
-        position: absolute;
-        top: 8px;
-        right: 8px;
-    }
-
-    .contentInner {
-        display: grid;
-        width: 100%;
-        grid-template-columns: repeat(3, 1fr);
-        grid-column-gap: 10px;
+        display: none;
     }
 
     .buildOrder {
-        grid-column: span 2
-    }
-
-    .buildMenu {
-        grid-column: span 1;
-        display: block
-    }
-
-    .buildActions button {
-        display: inline-block
+        grid-column: span 3
     }
 
     table .buildTime {
-        width: 36px
+        width: 24px
+    }
+
+    .icon {
+        height: 32px;
+        max-height: 32px;
+    }
+
+    .buildMenu {
+        display: none
+    }
+
+    .buildActions button {
+        letter-spacing: .3px;
+        line-height: 8px;
+        padding: 6px 8px;
+    }
+
+    table {
+        font-size: 2.2rem;
+        line-height: 33.3px;
+    }
+
+    table td {
+        padding: 2.7px;
+    }
+
+    table th {
+        line-height: 24px;
+        padding: 2.7px;
+    }
+
+    .footerBar {
+        font-size: 1.5rem;
     }
 }
