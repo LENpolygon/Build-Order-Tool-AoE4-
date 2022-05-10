@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router'
-import CivHeader, { civilizations } from './civHeader';
+import CivHeader, { civilizations } from '../../utils/civHeader';
 import Grid from '@mui/material/Grid';
 import { Container } from '@mui/material';
 import admin from '../../firebase/nodeApp'
-import CivBuildOrderTable from './civBuildOrderTable';
+import CivBuildOrderTable from '../../utils/civBuildOrderTable';
 
 const getCivBuildOrderData = async (civ, page) => {
   const db = admin.firestore()

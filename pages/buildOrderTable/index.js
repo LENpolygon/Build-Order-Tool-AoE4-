@@ -8,8 +8,8 @@ import Paper from '@mui/material/Paper';
 import Link from 'next/link'
 import { Container } from '@mui/material';
 import admin from '../../firebase/nodeApp'
-import CivHeader, { civilizations } from './civHeader';
-import CivBuildOrderTable from './civBuildOrderTable';
+import CivHeader, { civilizations } from '../../utils/civHeader';
+import CivBuildOrderTable from '../../utils/civBuildOrderTable';
 
 const getAllBuildOrderData = async () => {
   const db = admin.firestore()
