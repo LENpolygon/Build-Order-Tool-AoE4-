@@ -12,12 +12,13 @@ export default function CivBuildOrderTable(props) {
 
     return (
         <TableContainer component={Paper}>
-            <Table sx={{ minWidth: 200 }} aria-label="simple table">
+            <Table  aria-label="simple table">
                 <TableHead>
                     <TableRow>
                         <TableCell>Name</TableCell>
                         <TableCell align="right">Description</TableCell>
                         <TableCell sm align="right">Votes</TableCell>
+                        {props.showCiv && <TableCell sm align="right">Civ</TableCell>}
                     </TableRow>
                 </TableHead>
                 <TableBody>
@@ -31,6 +32,8 @@ export default function CivBuildOrderTable(props) {
                             </TableCell>
                             <TableCell align="right">{row.description}</TableCell>
                             <TableCell sm align="right">{row.like_count}</TableCell>
+                            {props.showCiv && <TableCell sm align="right">{row.civ}</TableCell>}
+
                         </TableRow>
                     ))}
                 </TableBody>

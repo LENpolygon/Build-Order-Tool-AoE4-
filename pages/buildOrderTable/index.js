@@ -10,6 +10,7 @@ import { Container } from '@mui/material';
 import admin from '../../firebase/nodeApp'
 import CivHeader, { civilizations } from '../../utils/civHeader';
 import CivBuildOrderTable from '../../utils/civBuildOrderTable';
+import ReCAPTCHA from 'react-google-recaptcha/lib/recaptcha';
 
 const getAllBuildOrderData = async () => {
   const db = admin.firestore()
@@ -30,7 +31,8 @@ export default function BuildOrderTable({ data }) {
   return (
     <Container maxWidth="lg">
       <CivHeader currentValue={0} />
-      <CivBuildOrderTable rows={rows} />
+      <h2>Most recent Builds</h2>
+      <CivBuildOrderTable rows={rows} showCiv={true}/>
     </Container>
 
   )

@@ -5,17 +5,15 @@ import { Container } from '@mui/material';
 import admin from '../../firebase/nodeApp'
 import CivBuildOrderTable from '../../utils/civBuildOrderTable';
 
-const getCivBuildOrderData = async (civ, page) => {
+const getCivBuildOrderData = async (civ, page, orderBy) => {
   const db = admin.firestore()
   const buildOrderCollection = db.collection('aoe4_build_order')
     .where("civ", "==", civ)
-    .orderBy('timestamp', 'desc')
+    .orderBy(orderBy, 'desc')
     .offset((page-1)*10)
     .limit(10);
-
   let rows = [];
   let allBuildOrders = await buildOrderCollection.get();
-  console.log(allBuildOrders);
   for (const buildOrder of allBuildOrders.docs) {
     rows.push(buildOrder.data());
   }
@@ -27,18 +25,18 @@ export default function CivsBuildOrdersPage({ data }) {
   const router = useRouter()
   const { civ, page } = router.query
   const index = civilizations.findIndex(c => c.abbr === civ);
-  const { rows } = data
+  const { timestamp_rows, like_count_rows  } = data
   return (
     <Container maxWidth="lg">
       <CivHeader currentValue={index} />
       <Grid container>
         <Grid item xs={6}>
           <h2> Most Recent Builds</h2>
-          <CivBuildOrderTable rows={rows} />
+          <CivBuildOrderTable rows={timestamp_rows} />
         </Grid>
         <Grid item xs={6}>
           <h2> Most Popular Build</h2>
-          <h4> Coming soon</h4>
+          <CivBuildOrderTable rows={like_count_rows} />
         </Grid>
       </Grid>
     </Container>
@@ -47,10 +45,13 @@ export default function CivsBuildOrdersPage({ data }) {
 
 export async function getServerSideProps(context) {
   const { civ, page } = context.query;
-  const rows = await getCivBuildOrderData(civ, page);
-  if (!rows) {
+  const timestamp_rows = await getCivBuildOrderData(civ, page, "timestamp");
+  const like_count_rows = await getCivBuildOrderData(civ, page, "like_count");
+
+  if (!timestamp_rows || !like_count_rows) {
     return { notFound: true }
   }
-  rows.forEach(row => row.timestamp = JSON.parse(JSON.stringify(row.timestamp)));
-  return { props: { data: { rows } } }
+  timestamp_rows.forEach(row => row.timestamp = JSON.parse(JSON.stringify(row.timestamp)));
+  like_count_rows.forEach(row => row.timestamp = JSON.parse(JSON.stringify(row.timestamp)));
+  return { props: { data: { timestamp_rows, like_count_rows } } }
 }

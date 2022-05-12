@@ -1,20 +1,29 @@
 import Head from 'next/head'
 import Router, { useRouter } from 'next/router'
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import { Button, Container, TextField, Box } from '@mui/material';
-import { getFirestore,addDoc,collection,serverTimestamp } from 'firebase/firestore'
+import { getFirestore, addDoc, collection, serverTimestamp } from 'firebase/firestore'
+import Recaptcha from "react-recaptcha";
+import Script from 'next/script'
 
 export default function uploadBuildOrderPage({ data }) {
     const router = useRouter()
     const [name, setName] = useState('');
     const [author, setAuthor] = useState('');
+    const [isVerified, setisVerified] = useState(false);
     const [description, setDescription] = useState('');
+    const recaptchaRef = useRef(null)
 
 
     const { c, s } = router.query;
 
     const uploadBuildOrder = async () => {
         const db = getFirestore()
+        if (!isVerified) {
+            alert("Please verify that you are a human!");
+            return;
+        };
+
 
         const buildOrder = {
             name: name,
@@ -30,13 +39,24 @@ export default function uploadBuildOrderPage({ data }) {
         Router.push('/buildOrderTable');
     }
 
+    const verifyCallback = (response) => {
+        if (response) {
+            setisVerified(true);
+        }
+    };
+
+
     return (
         <Container maxWidth="lg">
+            <script
+                src="https://www.google.com/recaptcha/api.js?&render=explicit"
+                async
+                defer
+            />
             <Head>
                 <title>Upload Your Build Orders</title>
                 <link rel="icon" href="/favicon.ico" />
             </Head>
-
             <main>
                 <Box
                     component="form"
@@ -71,10 +91,20 @@ export default function uploadBuildOrderPage({ data }) {
                             onChange={e => setDescription(e.target.value)}
 
                         />
-
+                    </div>
+                    <div>
+                        <Recaptcha
+                            ref={recaptchaRef}
+                            size="big"
+                            render="explicit"
+                            sitekey="6Lf0vd0fAAAAALqE0QAT8yOZeZWYhjs41PvXzJLN"
+                            verifyCallback={verifyCallback}
+                        />
                     </div>
                 </Box>
-                <Button variant="contained" onClick={() => uploadBuildOrder()}>Upload!</Button>
+                <Button variant="contained" disabled={!isVerified} onClick={() => uploadBuildOrder()}>
+                    {isVerified ?  'Upload!': 'Please verify that you are a human!'}</Button>
+
             </main>
         </Container>
 
