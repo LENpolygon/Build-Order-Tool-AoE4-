@@ -13,8 +13,6 @@ export default function uploadBuildOrderPage({ data }) {
     const [isVerified, setisVerified] = useState(false);
     const [description, setDescription] = useState('');
     const recaptchaRef = useRef(null)
-
-
     const { c, s } = router.query;
 
     const uploadBuildOrder = async () => {
@@ -31,6 +29,7 @@ export default function uploadBuildOrderPage({ data }) {
             author: author,
             civ: c,
             url: s,
+            likers: [],
             like_count: 0,
             timestamp: serverTimestamp(),
         }

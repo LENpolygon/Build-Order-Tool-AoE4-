@@ -10,7 +10,6 @@ import { Container } from '@mui/material';
 import admin from '../../firebase/nodeApp'
 import CivHeader, { civilizations } from '../../utils/civHeader';
 import CivBuildOrderTable from '../../utils/civBuildOrderTable';
-import ReCAPTCHA from 'react-google-recaptcha/lib/recaptcha';
 
 const getAllBuildOrderData = async () => {
   const db = admin.firestore()
