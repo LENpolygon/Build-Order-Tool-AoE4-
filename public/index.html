@@ -28,112 +28,139 @@
 </head>
 
 <body>
-  <div class="titleBar">
+  <div class="containerOuter" id="background">
+    <div class="titleBar">
+      <div class="containerInner">
+        <a class="titleLine" href="https://age4builder.com/index.html">Age of Empires IV<br />Build Order Tool</a>
+        <div class="titleDonate">
+          <a href="https://github.com/LENpolygon/Build-Order-Tool-AoE4-" style="color:#fff;"
+            title="This website is on Github, check out the code and build onto it!">Donate Code<img
+              src="assets/GitHub-Mark/PNG/GitHub-Mark-Light-64px.png" class="icon"
+              alt="This website is on Github, check out the code and build onto it!"></a>
+          <a href="https://ko-fi.com/lenpolygon"
+            title="This website is Ad-Free, consider donating to maintain it!">Donate
+            Coin<img src="img/dropofftax.png" onerror="this.src = 'placeholder.png';" class="icon"
+              alt="This website is Ad-Free, consider donating to maintain it!"></a>
+        </div>
+      </div>
+    </div>
     <div class="containerInner">
-      <a class="titleLine" href="https://age4builder.com/index.html">Age of Empires IV<br />Build Order Tool</a>
-      <div class="titleDonate">
-        <a href="https://github.com/LENpolygon/Build-Order-Tool-AoE4-" style="color:#fff;"
-          title="This website is on Github, check out the code and build onto it!">Donate Code<img
-            src="assets/GitHub-Mark/PNG/GitHub-Mark-Light-64px.png" class="icon"
-            alt="This website is on Github, check out the code and build onto it!"></a>
-        <a href="https://ko-fi.com/lenpolygon" title="This website is Ad-Free, consider donating to maintain it!">Donate
-          Coin<img src="img/dropofftax.png" onerror="this.src = 'placeholder.png';" class="icon"
-            alt="This website is Ad-Free, consider donating to maintain it!"></a>
+      <nav class="civBar">
+        <ul id="civilizationsMenu"></ul>
+      </nav>
+      <div class="civBox">
+        <div class="civFlag">
+          <a id="civilizationFlag"></a>
+        </div>
+        <div class="civStats">
+          <h1 id="civilizationName"></h1><small id="civilizationFocus"></small>
+        </div>
+        <div class="civStatsMore" id="civilizationUniqueUnits">
+        </div>
       </div>
+      <div class="contentInner">
+        <div class="buildOrder">
+          <section>
+            <header>Build Order</header>
+            <article>
+              <table id="buildTable">
+                <thead>
+                  <tr>
+                    <th class="buildTime"><img src="img/timetobuild.png" alt="Time" title="Time" height="24px"></img>
+                    </th>
+                    <th class="buildTime"><img src="img/resourcefoodicon.png" alt="F" title="Food" height="24px"></img>
+                    </th>
+                    <th class="buildTime"><img src="img/resourcewoodicon.png" alt="W" title="Wood" height="24px"></img>
+                    </th>
+                    <th class="buildTime"><img src="img/resourcestoneicon.png" alt="S" title="Stone"
+                        height="24px"></img></th>
+                    <th class="buildTime"><img src="img/resourcegoldicon.png" alt="G" title="Gold" height="24px"></img>
+                    </th>
+                    <th>
+                      <header>
+                        <div class="buildActions">
+                          <button title="Move up" onclick="upNdown('up');">&ShortUpArrow;</button>
+                          <button title="Move down" onclick="upNdown('down');">&ShortDownArrow;</button>
+                          <button title="Add row" onclick="createRow()">&plus;</button>
+                          <button title="Delete row" onclick="deleteRow()">x</button>
+                          <button title="Save and copy" onclick="saveToURL()">save & copy</button>
+                          <!--<button title="Toggle alignment" onclick="toggleAlign()">align</button>-->
+                          <!--<button title="Switch villager" onclick="switchStepVill()">switch vill#</button>-->
+                          <span class="tooltip">
+                            <button title="Clear" onclick="clearRow()">clear</button>
+                            <span>
+                              <p>This clears the entire build and gives a blank table to start over fresh.</p>
+                            </span>
+                        </div>
+                      </header>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td contenteditable="true">!</td>
+                    <td contenteditable="true">!</td>
+                    <td contenteditable="true">!</td>
+                    <td contenteditable="true">!</td>
+                    <td contenteditable="true">!</td>
+                    <td contenteditable="true">This tools allows you to view, edit and share Age of
+                      Empires IV builds</td>
+                  </tr>
+                  <tr>
+                    <td contenteditable="true">!</td>
+                    <td contenteditable="true">!</td>
+                    <td contenteditable="true">!</td>
+                    <td contenteditable="true">!</td>
+                    <td contenteditable="true">!</td>
+                    <td contenteditable="true">To use it, please enable Javascript / Scripts in your
+                      webbrowser</td>
+                  </tr>
+                  <tr>
+                    <td contenteditable="true">!</td>
+                    <td contenteditable="true">!</td>
+                    <td contenteditable="true">!</td>
+                    <td contenteditable="true">!</td>
+                    <td contenteditable="true">!</td>
+                    <td contenteditable="true">You can verify the source code for yourself, it's on Github!</td>
+                  </tr>
+                </tbody>
+              </table>
+            </article>
+          </section>
+        </div>
+        <div class="buildMenu">
+          <section>
+            <header class="fold">How to use this tool</header>
+            <article class="boxed">
+              <p>Click on the table and edit the content. Drag and drop icons from the menus
+                below. When you're ready press "Save & Copy to Clipboard" and share (paste) your
+                Build Order online!</p>
+            </article>
+          </section>
+          <div id="buildIcons"></div>
+        </div>
+        <div class="push"></div>
+      </div>
+      <div class="footerBar">Build Order Tool v0.7 for the latest Age of Empires instalment. Copyright 2022 <a
+          target="_blank" rel="noopener" data-track-outgoing="true" href="http://lenpolygon.com">LEN polygon</a>.
+        Age of Empires IV and all its icons, artwork, and flair are property of Relic Entertainment, World's Edge &
+        Xbox Game
+        Studios.<br />This website is for educational purposes only.</div>
     </div>
-  </div>
-  <div class="containerInner" id="background">
-    <nav class="civBar">
-      <ul id="civilizationsMenu"></ul>
-    </nav>
-    <div class="civBox">
-      <div class="civFlag">
-        <a id="civilizationFlag"></a>
-      </div>
-      <div class="civStats">
-        <h1 id="civilizationName"></h1><small id="civilizationFocus"></small>
-      </div>
-      <div class="civStatsMore" id="civilizationUniqueUnits">
-      </div>
-    </div>
-    <div class="contentInner">
-      <div class="buildOrder">
-        <section>
-          <header>Build Order</header>
-          <article>
-            <table id="buildTable">
-              <thead>
-                <tr>
-                  <th class="buildTime">Step</th>
-                  <th>
-                    <header>
-                      <div class="buildActions">
-                        <button title="Move up" onclick="upNdown('up');">&ShortUpArrow;</button>
-                        <button title="Move down" onclick="upNdown('down');">&ShortDownArrow;</button>
-                        <button title="Add row" onclick="createRow()">&plus;</button>
-                        <button title="Delete row" onclick="deleteRow()">x</button>
-                        <button title="Save and copy" onclick="saveToURL()">save & copy</button>
-                        <button title="Toggle alignment" onclick="toggleAlign()">align</button>
-                        <!--<button title="Switch villager" onclick="switchStepVill()">switch vill#</button>-->
-                        <span class="tooltip">
-                          <button title="Clear" onclick="clearRow()">clear</button>
-                          <span>
-                            <p>This clears the entire build and gives a blank table to start over fresh.</p>
-                          </span>
-                      </div>
-                    </header>
-                  </th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr>
-                  <td contenteditable="true">!</td>
-                  <td contenteditable="true">This tools allows you to view, edit and share Age of
-                    Empires IV builds</td>
-                </tr>
-                <tr>
-                  <td contenteditable="true"></td>
-                  <td contenteditable="true">To use it, please enable Javascript / Scripts in your
-                    webbrowser</td>
-                </tr>
-                <tr>
-                  <td contenteditable="true">?</td>
-                  <td contenteditable="true">You can verify the source code for yourself, it's on Github!</td>
-                </tr>
-              </tbody>
-            </table>
-          </article>
-        </section>
-      </div>
-      <div class="buildMenu">
-        <section>
-          <header class="fold">How to use this tool</header>
-          <article class="boxed">
-            <p>Click on the table and edit the content. Drag and drop icons from the menus
-              below. When you're ready press "Save & Copy to Clipboard" and share (paste) your
-              Build Order online!</p>
-          </article>
-        </section>
-        <div id="buildIcons"></div>
-      </div>
-    </div>
-    <div class="footerBar">Build Order Tool v0.7 for the latest Age of Empires instalment. Copyright 2022 <a
-        target="_blank" rel="noopener" data-track-outgoing="true" href="http://lenpolygon.com">LEN polygon</a>.
-      Age of Empires IV and all its icons, artwork, and flair are property of Relic Entertainment, World's Edge &
-      Xbox Game
-      Studios.<br />This website is for educational purposes only.</div>
   </div>
   <div id="tooltipContainer" class="tooltipContainer">
     <div id="tooltipBox" class="tooltipBox">
     </div>
   </div>
   <script type="text/javascript" src="main.js"></script>
-    <!-- Load React. -->
+  <!-- Load React. -->
   <!-- Note: when deploying, replace "development.js" with "production.min.js". -->
   <script src="https://unpkg.com/react@18/umd/react.production.min.js" crossorigin></script>
   <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js" crossorigin></script>
 
   <!-- Load our React component. -->
   <script src="favorite_build.js"></script>
+  <footer>TESTING</footer>
 </body>
+
 </html>

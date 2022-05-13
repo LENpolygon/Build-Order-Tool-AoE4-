@@ -107,6 +107,7 @@ for (var header in headerData) {
 //////////////////////////////////////////////////
 var selectedciv = null;
 var buildorder = null;
+var buildordercolumns = 2;
 var usp = new URLSearchParams(window.location.search);
 if (isNaN(usp.get("c"))) {
     for (let i = 0; i < civilizations.length; i++) {
@@ -116,10 +117,14 @@ if (isNaN(usp.get("c"))) {
         }
     }
 }
-if (isNaN(usp.get("s"))) {
+if (isNaN(usp.get("t"))) { // 6 column builds
+    buildorder = LZString.decompressFromEncodedURIComponent(usp.get("t"));
+    buildordercolumns = 6;
+}
+else if (isNaN(usp.get("s"))) { // 2 column builds (old)
     buildorder = LZString.decompressFromEncodedURIComponent(usp.get("s"));
 }
-else if (isNaN(usp.get("b"))) {
+else if (isNaN(usp.get("b"))) { // uncompressed 2 column builds (very old)
     buildorder = usp.get("b");
 }
 if (!selectedciv) {
@@ -202,7 +207,17 @@ function upNdown(direction) {
 function createRow() {
     if (typeof index !== "undefined") {
         var row = document.getElementById("buildTable").insertRow(index + 1);
-        row.innerHTML = "<td contenteditable=\"true\">0:00</td><td contenteditable=\"true\"></td>";
+        var str = "";
+        for (let i = 0; i < 6; i++)
+        {
+            str += "<td contenteditable=\"true\"";
+            if (i == 5)
+            {
+                str += " style=\"text-align: left;\"";
+            }
+            str += "></td>";
+        }
+        row.innerHTML = str;
         getSelectedRow();
     }
     row.focus();
@@ -217,7 +232,17 @@ function deleteRow() {
 function clearRow() {
     var rows = document.getElementById("buildTable").rows;
     for (let i = 0; i < (rows.length - 1); i++) {
-        rows[i + 1].innerHTML = "<td contenteditable=\"true\"></td><td contenteditable=\"true\"></td>";
+        var str = "";
+        for (let i = 0; i < 6; i++)
+        {
+            str += "<td contenteditable=\"true\"";
+            if (i == 5)
+            {
+                str += " style=\"text-align: left;\"";
+            }
+            str += "></td>";
+        }
+        rows[i + 1].innerHTML = str;
     }
 }
 
@@ -250,19 +275,19 @@ function formatImage(reference, value, showTooltip) {
     var tooltip = "";
     if (showTooltip) {
         tooltip = "<div class=\"tooltipColumn1\">";
-        tooltip += imgstr[1] + reference[selectedciv.abbr] + imgstr[2] +"></img><br/><div class=\"smallIcons\">";
+        tooltip += imgstr[1] + reference[selectedciv.abbr] + imgstr[2] + "></img><br/><div class=\"smallIcons\">";
         for (let h = 0; h < tableitems.length; h++) {
             if (reference[tableitems[h][0]]) {
                 if (selectedciv.abbr == "CH" && (reference.genre == "Building" || reference.genre == "Landmark") && tableitems[h][0] == "time") { // Chinese building modifier
-                    tooltip += imgstr[1] + tableitems[h][1] + imgstr[2] +">" + sToTime(reference[tableitems[h][0]] * buildingTimeModifier) + "<br/>";
+                    tooltip += imgstr[1] + tableitems[h][1] + imgstr[2] + ">" + sToTime(reference[tableitems[h][0]] * buildingTimeModifier) + "<br/>";
                 }
                 else if (selectedciv.abbr == "DS" && (reference.genre == "Technology" || reference.genre == "Upgrade" || reference.genre == "Blacksmith")) { // Dehli upgrade modifier
                     if (tableitems[h][0] == "time") {
-                        tooltip += imgstr[1] + tableitems[h][1] + imgstr[2] +">" + sToTime(reference[tableitems[h][0]] * upgradeDSTimeModifier[reference.age - 1]) + "<br/>";
+                        tooltip += imgstr[1] + tableitems[h][1] + imgstr[2] + ">" + sToTime(reference[tableitems[h][0]] * upgradeDSTimeModifier[reference.age - 1]) + "<br/>";
                     }
                 }
                 else {
-                    tooltip += imgstr[1] + tableitems[h][1] + imgstr[2] +">" + (tableitems[h][0] == "time" ? sToTime(reference[tableitems[h][0]]) : reference[tableitems[h][0]]) + "<br/>";
+                    tooltip += imgstr[1] + tableitems[h][1] + imgstr[2] + ">" + (tableitems[h][0] == "time" ? sToTime(reference[tableitems[h][0]]) : reference[tableitems[h][0]]) + "<br/>";
                 }
             }
         }
@@ -319,12 +344,12 @@ function saveToURL() {
     var rows = document.getElementById("buildTable").rows;
     var str = "";
     for (let i = 1; i < rows.length; i++) {
-        str += sanitizeNconvert(rows[i].cells[0].innerHTML);
-        str += "|";
-        str += sanitizeNconvert(rows[i].cells[1].innerHTML);
-        str += "|";
+        for (let j = 0; j < 6; j++) {
+            str += sanitizeNconvert(rows[i].cells[j].innerHTML);
+            str += "|";
+        }
     }
-    window.history.replaceState("Home", "AGE OF EMPIRES 4 - BUILD ORDER TOOL", 'index.html?c=' + selectedciv.abbr + "&s=" + LZString.compressToEncodedURIComponent(str));
+    window.history.replaceState("Home", "AGE OF EMPIRES 4 - BUILD ORDER TOOL", 'index.html?c=' + selectedciv.abbr + "&t=" + LZString.compressToEncodedURIComponent(str));
     navigator.clipboard.writeText(window.location.href).then(function () {
         console.log('Async: Copying to clipboard was successful!');
     }, function (err) {
@@ -333,8 +358,9 @@ function saveToURL() {
 }
 
 //////////////////////////////////////////////////
-// TOGGLE alignment
+// TOGGLE alignment [OLD]
 //////////////////////////////////////////////////
+/*
 function toggleAlign() {
     if (alignment == "left") {
         alignment = "center";
@@ -344,6 +370,7 @@ function toggleAlign() {
     }
     document.getElementById("buildTable").style.textAlign = alignment
 }
+*/
 
 //////////////////////////////////////////////////
 // SWITCH step/vill count
@@ -406,19 +433,31 @@ async function loadiconsJSON() {
     }
     else {
         let vilval = selectedciv.abbr == "FR" ? 54 : 53;
-        let str = "0:00|Click here to start editing your own build (only on PC for now...)|0:00|You can add icons by dragging them from the menu: {" + vilval + "} |0:00|When you're happy press \"Save and Copy\" and share your build!|";
+        let str = `0:00|Click here to start editing your own build (only on PC for now...)|0:00|You can add icons by dragging them from the menu: {${vilval}} |0:00|When you're happy press \"Save and Copy\" and share your build!|`;
         window.history.replaceState("Home", "AGE OF EMPIRES 4 - BUILD ORDER TOOL", 'index.html?c=' + selectedciv.abbr + "&b=" + str);
         buildarray = sanitizeNconvert(str).split("|");
     }
     var rows = document.getElementById("buildTable").rows;
-    for (let i = buildarray.length / 2 - (rows.length - 1); i > 1; i--) {
+    for (let i = buildarray.length / buildordercolumns - (rows.length - 1); i > 1; i--) {
         document.getElementById("buildTable").insertRow(2);
     }
     var rows = document.getElementById("buildTable").rows;
     for (let i = 0; i < (rows.length - 1); i++) {
-        rows[i + 1].innerHTML = "<td contenteditable=\"true\">"
-            + convertBack(buildarray[i * 2], data) + "</td><td contenteditable=\"true\">"
-            + convertBack(buildarray[(i * 2) + 1], data) + "</td>";
+        var rowstring = "";
+        for (let j = 0; j < buildordercolumns; j++) {
+            rowstring += "<td contenteditable=\"true\"";
+            if (j == buildordercolumns - 1)
+            {
+                rowstring += " style=\"text-align: left;\"";
+            }
+            rowstring += ">" + convertBack(buildarray[(i * buildordercolumns) + j], data) + "</td>";
+            if (j == 0 && buildordercolumns == 2) {
+                for (let k = 0; k < (6 - buildordercolumns); k++) {
+                    rowstring += "<td contenteditable=\"true\"></td>"
+                }
+            }
+        }
+        rows[i + 1].innerHTML = rowstring;
     }
 
     //////////////////////////////////////////////////
@@ -454,7 +493,7 @@ async function loadiconsJSON() {
         });
     }
     coll[0].click();
-    coll[1].click();
+    //coll[1].click();
 
     ///////////////////////////////////////////////////
     // SHOW tooltips

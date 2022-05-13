@@ -6,6 +6,16 @@ a, article, b, body, code, dd, div, dl, dt, footer, h1, h2, h3, h4, h5, h6, head
     padding: 0
 }
 
+html {
+    background: #181C29;
+    color: #fff;
+    font-size: 10px;
+    font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
+    height: 100%;
+    margin: 0px;
+    box-sizing: border-box;
+}
+
 article, footer, header, menu, nav, section {
     display: block;
     position: relative;
@@ -13,18 +23,13 @@ article, footer, header, menu, nav, section {
 
 body {
     line-height: 1;
+    height: 100%;
+    margin: 0px;
 }
 
 table {
     border-collapse: collapse;
     border-spacing: 0
-}
-
-html {
-    background: #181C29;
-    color: #fff;
-    font-size: 10px;
-    font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
 }
 
 p {
@@ -39,13 +44,41 @@ a {
     color: white;
 }
 
-.containerInner {
-    margin: auto;
-    position: relative;
-    max-width: 1200px;
-    flex: 1 1 100%;
+.containerOuter {
     background-repeat: no-repeat;
     background-position: left bottom;
+    max-width: 1200px;
+    min-height: 100%;
+    margin: auto; 
+}
+
+.containerInner {
+    max-width: 1200px;
+    background-repeat: no-repeat;
+    background-position: left bottom;
+    min-height: 100%;
+}
+
+.footer,
+.push {
+  height: 50px;
+}
+
+.footerBar {
+    color: rgba(255, 255, 255, .6);
+    clear: both;
+    margin: 6px 0 0 0;
+    padding: 4px 0;
+    font-size: 1.2rem;
+    text-align: center;
+}
+
+.footerBar a {
+    color: #fff
+}
+
+.footerBar a:hover {
+    text-decoration: underline
 }
 
 .titleBar {
@@ -163,6 +196,7 @@ a {
     width: 100%;
     grid-template-columns: repeat(3, 1fr);
     grid-column-gap: 10px;
+    margin: 0 auto;
 }
 
 .buildOrder {
@@ -178,22 +212,7 @@ table .buildTime {
     width: 36px
 }
 
-.footerBar {
-    color: rgba(255, 255, 255, .6);
-    clear: both;
-    position: relative;
-    margin: 6px 0 0 0;
-    padding: 4px 0;
-    font-size: 1.2rem;
-}
 
-.footerBar a {
-    color: #fff
-}
-
-.footerBar a:hover {
-    text-decoration: underline
-}
 
 .icon {
     cursor: move;
@@ -249,7 +268,7 @@ section article {
 table {
     width: 100%;
     font-size: 2.2rem;
-    text-align: left;
+    text-align: center;
     line-height: 50px;
     vertical-align: bottom;
 }
@@ -326,8 +345,8 @@ table th {
 .tooltipBox {
     box-shadow: 0 0 3px rgba(10, 10, 10, .4);
     border: 1px solid #11141D;
-    background: rgb(17,20,29);
-background: linear-gradient(0deg, rgba(17,20,29,1) 0%, rgba(30,37,54,1) 100%);
+    background: rgb(17, 20, 29);
+    background: linear-gradient(0deg, rgba(17, 20, 29, 1) 0%, rgba(30, 37, 54, 1) 100%);
     position: relative;
     padding: 8px;
     margin: 13px 0 0 0;
@@ -391,11 +410,11 @@ background: linear-gradient(0deg, rgba(17,20,29,1) 0%, rgba(30,37,54,1) 100%);
     .civFlag img {
         height: 32px;
     }
-    
+
     .civStats h1 {
         padding-bottom: 3px;
     }
-    
+
     .civStatsMore {
         display: none;
     }
