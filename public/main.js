@@ -128,7 +128,7 @@ else if (isNaN(usp.get("b"))) { // uncompressed 2 column builds (very old)
     buildorder = usp.get("b");
 }
 if (!selectedciv) {
-    window.location.href = "index.html?c=EN&s=AwLmwHwMQSwJwM4BcAEA2FBvArAZgL4pID2WA7NvhKOBAHICmAHqjgUaZhVaAEyQAVABYMAdil5Y8hAEYBXGABsAJlgAcAFkIosATjKEAhqNUBbGKIblgVAIxhIuKe3lLVmXe2OqAxnNZoalS8DhAazrIKKnoGKN4o5pZYaLpUuCD8EJi27JYsERzJQRDpuJAAQlHutrY2KADuMEhCEgUAZnDEptZpIBqQAIJtSAxwKGXAyakoCGKqhoqK7Z3dmCmEJEVU2KGVbli2akENTS3hbIQdXVsQQA";
+    window.location.href = "index.html?c=EN&t=AwWwPhEGIJYE4GcAuACAbCg3gVgMwF8UkB7LAdm3zFDDUjADkBTAD1RwKNMwqpoA56AFQAWTAHYoATFjyEARgFcYAGwAmWfgBZCKLAE4yhAIbiNIGOKblgVAIzhBEKWFyzOS1Rsz7OpjQDGiuxo-FRSjq7OYFruCsrqBkYo-igWVlho+lS4kbgxYC6YdpxWbHFcmWGukVoFLgBCCd52drYoAO4wSCLSFQBmcMQgNjmR2AXAYACC-UhMcCi4wMCZ2SgIEhrGKioDQyOYWYQkVVTYkXYuU43NWHb8YZ3dvbEchIPDZ2BAA";
 }
 
 //////////////////////////////////////////////////
