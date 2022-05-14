@@ -50,6 +50,7 @@ a {
     max-width: 1200px;
     min-height: 100%;
     margin: auto; 
+    margin-bottom: -50px;
 }
 
 .containerInner {
@@ -459,4 +460,8 @@ table th {
     .footerBar {
         font-size: 1.5rem;
     }
+
+    .buildTime img {
+        height: 16px;
+    } 
 }

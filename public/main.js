@@ -433,7 +433,7 @@ async function loadiconsJSON() {
     }
     else {
         let vilval = selectedciv.abbr == "FR" ? 54 : 53;
-        let str = `0:00|Click here to start editing your own build (only on PC for now...)|0:00|You can add icons by dragging them from the menu: {${vilval}} |0:00|When you're happy press \"Save and Copy\" and share your build!|`;
+        let str = `0|Click to start editing your own build|1|Icons can be dragged from the menu on the right: {${vilval}} |2|When ready press \"Save to URL\" and share your build!|`;
         window.history.replaceState("Home", "AGE OF EMPIRES 4 - BUILD ORDER TOOL", 'index.html?c=' + selectedciv.abbr + "&b=" + str);
         buildarray = sanitizeNconvert(str).split("|");
     }
