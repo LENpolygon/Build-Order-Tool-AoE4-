@@ -263,7 +263,7 @@ function sToTime(input) {
 //////////////////////////////////////////////////
 const imgstr = ["<a class=\"tooltip\">",
     "<img src=\"img/",
-    ".png\" onerror=\"this.src = 'placeholder.png';\"",
+    ".png\" onerror=\"this.src = 'assets/placeholder.png';\"",
     "class=\"icon\" data-index=\"",
     "\" data-info=\"",
     "\" alt=\"",
@@ -408,7 +408,7 @@ async function loadiconsJSON() {
     // WRITE current civ
     //////////////////////////////////////////////////
     document.getElementById("civilizationFocus").innerHTML = selectedciv.focus;
-    document.getElementById("civilizationFlag").innerHTML = "<img src=\"img/flag" + selectedciv.abbr + ".png\" onerror=\"this.src = 'placeholder.png';\"></img>";
+    document.getElementById("civilizationFlag").innerHTML = "<img src=\"img/flag" + selectedciv.abbr + ".png\" onerror=\"this.src = 'assets/placeholder.png';\"></img>";
     var str = selectedciv.civilization + " ";
     for (let i = 0; i < 3; i++) {
         if (selectedciv.difficulty == i) {
