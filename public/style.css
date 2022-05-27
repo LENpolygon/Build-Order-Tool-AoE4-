@@ -281,9 +281,36 @@ table img {
 table tbody tr {
     background: #2C374F;
 }
-
 table tbody tr:nth-child(2n) {
     background: #1E2536;
+}
+
+table tbody tr td:nth-child(2) {
+    background: #41394a;
+}
+table tbody tr:nth-child(2n) td:nth-child(2) {
+    background: #342934;
+}
+
+table tbody tr td:nth-child(3) {
+    background: #383a47;
+}
+table tbody tr:nth-child(2n) td:nth-child(3) {
+    background: #2c2a31;
+}
+
+table tbody tr td:nth-child(4) {
+    background: #374157;
+}
+table tbody tr:nth-child(2n) td:nth-child(4) {
+    background: #2b3140;
+}
+
+table tbody tr td:nth-child(5) {
+    background: #404448;
+}
+table tbody tr:nth-child(2n) td:nth-child(5) {
+    background: #343432;
 }
 
 table td {
