@@ -1,17 +1,9 @@
-import civilizations from './civilizations.json' assert {type:'json'};
-
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
-import firebaseConfig from './firebaseConfig.json' assert {type:'json'};
-const app = initializeApp(firebaseConfig);
-import {
-    getFirestore, doc, getDoc, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField
-} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js";
-const db = getFirestore();
+import civilizations from './json/civilizations.json' assert {type:'json'};
 
 //////////////////////////////////////////////////
 // DEFINE menu structure
 //////////////////////////////////////////////////
-import headerData from './headerData.json' assert {type:'json'};
+import headerData from './json/headerData.json' assert {type:'json'};
 for (var header in headerData) {
     for (var genre in headerData[header]) {
         headerData[header][genre] = [[], [], [], []]; // add ages
@@ -44,12 +36,13 @@ else if (isNaN(usp.get("b"))) { // uncompressed 2 column builds (very old)
     buildorder = usp.get("b");
 }
 if (!selectedciv) {
-    window.location.href = "index.html?c=EN&t=AwWwPhEGIJYE4GcAuACAbCg3gVgMwF8UkB7LAdm3zFDDUjADkBTAD1RwKNMwqpoA56AFQAWTAHYoATFjyEARgFcYAGwAmWfgBZCKLAE4yhAIbiNIGOKblgVAIzhBEKWFyzOS1Rsz7OpjQDGiuxo-FRSjq7OYFruCsrqBkYo-igWVlho+lS4kbgxYC6YdpxWbHFcmWGukVoFLgBCCd52drYoAO4wSCLSFQBmcMQgNjmR2AXAYACC-UhMcCi4wMCZ2SgIEhrGKioDQyOYWYQkVVTYkXYuU43NWHb8YZ3dvbEchIPDZ2BAA";
+    window.location.href = "build.html?c=EN&t=AwWwPhEGIJYE4GcAuACAbCg3gVgMwF8UkB7LAdm3zFDDUjADkBTAD1RwKNMwqpoA56AFQAWTAHYoATFjyEARgFcYAGwAmWfgBZCKLAE4yhAIbiNIGOKblgVAIzhBEKWFyzOS1Rsz7OpjQDGiuxo-FRSjq7OYFruCsrqBkYo-igWVlho+lS4kbgxYC6YdpxWbHFcmWGukVoFLgBCCd52drYoAO4wSCLSFQBmcMQgNjmR2AXAYACC-UhMcCi4wMCZ2SgIEhrGKioDQyOYWYQkVVTYkXYuU43NWHb8YZ3dvbEchIPDZ2BAA";
 }
 
 //////////////////////////////////////////////////
 // INITIALIZE
 //////////////////////////////////////////////////
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js"; import firebaseConfig from './json/firebaseConfig.json' assert {type:'json'}; const app = initializeApp(firebaseConfig); import { getFirestore, doc, getDoc, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"; const db = getFirestore();
 var buildingTimeModifier = selectedciv.abbr == "CH" ? 0.5 : 1;
 const upgradeDSTimeModifier = [3, 3.5, 5, 15];
 var str = "";
@@ -65,7 +58,7 @@ for (let i = 0; i < civilizations.length; i++) {
     if (civilizations[i].abbr == selectedciv.abbr) {
         str += " class=\"active\"";
     }
-    str += "><a href=\"index.html?c=" + civilizations[i].abbr + "\">" + civilizations[i].civilization + "</a></li>";
+    str += "><a href=\"build.html?c=" + civilizations[i].abbr + "\">" + civilizations[i].civilization + "</a></li>";
 }
 str += "<li><div id=\"favorite_build_button_container\"></div></li>"
 
@@ -270,7 +263,7 @@ function saveToURL() {
         }
     }
     var build = LZString.compressToEncodedURIComponent(str);
-    window.history.replaceState("Home", "AGE OF EMPIRES 4 - BUILD ORDER TOOL", 'index.html?c=' + selectedciv.abbr + "&" + ver + "=" + build);
+    window.history.replaceState("Home", "AGE OF EMPIRES 4 - BUILD ORDER TOOL", 'build.html?c=' + selectedciv.abbr + "&" + ver + "=" + build);
     navigator.clipboard.writeText(window.location.href).then(function () {
         console.log('Async: Copying to clipboard was successful!');
     }, function (err) {
@@ -316,10 +309,10 @@ async function AddDocument_CustomID() {
 document.getElementById("AddDocument_CustomIDBtn").addEventListener("click", AddDocument_CustomID);
 
 //////////////////////////////////////////////////
-// READ icons.JSON data
+// READ json/icons.json data
 //////////////////////////////////////////////////
 async function loadiconsJSON() {
-    const response = await fetch("icons.json");
+    const response = await fetch("json/icons.json");
     const data = await response.json();
     for (let i = 0; i < data.length; i++) {
         var matching = true;
@@ -370,7 +363,7 @@ async function loadiconsJSON() {
     else {
         let vilval = selectedciv.abbr == "FR" ? 54 : 53;
         let str = `0|Click to start editing your own build|1|Icons can be dragged from the menu on the right: {${vilval}} |2|When ready press \"Save to URL\" and share your build!|`;
-        window.history.replaceState("Home", "AGE OF EMPIRES 4 - BUILD ORDER TOOL", 'index.html?c=' + selectedciv.abbr + "&b=" + str);
+        window.history.replaceState("Home", "AGE OF EMPIRES 4 - BUILD ORDER TOOL", 'build.html?c=' + selectedciv.abbr + "&b=" + str);
         buildarray = sanitizeNconvert(str).split("|");
     }
     var rows = document.getElementById("buildTable").rows;
