@@ -221,6 +221,7 @@ table .buildTime {
     height: 48px;
     max-height: 48px;
     width: auto;
+    max-width: 48px;
     margin: 3px;
     margin-left: 4.5px;
     /*background: rgb(30,34,33);*/
@@ -311,6 +312,10 @@ table tbody tr td:nth-child(5) {
 }
 table tbody tr:nth-child(2n) td:nth-child(5) {
     background: #343432;
+}
+
+table tbody tr td:nth-child(6) {
+    padding-left: 10px;
 }
 
 table td {

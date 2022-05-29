@@ -1,101 +1,17 @@
-//////////////////////////////////////////////////
-// DEFINE civilizations
-//////////////////////////////////////////////////
-const civilizations = [
-    {
-        "civilization": "Abbasid Dynasty",
-        "abbr": "AD",
-        "focus": "Technology, Camels and City Planning",
-        "difficulty": 2,
-        "icon": "flagAD.png",
-        "uniqueunits": [306, 176]
-    },
-    {
-        "civilization": "Chinese",
-        "abbr": "CH",
-        "focus": "Dynasties, Gunpowder and Expansion",
-        "difficulty": 3,
-        "icon": "flagCH.png",
-        "uniqueunits": [310, 307, 52, 287, 175, 437, 261]
-    },
-    {
-        "civilization": "Delhi Sultanate",
-        "abbr": "DS",
-        "focus": "Military, Research and Defense",
-        "difficulty": 3,
-        "icon": "flagDS.png",
-        "uniqueunits": [59, 136, 311, 300]
-    },
-    {
-        "civilization": "French",
-        "abbr": "FR",
-        "focus": "Trade, Cavalry and Keeps",
-        "difficulty": 1,
-        "uniqueunits": [181, 301, 410, 432]
-    },
-    {
-        "civilization": "English",
-        "abbr": "EN",
-        "focus": "Defense, Longbows and Economy",
-        "difficulty": 1,
-        "uniqueunits": [174]
-    },
-    {
-        "civilization": "Holy Roman Empire",
-        "abbr": "HR",
-        "focus": "Infantry, Religion and Defense",
-        "difficulty": 2,
-        "uniqueunits": [58, 305]
-    },
-    {
-        "civilization": "Mongols",
-        "abbr": "MO",
-        "focus": "Aggression, Nomadic and Mobility",
-        "difficulty": 3,
-        "uniqueunits": [60, 177, 292, 262]
-    },
-    {
-        "civilization": "Rus",
-        "abbr": "RU",
-        "focus": "Expansion, Cavalry and Hunting",
-        "difficulty": 2,
-        "uniqueunits": [440, 304, 295, 138, 255, 252, 263, 415]
-    }
-];
+import civilizations from './civilizations.json' assert {type:'json'};
+
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js";
+import firebaseConfig from './firebaseConfig.json' assert {type:'json'};
+const app = initializeApp(firebaseConfig);
+import {
+    getFirestore, doc, getDoc, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField
+} from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js";
+const db = getFirestore();
 
 //////////////////////////////////////////////////
 // DEFINE menu structure
 //////////////////////////////////////////////////
-var headerData =
-{
-    "Units": {
-        "Land Unit": [],
-        "Water Unit": []
-    },
-    "Buildings": {
-        "Structure": [],
-        "Landmark": []
-    },
-    "Technologies": {
-        "Economic": [],
-        "Blacksmith": [],
-        "Upgrade": [],
-        "Technology": [],
-        "Empl": []
-    },
-    "Miscellaneous": {
-        "Resource": [],
-        "Age": [],
-        "Ability": [],
-        "Dynasty": [],
-        "Flag": [],
-        "Formation": [],
-        "Influence": [],
-        "Move": [],
-        "Victory": [],
-        "Misc": []
-    }
-};
+import headerData from './headerData.json' assert {type:'json'};
 for (var header in headerData) {
     for (var genre in headerData[header]) {
         headerData[header][genre] = [[], [], [], []]; // add ages
@@ -204,15 +120,15 @@ function upNdown(direction) {
     }
     parent.focus();
 }
+function up() { upNdown('up'); }
+function down() { upNdown('down'); }
 function createRow() {
     if (typeof index !== "undefined") {
         var row = document.getElementById("buildTable").insertRow(index + 1);
         var str = "";
-        for (let i = 0; i < 6; i++)
-        {
+        for (let i = 0; i < 6; i++) {
             str += "<td contenteditable=\"true\"";
-            if (i == 5)
-            {
+            if (i == 5) {
                 str += " style=\"text-align: left;\"";
             }
             str += "></td>";
@@ -229,15 +145,13 @@ function deleteRow() {
         index = undefined;
     }
 }
-function clearRow() {
+function clearTable() {
     var rows = document.getElementById("buildTable").rows;
     for (let i = 0; i < (rows.length - 1); i++) {
         var str = "";
-        for (let i = 0; i < 6; i++)
-        {
+        for (let i = 0; i < 6; i++) {
             str += "<td contenteditable=\"true\"";
-            if (i == 5)
-            {
+            if (i == 5) {
                 str += " style=\"text-align: left;\"";
             }
             str += "></td>";
@@ -245,6 +159,11 @@ function clearRow() {
         rows[i + 1].innerHTML = str;
     }
 }
+document.getElementById("upNdownup").addEventListener("click", up);
+document.getElementById("upNdowndown").addEventListener("click", down);
+document.getElementById("createRowBtn").addEventListener("click", createRow);
+document.getElementById("deleteRowBtn").addEventListener("click", deleteRow);
+document.getElementById("clearTableBtn").addEventListener("click", clearTable);
 
 //////////////////////////////////////////////////
 // CONVERT seconds to time
@@ -343,41 +262,58 @@ function convertBack(input, data) {
 function saveToURL() {
     var rows = document.getElementById("buildTable").rows;
     var str = "";
+    var ver = "t";
     for (let i = 1; i < rows.length; i++) {
         for (let j = 0; j < 6; j++) {
             str += sanitizeNconvert(rows[i].cells[j].innerHTML);
             str += "|";
         }
     }
-    window.history.replaceState("Home", "AGE OF EMPIRES 4 - BUILD ORDER TOOL", 'index.html?c=' + selectedciv.abbr + "&t=" + LZString.compressToEncodedURIComponent(str));
+    var build = LZString.compressToEncodedURIComponent(str);
+    window.history.replaceState("Home", "AGE OF EMPIRES 4 - BUILD ORDER TOOL", 'index.html?c=' + selectedciv.abbr + "&" + ver + "=" + build);
     navigator.clipboard.writeText(window.location.href).then(function () {
         console.log('Async: Copying to clipboard was successful!');
     }, function (err) {
         console.error('Async: Could not copy text: ', err);
     });
+    return [selectedciv.abbr, ver, build];
 }
+document.getElementById("saveToURLBtn").addEventListener("click", saveToURL);
 
 //////////////////////////////////////////////////
-// TOGGLE alignment [OLD]
+// UPLOAD new Build to Firestore
 //////////////////////////////////////////////////
-/*
-function toggleAlign() {
-    if (alignment == "left") {
-        alignment = "center";
+async function AddDocument_CustomID() {
+    var save = saveToURL();
+    var ref = doc(db, "Age4Builds",save[0]+save[2]);
+    await setDoc(
+        ref, {
+        user: "",
+        id: "",
+        rank: "",
+        timestamp: Date.now(),
+        views: 0,
+        title: "",
+        description: "",
+        civ: save[0],
+        maps: [],
+        build: save[2],
+        video: "",
+        version: save[1],
+        patch: "14681",
+        likers: [],
+        likes: parseInt(document.getElementById("scoreU").value),
+        option: document.getElementById("optionsU").value
     }
-    else {
-        alignment = "left";
-    }
-    document.getElementById("buildTable").style.textAlign = alignment
+    )
+        .then(() => {
+            alert("data added successfully");
+        })
+        .catch((error) => {
+            alert("Unsuccesful operation, error: " + error);
+        });
 }
-*/
-
-//////////////////////////////////////////////////
-// SWITCH step/vill count
-//////////////////////////////////////////////////
-function switchStepVill() {
-    // TO DO; add code, use rows per material and/or backing image of material. Maybe light image up if more than 0 or better; light image up if it is different from previous!
-}
+document.getElementById("AddDocument_CustomIDBtn").addEventListener("click", AddDocument_CustomID);
 
 //////////////////////////////////////////////////
 // READ icons.JSON data
@@ -446,8 +382,7 @@ async function loadiconsJSON() {
         var rowstring = "";
         for (let j = 0; j < buildordercolumns; j++) {
             rowstring += "<td contenteditable=\"true\"";
-            if (j == buildordercolumns - 1)
-            {
+            if (j == buildordercolumns - 1) {
                 rowstring += " style=\"text-align: left;\"";
             }
             rowstring += ">" + convertBack(buildarray[(i * buildordercolumns) + j], data) + "</td>";

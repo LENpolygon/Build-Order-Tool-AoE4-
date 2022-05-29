@@ -79,18 +79,15 @@
                     <th>
                       <header>
                         <div class="buildActions">
-                          <button title="Move up" onclick="upNdown('up');">&ShortUpArrow;</button>
-                          <button title="Move down" onclick="upNdown('down');">&ShortDownArrow;</button>
-                          <button title="Add row" onclick="createRow()">&plus;</button>
-                          <button title="Delete row" onclick="deleteRow()">x</button>
-                          <button title="Save to URL" onclick="saveToURL()">save to URL</button>
-                          <!--<button title="Toggle alignment" onclick="toggleAlign()">align</button>-->
-                          <!--<button title="Switch villager" onclick="switchStepVill()">switch vill#</button>-->
-                          <span class="tooltip">
-                            <button title="Clear" onclick="clearRow()">clear</button>
-                            <span>
-                              <p>This clears the entire build and gives a blank table to start over fresh.</p>
-                            </span>
+                          <button title="Move up" id="upNdownup">&ShortUpArrow;</button>
+                          <button title="Move down" id="upNdowndown">&ShortDownArrow;</button>
+                          <button title="Add row" id="createRowBtn">&plus;</button>
+                          <button title="Delete row" id="deleteRowBtn">x</button>
+                          <button title="Save" id="saveToURLBtn">Save</button>
+                          <input type="hidden" id="scoreU" name="value" value="1"></input>
+                          <input type="hidden" id="optionsU" name="username" value=""></input>
+                          <button title="Upload" id="AddDocument_CustomIDBtn">Upload</button>
+                          <button title="Clear" id="clearTableBtn">Clear</button>
                         </div>
                       </header>
                     </th>
@@ -149,13 +146,13 @@
     </div>
   </div>
   <footer>
-    <div class="footerBar">Build Order Tool v0.7 for the latest Age of Empires instalment. Copyright 2022 <a
+    <div class="footerBar">Build Order Tool v0.8 for the latest Age of Empires instalment. Copyright 2022 <a
         target="_blank" rel="noopener" data-track-outgoing="true" href="http://lenpolygon.com">LEN polygon</a>.
       Age of Empires IV and all its icons, artwork, and flair are property of Relic Entertainment, World's Edge &
       Xbox Game
       Studios.<br />This website is for educational purposes only.</div>
   </footer>
-  <script type="text/javascript" src="main.js"></script>
+  <script type="module" src="main.js"></script>
 </body>
 
 </html>
