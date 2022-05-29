@@ -1,9 +1,9 @@
-import civilizations from './json/civilizations.json' assert {type:'json'};
+import civilizations from '../json/civilizations.json' assert {type:'json'};
 
 //////////////////////////////////////////////////
 // DEFINE menu structure
 //////////////////////////////////////////////////
-import headerData from './json/headerData.json' assert {type:'json'};
+import headerData from '../json/headerData.json' assert {type:'json'};
 for (var header in headerData) {
     for (var genre in headerData[header]) {
         headerData[header][genre] = [[], [], [], []]; // add ages
@@ -42,13 +42,12 @@ if (!selectedciv) {
 //////////////////////////////////////////////////
 // INITIALIZE
 //////////////////////////////////////////////////
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js"; import firebaseConfig from './json/firebaseConfig.json' assert {type:'json'}; const app = initializeApp(firebaseConfig); import { getFirestore, doc, getDoc, setDoc, collection, addDoc, updateDoc, deleteDoc, deleteField } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"; const db = getFirestore();
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js"; import firebaseConfig from '../json/firebaseConfig.json' assert {type:'json'}; const app = initializeApp(firebaseConfig); import { getFirestore, doc, getDoc, setDoc, collection, updateDoc } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"; const db = getFirestore();
 var buildingTimeModifier = selectedciv.abbr == "CH" ? 0.5 : 1;
 const upgradeDSTimeModifier = [3, 3.5, 5, 15];
 var str = "";
 var index; // of table
 var tooltipindex = -1;
-var alignment = "left";
 
 //////////////////////////////////////////////////
 // WRITE civilizations menu
@@ -58,10 +57,8 @@ for (let i = 0; i < civilizations.length; i++) {
     if (civilizations[i].abbr == selectedciv.abbr) {
         str += " class=\"active\"";
     }
-    str += "><a href=\"build.html?c=" + civilizations[i].abbr + "\">" + civilizations[i].civilization + "</a></li>";
+    str += "><a href=\"index.html?c=" + civilizations[i].abbr + "\">" + civilizations[i].civilization + "</a></li>";
 }
-str += "<li><div id=\"favorite_build_button_container\"></div></li>"
-
 document.getElementById("civilizationsMenu").innerHTML = str;
 
 //////////////////////////////////////////////////

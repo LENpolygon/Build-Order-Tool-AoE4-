@@ -200,21 +200,6 @@ a {
     margin: 0 auto;
 }
 
-.buildOrder {
-    grid-column: span 2
-}
-
-.buildMenu {
-    grid-column: span 1;
-    display: block
-}
-
-table .buildTime {
-    width: 36px
-}
-
-
-
 .icon {
     cursor: move;
     object-fit: contain;
@@ -225,28 +210,6 @@ table .buildTime {
     margin: 3px;
     margin-left: 4.5px;
     /*background: rgb(30,34,33);*/
-}
-
-.buildActions button {
-    cursor: pointer;
-    display: inline-block;
-    font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
-    font-size: 1.3rem;
-    letter-spacing: .5px;
-    line-height: 13px;
-    padding: 9px 13px;
-    text-transform: uppercase;
-    -webkit-appearance: none;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #ffdb88;
-    background: #1E2536;
-    color: #ffdb88;
-    text-shadow: 1px 1px 0 rgba(10, 10, 10, .4)
-}
-
-.buildActions button:hover {
-    background: #2C374F;
 }
 
 section {
@@ -284,38 +247,6 @@ table tbody tr {
 }
 table tbody tr:nth-child(2n) {
     background: #1E2536;
-}
-
-table tbody tr td:nth-child(2) {
-    background: #41394a;
-}
-table tbody tr:nth-child(2n) td:nth-child(2) {
-    background: #342934;
-}
-
-table tbody tr td:nth-child(3) {
-    background: #383a47;
-}
-table tbody tr:nth-child(2n) td:nth-child(3) {
-    background: #2c2a31;
-}
-
-table tbody tr td:nth-child(4) {
-    background: #374157;
-}
-table tbody tr:nth-child(2n) td:nth-child(4) {
-    background: #2b3140;
-}
-
-table tbody tr td:nth-child(5) {
-    background: #404448;
-}
-table tbody tr:nth-child(2n) td:nth-child(5) {
-    background: #343432;
-}
-
-table tbody tr td:nth-child(6) {
-    padding-left: 10px;
 }
 
 table td {
