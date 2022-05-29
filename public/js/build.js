@@ -57,8 +57,9 @@ for (let i = 0; i < civilizations.length; i++) {
     if (civilizations[i].abbr == selectedciv.abbr) {
         str += " class=\"active\"";
     }
-    str += "><a href=\"index.html?c=" + civilizations[i].abbr + "\">" + civilizations[i].civilization + "</a></li>";
+    str += "><a href=\"build.html?c=" + civilizations[i].abbr + "\">" + civilizations[i].civilization + "</a></li>";
 }
+str += "<li><a href=\"index.html\">[BACK TO BUILDS LIST]</a></li>";
 document.getElementById("civilizationsMenu").innerHTML = str;
 
 //////////////////////////////////////////////////
@@ -278,7 +279,7 @@ async function AddDocument_CustomID() {
     var ref = doc(db, "Age4Builds",save[0]+save[2]);
     await setDoc(
         ref, {
-        user: "",
+        user: "Anonymous",
         id: "",
         rank: "",
         timestamp: Date.now(),

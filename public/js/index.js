@@ -23,12 +23,18 @@ if (isNaN(usp.get("c"))) {
         }
     }
 }
+if (isNaN(usp.get("t")) || isNaN(usp.get("s")) || isNaN(usp.get("b"))) {
+    window.location.replace(window.location.href.replace("index", "build")); // refer old index builds to new build page
+}
 
 //////////////////////////////////////////////////
 // INITIALIZE
 //////////////////////////////////////////////////
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js"; import firebaseConfig from '../json/firebaseConfig.json' assert {type: 'json'}; const app = initializeApp(firebaseConfig); import { getFirestore, getDoc, collection, updateDoc } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"; const db = getFirestore();
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js"; import firebaseConfig from '../json/firebaseConfig.json' assert {type: 'json'}; const app = initializeApp(firebaseConfig); import { getFirestore, doc, getDoc, getDocs, collection, query, where, orderBy, limit, updateDoc } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"; const db = getFirestore();
 var str = "";
+const loadLimit = 2;
+const titleLength = 48;
+const nameLength = 24;
 
 //////////////////////////////////////////////////
 // WRITE civilizations menu
@@ -42,23 +48,82 @@ for (let i = 0; i < civilizations.length; i++) {
     }
     str += "><a href=\"index.html?c=" + civilizations[i].abbr + "\">" + civilizations[i].civilization + "</a></li>";
 }
+str += "<li><a href=\"build.html\">[MAKE YOUR OWN BUILD HERE!]</a></li>";
 document.getElementById("civilizationsMenu").innerHTML = str;
 
 //////////////////////////////////////////////////
 // WRITE current civ
 //////////////////////////////////////////////////
-document.getElementById("civilizationFocus").innerHTML = selectedciv.focus;
-document.getElementById("civilizationFlag").innerHTML = "<img src=\"img/flag" + selectedciv.abbr + ".png\" onerror=\"this.src = 'assets/placeholder.png';\"></img>";
-var str = selectedciv.civilization + " ";
-for (let i = 0; i < 3; i++) {
-    if (selectedciv.difficulty == i) {
-        str += "<span style=\"color: #11141D\">";
+if (selectedciv) {
+    document.getElementById("civilizationFocus").innerHTML = selectedciv.focus;
+    document.getElementById("civilizationFlag").innerHTML = "<img src=\"img/flag" + selectedciv.abbr + ".png\" onerror=\"this.src = 'assets/placeholder.png';\"></img>";
+    var str = selectedciv.civilization + " ";
+    for (let i = 0; i < 3; i++) {
+        if (selectedciv.difficulty == i) {
+            str += "<span style=\"color: #11141D\">";
+        }
+        str += "★";
     }
-    str += "★";
+    str += "</span>";
+    document.getElementById("civilizationName").innerHTML = str;
 }
-str += "</span>";
-document.getElementById("civilizationName").innerHTML = str;
-str = "";
+else {
+    document.getElementById("civBox").style.visibility = "hidden";
+    document.getElementById("civBox").innerHTML = "";
+    document.getElementById("civBox").className = "";
+}
+
+//////////////////////////////////////////////////
+// GET Popular builds from Firestore
+//////////////////////////////////////////////////
+async function GetPopBuilds() {
+    var q;
+    if (selectedciv) {
+        q = query(collection(db, "Age4Builds"), where("civ", "==", selectedciv.abbr), where("likes", ">", -1), orderBy("likes", "desc"), limit(loadLimit));
+    } else {
+        q = query(collection(db, "Age4Builds"), where("likes", ">", -1), orderBy("likes", "desc"), limit(loadLimit));
+    }
+    const querySnapshot = await getDocs(q);
+    var counter = 0;
+    var rows = document.getElementById("popTable").rows;
+    querySnapshot.forEach((doc) => {
+        document.getElementById("popTable").insertRow();
+        // doc.data() is never undefined for query doc snapshots
+        //var docId = doc.id;
+        var docData = doc.data();
+        var rowstring = "<td>" + docData.likes + "</td>";
+        rowstring += "<td><img src=\"img/flag" + docData.civ + ".png\" height=\"24\" onerror=\"this.src = 'assets/placeholder.png';\"><a href=\"build.html?c=" + docData.civ +"&" + docData.version +"=" + docData.build +"\"></img> " + docData.title.substring(0,titleLength) + " (by " + docData.user.substring(0,titleLength) + ")</a></td>";
+        rows[counter + 1].innerHTML = rowstring;
+        counter++;
+    });
+}
+GetPopBuilds();
+
+//////////////////////////////////////////////////
+// GET Newest builds from Firestore
+//////////////////////////////////////////////////
+async function GetNewBuilds() {
+    var q;
+    if (selectedciv) {
+        q = query(collection(db, "Age4Builds"), where("civ", "==", selectedciv.abbr), where("timestamp", ">", Date.now() - 2592000000), orderBy("timestamp", "desc"), limit(loadLimit));
+    } else {
+        q = query(collection(db, "Age4Builds"), where("timestamp", ">", Date.now() - 2592000000), orderBy("timestamp", "desc"), limit(loadLimit));
+    }
+    const querySnapshot = await getDocs(q);
+    var counter = 0;
+    var rows = document.getElementById("newTable").rows;
+    querySnapshot.forEach((doc) => {
+        document.getElementById("newTable").insertRow();
+        // doc.data() is never undefined for query doc snapshots
+        //var docId = doc.id;
+        var docData = doc.data();
+        var rowstring = "<td>" + new Date(docData.timestamp).toLocaleDateString() + "</td>";
+        rowstring += "<td><img src=\"img/flag" + docData.civ + ".png\" height=\"24\" onerror=\"this.src = 'assets/placeholder.png';\"><a href=\"build.html?c=" + docData.civ +"&" + docData.version +"=" + docData.build +"\"></img> " + docData.title.substring(0,titleLength) + " (by " + docData.user.substring(0,titleLength) + ")</a></td>";
+        rows[counter + 1].innerHTML = rowstring;
+        counter++;
+    });
+}
+GetNewBuilds();
 
 //////////////////////////////////////////////////
 // RANDOMIZE background

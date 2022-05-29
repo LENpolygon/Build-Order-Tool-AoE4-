@@ -2,6 +2,10 @@
     grid-template-columns: repeat(2, 1fr);
 }
 
+table tr td {
+    text-align: left;
+}
+
 @media screen and (max-width:800px) {
     .contentInner {
         grid-template-columns: repeat(1, 1fr);
