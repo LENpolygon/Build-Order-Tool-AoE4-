@@ -10,8 +10,8 @@ firebase-debug.*.log*
 # Firebase
 firebase.json
 firebase.js
-firebaseconfig.json
-firebaseconfig.js
+fs.json
+fs.js
 .firebase/
 .firebaserc
 # Uncomment .firebaserc if you'd like others to create their own Firebase project.
