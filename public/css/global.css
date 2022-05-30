@@ -314,6 +314,7 @@ table th {
     position: relative;
     padding: 8px;
     margin: 13px 0 0 0;
+    font-size: 1.4rem;
 }
 
 .tooltipBox img {

@@ -1,9 +1,10 @@
-import civilizations from '../json/civilizations.json' assert {type:'json'};
+import escapeHtml from './global.js';
+import civilizations from '../json/civilizations.json' assert {type: 'json'};
 
 //////////////////////////////////////////////////
 // DEFINE menu structure
 //////////////////////////////////////////////////
-import headerData from '../json/headerData.json' assert {type:'json'};
+import headerData from '../json/headerData.json' assert {type: 'json'};
 for (var header in headerData) {
     for (var genre in headerData[header]) {
         headerData[header][genre] = [[], [], [], []]; // add ages
@@ -17,7 +18,27 @@ var selectedciv = null;
 var buildorder = null;
 var buildordercolumns = 2;
 var usp = new URLSearchParams(window.location.search);
-if (isNaN(usp.get("c"))) {
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js"; import firebaseConfig from '../json/firebaseConfig.json' assert {type: 'json'}; const app = initializeApp(firebaseConfig); import { getFirestore, doc, getDoc, setDoc, collection, updateDoc, addDoc } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"; const db = getFirestore();
+if (isNaN(usp.get("f"))) { // Update View counter
+    var ref = doc(db, "Age4Builds", usp.get("f"));
+    const docSnap = await getDoc(ref);
+    if (docSnap.exists()) {
+        var docData = docSnap.data();
+        await updateDoc(
+            ref, {
+            views: docData.views + 1
+        }).then(() => {
+            //alert("data updated successfully");
+            window.location.replace("build.html?c=" + docData.civ + "&" + docData.version + "=" + docData.build);
+        }).catch((error) => {
+            alert("Unsuccesful operation, error: " + error);
+        });
+    }
+    else {
+        alert("No such Document");
+    }
+
+} else if (isNaN(usp.get("c"))) {
     for (let i = 0; i < civilizations.length; i++) {
         if (usp.get("c") == civilizations[i].abbr) {
             selectedciv = civilizations[i];
@@ -35,14 +56,13 @@ else if (isNaN(usp.get("s"))) { // 2 column builds (old)
 else if (isNaN(usp.get("b"))) { // uncompressed 2 column builds (very old)
     buildorder = usp.get("b");
 }
-if (!selectedciv) {
+if (!selectedciv && !isNaN(usp.get("f"))) {
     window.location.href = "build.html?c=EN&t=AwWwPhEGIJYE4GcAuACAbCg3gVgMwF8UkB7LAdm3zFDDUjADkBTAD1RwKNMwqpoA56AFQAWTAHYoATFjyEARgFcYAGwAmWfgBZCKLAE4yhAIbiNIGOKblgVAIzhBEKWFyzOS1Rsz7OpjQDGiuxo-FRSjq7OYFruCsrqBkYo-igWVlho+lS4kbgxYC6YdpxWbHFcmWGukVoFLgBCCd52drYoAO4wSCLSFQBmcMQgNjmR2AXAYACC-UhMcCi4wMCZ2SgIEhrGKioDQyOYWYQkVVTYkXYuU43NWHb8YZ3dvbEchIPDZ2BAA";
 }
 
 //////////////////////////////////////////////////
 // INITIALIZE
 //////////////////////////////////////////////////
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js"; import firebaseConfig from '../json/firebaseConfig.json' assert {type:'json'}; const app = initializeApp(firebaseConfig); import { getFirestore, doc, getDoc, setDoc, collection, updateDoc } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"; const db = getFirestore();
 var buildingTimeModifier = selectedciv.abbr == "CH" ? 0.5 : 1;
 const upgradeDSTimeModifier = [3, 3.5, 5, 15];
 var str = "";
@@ -59,7 +79,11 @@ for (let i = 0; i < civilizations.length; i++) {
     }
     str += "><a href=\"build.html?c=" + civilizations[i].abbr + "\">" + civilizations[i].civilization + "</a></li>";
 }
-str += "<li><a href=\"index.html\">[BACK TO BUILDS LIST]</a></li>";
+if (selectedciv) {
+    str += "<li><a href=\"index.html?c=" + selectedciv.abbr + "\">[BACK TO BUILDS LIST]</a></li>";
+} else {
+    str += "<li><a href=\"index.html\">[BACK TO BUILDS LIST]</a></li>";
+}
 document.getElementById("civilizationsMenu").innerHTML = str;
 
 //////////////////////////////////////////////////
@@ -263,7 +287,7 @@ function saveToURL() {
     var build = LZString.compressToEncodedURIComponent(str);
     window.history.replaceState("Home", "AGE OF EMPIRES 4 - BUILD ORDER TOOL", 'build.html?c=' + selectedciv.abbr + "&" + ver + "=" + build);
     navigator.clipboard.writeText(window.location.href).then(function () {
-        console.log('Async: Copying to clipboard was successful!');
+        //console.log('Async: Copying to clipboard was successful!');
     }, function (err) {
         console.error('Async: Could not copy text: ', err);
     });
@@ -275,34 +299,48 @@ document.getElementById("saveToURLBtn").addEventListener("click", saveToURL);
 // UPLOAD new Build to Firestore
 //////////////////////////////////////////////////
 async function AddDocument_CustomID() {
-    var save = saveToURL();
-    var ref = doc(db, "Age4Builds",save[0]+save[2]);
-    await setDoc(
-        ref, {
-        user: "Anonymous",
-        id: "",
-        rank: "",
-        timestamp: Date.now(),
-        views: 0,
-        title: "",
-        description: "",
-        civ: save[0],
-        maps: [],
-        build: save[2],
-        video: "",
-        version: save[1],
-        patch: "14681",
-        likers: [],
-        likes: parseInt(document.getElementById("scoreU").value),
-        option: document.getElementById("optionsU").value
+    var titleText;
+    var titleEntry;
+    var attemptcounter = 0;
+    while ((titleEntry == null || titleEntry == "") && attemptcounter < 3) {
+        titleEntry = prompt("Please enter build title:", "");
+        attemptcounter++;
     }
-    )
-        .then(() => {
-            alert("data added successfully");
-        })
-        .catch((error) => {
-            alert("Unsuccesful operation, error: " + error);
-        });
+    if ((titleEntry == null || titleEntry == "")) {
+
+    }
+    else {
+        titleText = titleEntry.replace(/&nbsp;/g, " ");
+        var save = saveToURL();
+        var ref = collection(db, "Age4Builds");
+        await addDoc( // instead setDoc for customID
+            ref, {
+            user: "Anonymous",
+            id: "",
+            rank: "",
+            timestamp: Date.now(),
+            views: 0,
+            title: titleText,
+            description: "",
+            civ: save[0],
+            maps: [],
+            build: save[2],
+            video: "",
+            version: save[1],
+            patch: "14681",
+            likers: [],
+            likes: parseInt(document.getElementById("scoreU").value),
+            option: document.getElementById("optionsU").value
+        }
+        )
+            .then(() => {
+                //alert("data added successfully");
+                window.location.href = "index.html?c=" + save[0];
+            })
+            .catch((error) => {
+                alert("Unsuccesful operation, error: " + error);
+            });
+    }
 }
 document.getElementById("AddDocument_CustomIDBtn").addEventListener("click", AddDocument_CustomID);
 
@@ -433,7 +471,6 @@ async function loadiconsJSON() {
         if (tooltipindex < 0 || !allTooltips.item(tooltipindex).querySelector(':hover')) {
             for (var i = 0; i < allTooltips.length; i++) {
                 if (allTooltips.item(i).querySelector(':hover')) {
-                    console.log(allTooltips.item(i).firstChild.getAttribute('data-info'));
                     tooltipBox.innerHTML = LZString.decompressFromEncodedURIComponent(allTooltips.item(i).firstChild.getAttribute('data-info'));
                     tooltipBox.style.display = "block";
                     tooltipindex = i;

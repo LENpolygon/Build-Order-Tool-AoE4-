@@ -1,3 +1,4 @@
+import escapeHtml from './global.js';
 import civilizations from '../json/civilizations.json' assert {type: 'json'};
 
 //////////////////////////////////////////////////
@@ -30,7 +31,7 @@ if (isNaN(usp.get("t")) || isNaN(usp.get("s")) || isNaN(usp.get("b"))) {
 //////////////////////////////////////////////////
 // INITIALIZE
 //////////////////////////////////////////////////
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js"; import firebaseConfig from '../json/firebaseConfig.json' assert {type: 'json'}; const app = initializeApp(firebaseConfig); import { getFirestore, doc, getDoc, getDocs, collection, query, where, orderBy, limit, updateDoc } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"; const db = getFirestore();
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js"; import firebaseConfig from '../json/firebaseConfig.json' assert {type: 'json'}; const app = initializeApp(firebaseConfig); import { getFirestore, doc, getDoc, getDocs, collection, query, where, orderBy, limit } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"; const db = getFirestore();
 var str = "";
 const loadLimit = 2;
 const titleLength = 48;
@@ -48,7 +49,13 @@ for (let i = 0; i < civilizations.length; i++) {
     }
     str += "><a href=\"index.html?c=" + civilizations[i].abbr + "\">" + civilizations[i].civilization + "</a></li>";
 }
-str += "<li><a href=\"build.html\">[MAKE YOUR OWN BUILD HERE!]</a></li>";
+str += "<li><a href=\"index.html\">ALL</a></li>";
+if (selectedciv)
+{
+    str += "<li><a href=\"build.html?c=" + selectedciv.abbr + "\">[MAKE YOUR OWN BUILD HERE!]</a></li>";
+} else {
+    str += "<li><a href=\"build.html?c=\">[MAKE YOUR OWN BUILD HERE!]</a></li>";
+}
 document.getElementById("civilizationsMenu").innerHTML = str;
 
 //////////////////////////////////////////////////
@@ -81,7 +88,7 @@ async function GetPopBuilds() {
     if (selectedciv) {
         q = query(collection(db, "Age4Builds"), where("civ", "==", selectedciv.abbr), where("likes", ">", -1), orderBy("likes", "desc"), limit(loadLimit));
     } else {
-        q = query(collection(db, "Age4Builds"), where("likes", ">", -1), orderBy("likes", "desc"), limit(loadLimit));
+        q = query(collection(db, "Age4Builds"), where("views", ">", -1), orderBy("views", "desc"), limit(loadLimit));
     }
     const querySnapshot = await getDocs(q);
     var counter = 0;
@@ -91,8 +98,8 @@ async function GetPopBuilds() {
         // doc.data() is never undefined for query doc snapshots
         //var docId = doc.id;
         var docData = doc.data();
-        var rowstring = "<td>" + docData.likes + "</td>";
-        rowstring += "<td><img src=\"img/flag" + docData.civ + ".png\" height=\"24\" onerror=\"this.src = 'assets/placeholder.png';\"><a href=\"build.html?c=" + docData.civ +"&" + docData.version +"=" + docData.build +"\"></img> " + docData.title.substring(0,titleLength) + " (by " + docData.user.substring(0,titleLength) + ")</a></td>";
+        var rowstring = "<td>" + docData.views + "</td>";
+        rowstring += "<td><img src=\"img/flag" + docData.civ + ".png\" height=\"24\" onerror=\"this.src = 'assets/placeholder.png';\"><a href=\"build.html?c=" + docData.civ +"&" + docData.version +"=" + docData.build +"\"></img> " + escapeHtml(docData.title).substring(0,titleLength) + " (by " + escapeHtml(docData.user).substring(0,nameLength) + ")</a></td>";
         rows[counter + 1].innerHTML = rowstring;
         counter++;
     });
@@ -115,10 +122,10 @@ async function GetNewBuilds() {
     querySnapshot.forEach((doc) => {
         document.getElementById("newTable").insertRow();
         // doc.data() is never undefined for query doc snapshots
-        //var docId = doc.id;
+        var docId = doc.id;
         var docData = doc.data();
         var rowstring = "<td>" + new Date(docData.timestamp).toLocaleDateString() + "</td>";
-        rowstring += "<td><img src=\"img/flag" + docData.civ + ".png\" height=\"24\" onerror=\"this.src = 'assets/placeholder.png';\"><a href=\"build.html?c=" + docData.civ +"&" + docData.version +"=" + docData.build +"\"></img> " + docData.title.substring(0,titleLength) + " (by " + docData.user.substring(0,titleLength) + ")</a></td>";
+        rowstring += "<td><img src=\"img/flag" + docData.civ + ".png\" height=\"24\" onerror=\"this.src = 'assets/placeholder.png';\"><a href=\"build.html?f=" + docId +"\"></img> " + escapeHtml(docData.title).substring(0,titleLength) + " (by " + escapeHtml(docData.user).substring(0,nameLength) + ")</a></td>";
         rows[counter + 1].innerHTML = rowstring;
         counter++;
     });
