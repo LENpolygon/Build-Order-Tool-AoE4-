@@ -29,10 +29,11 @@ if (isNaN(usp.get("f"))) { // Update View counter
             views: docData.views + 1
         }).then(() => {
             //alert("data updated successfully");
-            window.location.replace("build.html?c=" + docData.civ + "&" + docData.version + "=" + docData.build);
+            
         }).catch((error) => {
-            alert("Unsuccesful operation, error: " + error);
+            console.log("Unsuccesful operation, error: " + error);
         });
+        window.location.replace("build.html?c=" + docData.civ + "&" + docData.version + "=" + docData.build);
     }
     else {
         alert("No such Document");

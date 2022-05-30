@@ -52,9 +52,9 @@ for (let i = 0; i < civilizations.length; i++) {
 str += "<li><a href=\"index.html\">ALL</a></li>";
 if (selectedciv)
 {
-    str += "<li><a href=\"build.html?c=" + selectedciv.abbr + "\">[MAKE YOUR OWN BUILD HERE!]</a></li>";
+    str += "<li><a href=\"build.html?c=" + selectedciv.abbr + "\">[MAKE YOUR OWN BUILD!]</a></li>";
 } else {
-    str += "<li><a href=\"build.html?c=\">[MAKE YOUR OWN BUILD HERE!]</a></li>";
+    str += "<li><a href=\"build.html?c=\">[MAKE YOUR OWN BUILD!]</a></li>";
 }
 document.getElementById("civilizationsMenu").innerHTML = str;
 
