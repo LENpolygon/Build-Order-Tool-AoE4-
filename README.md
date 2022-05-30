@@ -19,12 +19,12 @@ Now I've identified the following goals for this tool to fulfill:
    - A 'standardized' format must be given to allow for creators to use a similar format, this will help with readability of each build
    - Icons can be dragged into the build and together with text make up the final build
    - Standard formatting tools for tables
-   - (FUTURE) Make it possible to edit builds on mobile devices
+   - Make it possible to edit builds on mobile devices
    - (FUTURE) Add in game-specifics like Map-type or oppossing Civilizations 
 
 3. Sharing builds
    - Share created builds with other via custom URLs
-   - (FUTURE) Allow users to browse popular builds
+   - Allow users to browse popular builds
 
 ## Why Github?
 
