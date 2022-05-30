@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta content="text/html; charset=utf-8" http-equiv="Content-Type" />
+  <title>AoE IV Build Order Tool</title>
+  <link rel="stylesheet" media="all" href="css/global.css">
+  <link rel="stylesheet" media="all" href="css/build.css">
+  <meta name="keywords" content="AoE4, Age IV, Age of Empires 4, Build Orders, age4builder" />
+  <meta name="description" content="View, Create, and Share Build Orders for Age of Empires IV" />
+  <meta name="author" content="LEN polygon" />
+  <meta name="locale" content="en" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="format-detection" content="telephone=no" />
+  <meta name="theme-color" content="#11141D" />
+  <link rel="icon" type="image/png" href="/assets/favicon.ico" />
+  <link rel="apple-touch-icon-precomposed" sizes="180x180" href="/assets/apple-touch-icon.png" />
+  <link rel="android-chrome-icon-precomposed" sizes="192x192" href="/assets/android-chrome-192x192.png" />
+  <link rel="android-chrome-icon-precomposed" sizes="512x512" href="/assets/android-chrome-512x512.png" />
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-SXELHG62RJ"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-SXELHG62RJ');
+  </script>
+</head>
+
+<body>
+  <div class="containerOuter" id="background">
+    <div class="titleBar">
+      <div class="containerInner">
+        <a class="titleLine" href="./">Age of Empires IV<br />Build Order Tool</a>
+        <div class="titleDonate">
+          <a href="https://github.com/LENpolygon/Build-Order-Tool-AoE4-" style="color:#fff;"
+            title="This website is on Github, check out the code and build onto it!">Donate Code<img
+              src="assets/GitHub-Mark/PNG/GitHub-Mark-Light-64px.png" class="icon"
+              alt="This website is on Github, check out the code and build onto it!"></a>
+          <a href="https://ko-fi.com/lenpolygon"
+            title="This website is Ad-Free, consider donating to maintain it!">Donate
+            Coin<img src="img/dropofftax.png" onerror="this.src = 'assets/placeholder.png';" class="icon"
+              alt="This website is Ad-Free, consider donating to maintain it!"></a>
+        </div>
+      </div>
+    </div>
+    <div class="containerInner">
+      <nav class="civBar">
+        <ul id="civilizationsMenu"></ul>
+      </nav>
+      <div class="civBox">
+        <div class="civFlag">
+          <a id="civilizationFlag"></a>
+        </div>
+        <div class="civStats">
+          <h1 id="civilizationName"></h1><small id="civilizationFocus"></small>
+        </div>
+        <div class="civStatsMore" id="civilizationUniqueUnits">
+        </div>
+      </div>
+      <div class="contentInner">
+
+        <!-- page starts here -->
+
+        <div class="buildOrder">
+          <section>
+            <header>Build Order</header>
+            <article>
+              <table id="buildTable">
+                <thead>
+                  <tr>
+                    <th class="buildTime"><img src="img/timetobuild.png" alt="Time" title="Time" height="24px"></img>
+                    </th>
+                    <th class="buildTime"><img src="img/resourcefoodicon.png" alt="F" title="Food" height="24px"></img>
+                    </th>
+                    <th class="buildTime"><img src="img/resourcewoodicon.png" alt="W" title="Wood" height="24px"></img>
+                    </th>
+                    <th class="buildTime"><img src="img/resourcestoneicon.png" alt="S" title="Stone"
+                        height="24px"></img></th>
+                    <th class="buildTime"><img src="img/resourcegoldicon.png" alt="G" title="Gold" height="24px"></img>
+                    </th>
+                    <th>
+                      <header>
+                        <div class="buildActions">
+                          <button title="Move up" id="upNdownup">&ShortUpArrow;</button>
+                          <button title="Move down" id="upNdowndown">&ShortDownArrow;</button>
+                          <button title="Add row" id="createRowBtn">&plus;</button>
+                          <button title="Delete row" id="deleteRowBtn">x</button>
+                          <button title="Save" id="saveToURLBtn">Save</button>
+                          <input type="hidden" id="scoreU" name="value" value="1"></input>
+                          <input type="hidden" id="optionsU" name="username" value=""></input>
+                          <button title="Upload" id="AddDocument_CustomIDBtn">Upload</button>
+                          <button title="Clear" id="clearTableBtn">Clear</button>
+                        </div>
+                      </header>
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">This tools allows you to view, edit and share Age of
+                      Empires IV builds</td>
+                  </tr>
+                  <tr>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">To use it, please enable Javascript / Scripts in your
+                      webbrowser</td>
+                  </tr>
+                  <tr>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true"></td>
+                    <td contenteditable="true">You can verify the source code for yourself, it's on Github!</td>
+                  </tr>
+                </tbody>
+              </table>
+            </article>
+          </section>
+        </div>
+        <div class="buildMenu">
+          <section>
+            <header class="fold">How to use this tool</header>
+            <article class="boxed">
+              <p>Click on the table and edit the content. Drag and drop icons from the menus
+                below. When you're ready press "Save & Copy to Clipboard" and share (paste) your
+                Build Order online!</p>
+            </article>
+          </section>
+          <div id="buildIcons"></div>
+        </div>
+
+        <!-- page ends here -->
+
+        <div class="push"></div>
+      </div>
+
+    </div>
+  </div>
+  <div id="tooltipContainer" class="tooltipContainer">
+    <div id="tooltipBox" class="tooltipBox">
+    </div>
+  </div>
+  <footer>
+    <div class="footerBar">Build Order Tool v0.8 for the latest Age of Empires instalment. Copyright 2022 <a
+        target="_blank" rel="noopener" data-track-outgoing="true" href="http://lenpolygon.com">LEN polygon</a>.
+      Age of Empires IV and all its icons, artwork, and flair are property of Relic Entertainment, World's Edge &
+      Xbox Game
+      Studios.<br />This website is for educational purposes only.</div>
+  </footer>
+  <script language="javascript" src="js/lz-string.min.js"></script>
+  <script type="module" src="js/build.js"></script>
+</body>
+
+</html>

@@ -1,101 +1,10 @@
-//////////////////////////////////////////////////
-// DEFINE civilizations
-//////////////////////////////////////////////////
-const civilizations = [
-    {
-        "civilization": "Abbasid Dynasty",
-        "abbr": "AD",
-        "focus": "Technology, Camels and City Planning",
-        "difficulty": 2,
-        "icon": "flagAD.png",
-        "uniqueunits": [306, 176]
-    },
-    {
-        "civilization": "Chinese",
-        "abbr": "CH",
-        "focus": "Dynasties, Gunpowder and Expansion",
-        "difficulty": 3,
-        "icon": "flagCH.png",
-        "uniqueunits": [310, 307, 52, 287, 175, 437, 261]
-    },
-    {
-        "civilization": "Delhi Sultanate",
-        "abbr": "DS",
-        "focus": "Military, Research and Defense",
-        "difficulty": 3,
-        "icon": "flagDS.png",
-        "uniqueunits": [59, 136, 311, 300]
-    },
-    {
-        "civilization": "French",
-        "abbr": "FR",
-        "focus": "Trade, Cavalry and Keeps",
-        "difficulty": 1,
-        "uniqueunits": [181, 301, 410, 432]
-    },
-    {
-        "civilization": "English",
-        "abbr": "EN",
-        "focus": "Defense, Longbows and Economy",
-        "difficulty": 1,
-        "uniqueunits": [174]
-    },
-    {
-        "civilization": "Holy Roman Empire",
-        "abbr": "HR",
-        "focus": "Infantry, Religion and Defense",
-        "difficulty": 2,
-        "uniqueunits": [58, 305]
-    },
-    {
-        "civilization": "Mongols",
-        "abbr": "MO",
-        "focus": "Aggression, Nomadic and Mobility",
-        "difficulty": 3,
-        "uniqueunits": [60, 177, 292, 262]
-    },
-    {
-        "civilization": "Rus",
-        "abbr": "RU",
-        "focus": "Expansion, Cavalry and Hunting",
-        "difficulty": 2,
-        "uniqueunits": [440, 304, 295, 138, 255, 252, 263, 415]
-    }
-];
+import escapeHtml from './global.js';
+import civilizations from '../json/civilizations.json' assert {type: 'json'};
 
 //////////////////////////////////////////////////
 // DEFINE menu structure
 //////////////////////////////////////////////////
-var headerData =
-{
-    "Units": {
-        "Land Unit": [],
-        "Water Unit": []
-    },
-    "Buildings": {
-        "Structure": [],
-        "Landmark": []
-    },
-    "Technologies": {
-        "Economic": [],
-        "Blacksmith": [],
-        "Upgrade": [],
-        "Technology": [],
-        "Empl": []
-    },
-    "Miscellaneous": {
-        "Resource": [],
-        "Age": [],
-        "Ability": [],
-        "Dynasty": [],
-        "Flag": [],
-        "Formation": [],
-        "Influence": [],
-        "Move": [],
-        "Victory": [],
-        "Misc": []
-    }
-};
+import headerData from '../json/headerData.json' assert {type: 'json'};
 for (var header in headerData) {
     for (var genre in headerData[header]) {
         headerData[header][genre] = [[], [], [], []]; // add ages
@@ -109,7 +18,28 @@ var selectedciv = null;
 var buildorder = null;
 var buildordercolumns = 2;
 var usp = new URLSearchParams(window.location.search);
-if (isNaN(usp.get("c"))) {
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js"; import firebaseConfig from '../json/firebaseConfig.json' assert {type: 'json'}; const app = initializeApp(firebaseConfig); import { getFirestore, doc, getDoc, setDoc, collection, updateDoc, addDoc } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"; const db = getFirestore();
+if (isNaN(usp.get("f"))) { // Update View counter
+    var ref = doc(db, "Age4Builds", usp.get("f"));
+    const docSnap = await getDoc(ref);
+    if (docSnap.exists()) {
+        var docData = docSnap.data();
+        await updateDoc(
+            ref, {
+            views: docData.views + 1
+        }).then(() => {
+            //alert("data updated successfully");
+            
+        }).catch((error) => {
+            console.log("Unsuccesful operation, error: " + error);
+        });
+        window.location.replace("build.html?c=" + docData.civ + "&" + docData.version + "=" + docData.build);
+    }
+    else {
+        alert("No such Document");
+    }
+
+} else if (isNaN(usp.get("c"))) {
     for (let i = 0; i < civilizations.length; i++) {
         if (usp.get("c") == civilizations[i].abbr) {
             selectedciv = civilizations[i];
@@ -127,8 +57,8 @@ else if (isNaN(usp.get("s"))) { // 2 column builds (old)
 else if (isNaN(usp.get("b"))) { // uncompressed 2 column builds (very old)
     buildorder = usp.get("b");
 }
-if (!selectedciv) {
-    window.location.href = "index.html?c=EN&t=AwWwPhEGIJYE4GcAuACAbCg3gVgMwF8UkB7LAdm3zFDDUjADkBTAD1RwKNMwqpoA56AFQAWTAHYoATFjyEARgFcYAGwAmWfgBZCKLAE4yhAIbiNIGOKblgVAIzhBEKWFyzOS1Rsz7OpjQDGiuxo-FRSjq7OYFruCsrqBkYo-igWVlho+lS4kbgxYC6YdpxWbHFcmWGukVoFLgBCCd52drYoAO4wSCLSFQBmcMQgNjmR2AXAYACC-UhMcCi4wMCZ2SgIEhrGKioDQyOYWYQkVVTYkXYuU43NWHb8YZ3dvbEchIPDZ2BAA";
+if (!selectedciv && !isNaN(usp.get("f"))) {
+    window.location.href = "build.html?c=EN&t=AwWwPhEGIJYE4GcAuACAbCg3gVgMwF8UkB7LAdm3zFDDUjADkBTAD1RwKNMwqpoA56AFQAWTAHYoATFjyEARgFcYAGwAmWfgBZCKLAE4yhAIbiNIGOKblgVAIzhBEKWFyzOS1Rsz7OpjQDGiuxo-FRSjq7OYFruCsrqBkYo-igWVlho+lS4kbgxYC6YdpxWbHFcmWGukVoFLgBCCd52drYoAO4wSCLSFQBmcMQgNjmR2AXAYACC-UhMcCi4wMCZ2SgIEhrGKioDQyOYWYQkVVTYkXYuU43NWHb8YZ3dvbEchIPDZ2BAA";
 }
 
 //////////////////////////////////////////////////
@@ -139,7 +69,6 @@ const upgradeDSTimeModifier = [3, 3.5, 5, 15];
 var str = "";
 var index; // of table
 var tooltipindex = -1;
-var alignment = "left";
 
 //////////////////////////////////////////////////
 // WRITE civilizations menu
@@ -149,10 +78,13 @@ for (let i = 0; i < civilizations.length; i++) {
     if (civilizations[i].abbr == selectedciv.abbr) {
         str += " class=\"active\"";
     }
-    str += "><a href=\"index.html?c=" + civilizations[i].abbr + "\">" + civilizations[i].civilization + "</a></li>";
+    str += "><a href=\"build.html?c=" + civilizations[i].abbr + "\">" + civilizations[i].civilization + "</a></li>";
 }
-str += "<li><div id=\"favorite_build_button_container\"></div></li>"
-
+if (selectedciv) {
+    str += "<li><a href=\"index.html?c=" + selectedciv.abbr + "\">[BACK TO BUILDS LIST]</a></li>";
+} else {
+    str += "<li><a href=\"index.html\">[BACK TO BUILDS LIST]</a></li>";
+}
 document.getElementById("civilizationsMenu").innerHTML = str;
 
 //////////////////////////////////////////////////
@@ -204,15 +136,15 @@ function upNdown(direction) {
     }
     parent.focus();
 }
+function up() { upNdown('up'); }
+function down() { upNdown('down'); }
 function createRow() {
     if (typeof index !== "undefined") {
         var row = document.getElementById("buildTable").insertRow(index + 1);
         var str = "";
-        for (let i = 0; i < 6; i++)
-        {
+        for (let i = 0; i < 6; i++) {
             str += "<td contenteditable=\"true\"";
-            if (i == 5)
-            {
+            if (i == 5) {
                 str += " style=\"text-align: left;\"";
             }
             str += "></td>";
@@ -229,15 +161,13 @@ function deleteRow() {
         index = undefined;
     }
 }
-function clearRow() {
+function clearTable() {
     var rows = document.getElementById("buildTable").rows;
     for (let i = 0; i < (rows.length - 1); i++) {
         var str = "";
-        for (let i = 0; i < 6; i++)
-        {
+        for (let i = 0; i < 6; i++) {
             str += "<td contenteditable=\"true\"";
-            if (i == 5)
-            {
+            if (i == 5) {
                 str += " style=\"text-align: left;\"";
             }
             str += "></td>";
@@ -245,6 +175,11 @@ function clearRow() {
         rows[i + 1].innerHTML = str;
     }
 }
+document.getElementById("upNdownup").addEventListener("click", up);
+document.getElementById("upNdowndown").addEventListener("click", down);
+document.getElementById("createRowBtn").addEventListener("click", createRow);
+document.getElementById("deleteRowBtn").addEventListener("click", deleteRow);
+document.getElementById("clearTableBtn").addEventListener("click", clearTable);
 
 //////////////////////////////////////////////////
 // CONVERT seconds to time
@@ -263,7 +198,7 @@ function sToTime(input) {
 //////////////////////////////////////////////////
 const imgstr = ["<a class=\"tooltip\">",
     "<img src=\"img/",
-    ".png\" onerror=\"this.src = 'placeholder.png';\"",
+    ".png\" onerror=\"this.src = 'assets/placeholder.png';\"",
     "class=\"icon\" data-index=\"",
     "\" data-info=\"",
     "\" alt=\"",
@@ -343,47 +278,78 @@ function convertBack(input, data) {
 function saveToURL() {
     var rows = document.getElementById("buildTable").rows;
     var str = "";
+    var ver = "t";
     for (let i = 1; i < rows.length; i++) {
         for (let j = 0; j < 6; j++) {
             str += sanitizeNconvert(rows[i].cells[j].innerHTML);
             str += "|";
         }
     }
-    window.history.replaceState("Home", "AGE OF EMPIRES 4 - BUILD ORDER TOOL", 'index.html?c=' + selectedciv.abbr + "&t=" + LZString.compressToEncodedURIComponent(str));
+    var build = LZString.compressToEncodedURIComponent(str);
+    window.history.replaceState("Home", "AGE OF EMPIRES 4 - BUILD ORDER TOOL", 'build.html?c=' + selectedciv.abbr + "&" + ver + "=" + build);
     navigator.clipboard.writeText(window.location.href).then(function () {
-        console.log('Async: Copying to clipboard was successful!');
+        //console.log('Async: Copying to clipboard was successful!');
     }, function (err) {
         console.error('Async: Could not copy text: ', err);
     });
+    return [selectedciv.abbr, ver, build];
 }
+document.getElementById("saveToURLBtn").addEventListener("click", saveToURL);
 
 //////////////////////////////////////////////////
-// TOGGLE alignment [OLD]
+// UPLOAD new Build to Firestore
 //////////////////////////////////////////////////
-/*
-function toggleAlign() {
-    if (alignment == "left") {
-        alignment = "center";
+async function AddDocument_CustomID() {
+    var titleText;
+    var titleEntry;
+    var attemptcounter = 0;
+    while ((titleEntry == null || titleEntry == "") && attemptcounter < 3) {
+        titleEntry = prompt("Please enter build title:", "");
+        attemptcounter++;
+    }
+    if ((titleEntry == null || titleEntry == "")) {
+
     }
     else {
-        alignment = "left";
+        titleText = titleEntry.replace(/&nbsp;/g, " ");
+        var save = saveToURL();
+        var ref = collection(db, "Age4Builds");
+        await addDoc( // instead setDoc for customID
+            ref, {
+            user: "Anonymous",
+            id: "",
+            rank: "",
+            timestamp: Date.now(),
+            views: 0,
+            title: titleText,
+            description: "",
+            civ: save[0],
+            maps: [],
+            build: save[2],
+            video: "",
+            version: save[1],
+            patch: "14681",
+            likers: [],
+            likes: parseInt(document.getElementById("scoreU").value),
+            option: document.getElementById("optionsU").value
+        }
+        )
+            .then(() => {
+                //alert("data added successfully");
+                window.location.href = "index.html?c=" + save[0];
+            })
+            .catch((error) => {
+                alert("Unsuccesful operation, error: " + error);
+            });
     }
-    document.getElementById("buildTable").style.textAlign = alignment
 }
-*/
+document.getElementById("AddDocument_CustomIDBtn").addEventListener("click", AddDocument_CustomID);
 
 //////////////////////////////////////////////////
-// SWITCH step/vill count
-//////////////////////////////////////////////////
-function switchStepVill() {
-    // TO DO; add code, use rows per material and/or backing image of material. Maybe light image up if more than 0 or better; light image up if it is different from previous!
-}
-
-//////////////////////////////////////////////////
-// READ icons.JSON data
+// READ json/icons.json data
 //////////////////////////////////////////////////
 async function loadiconsJSON() {
-    const response = await fetch("icons.json");
+    const response = await fetch("json/icons.json");
     const data = await response.json();
     for (let i = 0; i < data.length; i++) {
         var matching = true;
@@ -408,7 +374,7 @@ async function loadiconsJSON() {
     // WRITE current civ
     //////////////////////////////////////////////////
     document.getElementById("civilizationFocus").innerHTML = selectedciv.focus;
-    document.getElementById("civilizationFlag").innerHTML = "<img src=\"img/flag" + selectedciv.abbr + ".png\" onerror=\"this.src = 'placeholder.png';\"></img>";
+    document.getElementById("civilizationFlag").innerHTML = "<img src=\"img/flag" + selectedciv.abbr + ".png\" onerror=\"this.src = 'assets/placeholder.png';\"></img>";
     var str = selectedciv.civilization + " ";
     for (let i = 0; i < 3; i++) {
         if (selectedciv.difficulty == i) {
@@ -434,7 +400,7 @@ async function loadiconsJSON() {
     else {
         let vilval = selectedciv.abbr == "FR" ? 54 : 53;
         let str = `0|Click to start editing your own build|1|Icons can be dragged from the menu on the right: {${vilval}} |2|When ready press \"Save to URL\" and share your build!|`;
-        window.history.replaceState("Home", "AGE OF EMPIRES 4 - BUILD ORDER TOOL", 'index.html?c=' + selectedciv.abbr + "&b=" + str);
+        window.history.replaceState("Home", "AGE OF EMPIRES 4 - BUILD ORDER TOOL", 'build.html?c=' + selectedciv.abbr + "&b=" + str);
         buildarray = sanitizeNconvert(str).split("|");
     }
     var rows = document.getElementById("buildTable").rows;
@@ -446,8 +412,7 @@ async function loadiconsJSON() {
         var rowstring = "";
         for (let j = 0; j < buildordercolumns; j++) {
             rowstring += "<td contenteditable=\"true\"";
-            if (j == buildordercolumns - 1)
-            {
+            if (j == buildordercolumns - 1) {
                 rowstring += " style=\"text-align: left;\"";
             }
             rowstring += ">" + convertBack(buildarray[(i * buildordercolumns) + j], data) + "</td>";
@@ -507,7 +472,6 @@ async function loadiconsJSON() {
         if (tooltipindex < 0 || !allTooltips.item(tooltipindex).querySelector(':hover')) {
             for (var i = 0; i < allTooltips.length; i++) {
                 if (allTooltips.item(i).querySelector(':hover')) {
-                    console.log(allTooltips.item(i).firstChild.getAttribute('data-info'));
                     tooltipBox.innerHTML = LZString.decompressFromEncodedURIComponent(allTooltips.item(i).firstChild.getAttribute('data-info'));
                     tooltipBox.style.display = "block";
                     tooltipindex = i;

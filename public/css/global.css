@@ -200,52 +200,16 @@ a {
     margin: 0 auto;
 }
 
-.buildOrder {
-    grid-column: span 2
-}
-
-.buildMenu {
-    grid-column: span 1;
-    display: block
-}
-
-table .buildTime {
-    width: 36px
-}
-
-
-
 .icon {
     cursor: move;
     object-fit: contain;
     height: 48px;
     max-height: 48px;
     width: auto;
+    max-width: 48px;
     margin: 3px;
     margin-left: 4.5px;
     /*background: rgb(30,34,33);*/
-}
-
-.buildActions button {
-    cursor: pointer;
-    display: inline-block;
-    font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
-    font-size: 1.3rem;
-    letter-spacing: .5px;
-    line-height: 13px;
-    padding: 9px 13px;
-    text-transform: uppercase;
-    -webkit-appearance: none;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #ffdb88;
-    background: #1E2536;
-    color: #ffdb88;
-    text-shadow: 1px 1px 0 rgba(10, 10, 10, .4)
-}
-
-.buildActions button:hover {
-    background: #2C374F;
 }
 
 section {
@@ -281,7 +245,6 @@ table img {
 table tbody tr {
     background: #2C374F;
 }
-
 table tbody tr:nth-child(2n) {
     background: #1E2536;
 }
@@ -351,6 +314,7 @@ table th {
     position: relative;
     padding: 8px;
     margin: 13px 0 0 0;
+    font-size: 1.4rem;
 }
 
 .tooltipBox img {
