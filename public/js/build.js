@@ -1,10 +1,10 @@
 import escapeHtml from './global.js';
-import civilizations from '../json/civilizations.json' assert {type: 'json'};
+import civilizations from '../json/civilizations.js';
 
 //////////////////////////////////////////////////
 // DEFINE menu structure
 //////////////////////////////////////////////////
-import headerData from '../json/headerData.json' assert {type: 'json'};
+import headerData from '../json/headerData.js';
 for (var header in headerData) {
     for (var genre in headerData[header]) {
         headerData[header][genre] = [[], [], [], []]; // add ages
@@ -18,7 +18,7 @@ var selectedciv = null;
 var buildorder = null;
 var buildordercolumns = 2;
 var usp = new URLSearchParams(window.location.search);
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js"; import firebaseConfig from '../json/fs.json' assert {type: 'json'}; const app = initializeApp(firebaseConfig); import { getFirestore, doc, getDoc, setDoc, collection, updateDoc, addDoc } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"; const db = getFirestore();
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js"; import firebaseConfig from '../json/fs.js'; const app = initializeApp(firebaseConfig); import { getFirestore, doc, getDoc, setDoc, collection, updateDoc, addDoc } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"; const db = getFirestore();
 if (isNaN(usp.get("f"))) { // Update View counter
     var ref = doc(db, "Age4Builds", usp.get("f"));
     const docSnap = await getDoc(ref);
