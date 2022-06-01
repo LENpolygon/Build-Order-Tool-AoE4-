@@ -96,7 +96,7 @@ async function GetPopBuilds() {
     querySnapshot.forEach((doc) => {
         document.getElementById("popTable").insertRow();
         // doc.data() is never undefined for query doc snapshots
-        //var docId = doc.id;
+        var docId = doc.id;
         var docData = doc.data();
         var rowstring = "<td>" + docData.views + "</td>";
         rowstring += "<td><img src=\"img/flag" + docData.civ + ".png\" height=\"24\" onerror=\"this.src = 'assets/placeholder.png';\"><a href=\"build.html?f=" + docId +"\"></img> " + escapeHtml(docData.title).substring(0,titleLength) + " (by " + escapeHtml(docData.user).substring(0,nameLength) + ")</a></td>";
