@@ -99,7 +99,7 @@ async function GetPopBuilds() {
         //var docId = doc.id;
         var docData = doc.data();
         var rowstring = "<td>" + docData.views + "</td>";
-        rowstring += "<td><img src=\"img/flag" + docData.civ + ".png\" height=\"24\" onerror=\"this.src = 'assets/placeholder.png';\"><a href=\"build.html?c=" + docData.civ +"&" + docData.version +"=" + docData.build +"\"></img> " + escapeHtml(docData.title).substring(0,titleLength) + " (by " + escapeHtml(docData.user).substring(0,nameLength) + ")</a></td>";
+        rowstring += "<td><img src=\"img/flag" + docData.civ + ".png\" height=\"24\" onerror=\"this.src = 'assets/placeholder.png';\"><a href=\"build.html?f=" + docId +"\"></img> " + escapeHtml(docData.title).substring(0,titleLength) + " (by " + escapeHtml(docData.user).substring(0,nameLength) + ")</a></td>";
         rows[counter + 1].innerHTML = rowstring;
         counter++;
     });
