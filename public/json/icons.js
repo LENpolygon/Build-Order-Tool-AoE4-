@@ -988,7 +988,7 @@ export default
   {
     "genre": "Landmark",
     "age": 1,
-    "name": "House of Wisdom ✪ 🛠<br/>- Culture Wing",
+    "name": "House of Wisdom ✪ 🛠- Culture Wing",
     "class": "Wing",
     "description": "None.",
     "food": "400/1200/ 2400/2400",
@@ -1000,7 +1000,7 @@ export default
   {
     "genre": "Landmark",
     "age": 1,
-    "name": "House of Wisdom ✪ 🛠<br/>- Economy Wing",
+    "name": "House of Wisdom ✪ 🛠- Economy Wing",
     "class": "Wing",
     "description": "None.",
     "food": "400/1200/ 2400/2400",
@@ -1012,7 +1012,7 @@ export default
   {
     "genre": "Landmark",
     "age": 1,
-    "name": "House of Wisdom ✪ 🛠<br/>- Millitary Wing",
+    "name": "House of Wisdom ✪ 🛠- Millitary Wing",
     "class": "Wing",
     "description": "None.",
     "food": "400/1200/ 2400/2400",
@@ -1024,7 +1024,7 @@ export default
   {
     "genre": "Landmark",
     "age": 1,
-    "name": "House of Wisdom ✪ 🛠<br/>- Trade Wing",
+    "name": "House of Wisdom ✪ 🛠- Trade Wing",
     "class": "Wing",
     "description": "None.",
     "food": "400/1200/ 2400/2400",

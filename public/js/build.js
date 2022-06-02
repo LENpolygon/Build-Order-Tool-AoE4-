@@ -423,6 +423,7 @@ async function loadiconsJSON() {
             }
         }
         rows[i + 1].innerHTML = rowstring;
+        console.log(rowstring);
     }
 
     //////////////////////////////////////////////////
