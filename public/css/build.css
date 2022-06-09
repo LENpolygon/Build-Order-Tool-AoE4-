@@ -1,17 +1,19 @@
-.buildOrder {
-    grid-column: span 2
+html {
+    height: 100%;
 }
 
-.buildMenu {
-    grid-column: span 1;
-    display: block
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden; 
 }
 
 table .buildTime {
     width: 36px
 }
 
-.buildActions button {
+button {
     cursor: pointer;
     display: inline-block;
     font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
@@ -24,9 +26,8 @@ table .buildTime {
     border-width: 1px;
     border-style: solid;
     border-color: #ffdb88;
-    background: #1E2536;
+    background: #181C29;
     color: #ffdb88;
-    text-shadow: 1px 1px 0 rgba(10, 10, 10, .4)
 }
 
 .buildActions button:hover {
@@ -84,11 +85,11 @@ table tbody tr td:nth-child(6) {
         font-size: 0
     }
 
-    .civBar ul li a {
+    .civBar menu li a {
         padding: 5px 8px
     }
 
-    .civBar ul li {
+    .civBar menu li {
         font-size: 1.9rem;
         margin-right: 10px
     }
@@ -105,10 +106,6 @@ table tbody tr td:nth-child(6) {
         display: none;
     }
 
-    .buildOrder {
-        grid-column: span 3
-    }
-
     table .buildTime {
         width: 24px
     }
@@ -118,10 +115,6 @@ table tbody tr td:nth-child(6) {
         max-height: 32px;
         width: 32px;
         max-width: 32px;
-    }
-
-    .buildMenu {
-        display: none
     }
 
     .buildActions button {

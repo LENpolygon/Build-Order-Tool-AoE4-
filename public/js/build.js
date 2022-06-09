@@ -226,7 +226,7 @@ function formatImage(reference, value, showTooltip) {
                 }
             }
         }
-        tooltip += "</div></div><div class=\"tooltipColumn2\"><header>" + reference.name + " (age: " + reference.age + "+)</header></br></br>" + reference.description + "</div>";
+        tooltip += "</div></div><div class=\"tooltipColumn2\"><h2>" + reference.name + " (age: " + reference.age + "+)</h2></br></br>" + reference.description + "</div>";
     }
     return reference.color == "transparent"
         ? (imgstr[0] + imgstr[1] + reference[selectedciv.abbr] + imgstr[2] + imgstr[3] + value + imgstr[4] + LZString.compressToEncodedURIComponent(tooltip) + imgstr[5] + reference.name + imgstr[8])
@@ -431,7 +431,7 @@ async function loadiconsJSON() {
     //////////////////////////////////////////////////
     var str = "";
     for (var header in headerData) {
-        str += "<section><header class=\"fold\">" + header + "</header><article class=\"boxed\">";
+        str += "<h1 class=\"fold\">" + header + "</h1>";
         for (var genre in headerData[header]) {
             for (let age = 0; age < 4; age++) {
                 for (let i = 0; i < headerData[header][genre][age].length; i++) {
@@ -439,7 +439,7 @@ async function loadiconsJSON() {
                 }
             }
         }
-        str += "</article></section>";
+        str += "";
     }
     document.getElementById("buildIcons").innerHTML = str;
 
@@ -467,7 +467,7 @@ async function loadiconsJSON() {
     let tooltipContainer = document.getElementById('tooltipContainer');
     const tooltipBox = document.getElementById('tooltipBox');
     document.addEventListener('mousemove', function checkHover(e) {
-        tooltipContainer.style.left = getWidth() > e.pageX + 400 ? e.pageX + 4 + 'px' : e.pageX - 404 + 'px';
+        tooltipContainer.style.left = getWidth() > e.pageX + 330 ? e.pageX + 4 + 'px' : e.pageX - 333 + 'px';
         tooltipContainer.style.top = e.pageY + 2 + 'px';
         const allTooltips = document.getElementsByClassName('tooltip');
         if (tooltipindex < 0 || !allTooltips.item(tooltipindex).querySelector(':hover')) {
@@ -494,5 +494,5 @@ document.getElementById('tooltipBox').style.display = "none";
 //////////////////////////////////////////////////
 // RANDOMIZE background
 //////////////////////////////////////////////////
-const backgroundOptions = ["02celebration", "03focuslongbowmen", "04lordrobertsb", "07raisedstakestwoknights", "10mongoltrebuchet", "11chinesetradecaravans", "12mongolscharging", "15paytributeb", "alarm"];
-document.getElementById("background").style.backgroundImage = "url(img/" + backgroundOptions[Math.floor(Math.random() * backgroundOptions.length)] + ".png)";
+//const backgroundOptions = ["02celebration", "03focuslongbowmen", "04lordrobertsb", "07raisedstakestwoknights", "10mongoltrebuchet", "11chinesetradecaravans", "12mongolscharging", "15paytributeb", "alarm"];
+//document.getElementById("background").style.backgroundImage = "url(img/" + backgroundOptions[Math.floor(Math.random() * backgroundOptions.length)] + ".png)";

@@ -1,30 +1,22 @@
-a, article, b, body, code, dd, div, dl, dt, footer, h1, h2, h3, h4, h5, h6, header, html, i, img, li, menu, nav, p, s, section, small, span, table, tbody, td, th, thead, time, tr, u, ul, var {
+* {
     border: 0;
     font: inherit;
-    vertical-align: baseline;
     margin: 0;
-    padding: 0
+    padding: 0;
+    vertical-align: baseline;
 }
 
 html {
-    background: #181C29;
     color: #fff;
-    font-size: 10px;
     font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
+    font-size: 10px;
     height: 100%;
-    margin: 0px;
-    box-sizing: border-box;
-}
-
-article, footer, header, menu, nav, section {
-    display: block;
-    position: relative;
 }
 
 body {
-    line-height: 1;
-    height: 100%;
-    margin: 0px;
+    background: #181C29;
+    margin: auto;
+    max-width: 1200px;
 }
 
 table {
@@ -34,129 +26,221 @@ table {
 
 p {
     font-size: 1.4rem;
-    line-height: 1.5em;
+    line-height: 1.5rem;
     padding-left: 5px;
     padding-right: 5px;
 }
 
 a {
     text-decoration: none;
-    color: white;
+    color: #fff;
 }
 
-.containerOuter {
-    background-repeat: no-repeat;
-    background-position: left bottom;
-    max-width: 1200px;
-    min-height: 100%;
-    margin: auto; 
-    margin-bottom: -50px;
-}
-
-.containerInner {
-    max-width: 1200px;
-    background-repeat: no-repeat;
-    background-position: left bottom;
-    min-height: 100%;
-}
-
-.footer,
-.push {
-  height: 50px;
-}
-
-.footerBar {
-    color: rgba(255, 255, 255, .6);
-    clear: both;
-    margin: 6px 0 0 0;
-    padding: 4px 0;
-    font-size: 1.2rem;
-    text-align: center;
-}
-
-.footerBar a {
-    color: #fff
-}
-
-.footerBar a:hover {
-    text-decoration: underline
-}
-
-.titleBar {
-    box-shadow: 0 0 3px rgba(10, 10, 10, .4);
-    background: #11141D;
-    margin-bottom: 10px;
-    display: block;
-    position: relative;
+header {
+    align-items: center;
+    display: flex;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 2.4rem;
+    height: 5rem;
+    letter-spacing: 0.5rem;
+    margin-bottom: 1rem;
+    padding: 0.5rem 1rem;
     text-transform: uppercase;
 }
 
-.titleLine {
-    color: #ffdb88;
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 2.4rem;
-    padding: 6px 8px;
-    height: 47px;
-    display: inline-block;
-    vertical-align: middle;
-    letter-spacing: 4px;
+header a:first-child {
+    margin-right: auto;
 }
 
-.titleDonate {
-    position: absolute;
-    top: 0px;
-    right: 0px;
+header a:not(:first-child){
+    align-items: center;
+    display: flex;
+    font-size: 1.6rem;
+    margin: 1rem;
 }
 
-.titleDonate img {
-    vertical-align: middle;
-    margin-top: 5px;
-    margin-right: 10px;
-    margin-left: 10px;
+header a img {
+    padding-right: 1rem;
 }
 
-.titleDonate a {
-    font-size: 1.4rem;
+.gold {
     color: #ffdb88;
 }
 
-.civBar {
-    box-shadow: 0 0 3px rgba(10, 10, 10, .4);
-    border: 1px solid #11141D;
+nav {
     background: #1E2536;
+}
+
+menu li {
+    display: inline-block;
+}
+
+menu li a {
+    color: #c4c4c4;
     display: block;
     font-size: 1.3rem;
+    padding: 0.8rem 2.5rem;
 }
 
-.civBar ul li {
-    display: inline-block;
-    margin-right: 15px
+menu li a:hover {
+    background: #2C374F;
+    color: #fff;
 }
 
-.civBar ul li a {
-    display: block;
-    border-top: 2px solid transparent;
-    border-bottom: 2px solid transparent;
-    color: #c4c4c4;
-    padding: 8px 18px
-}
-
-.civBar ul li a:hover {
-    color: #fff
-}
-
-.civBar ul li.active a {
+menu li.active a {
     background: #11141D;
     color: #ffdb88;
 }
 
-.civBox {
+main {
+    display: flex;
+    flex: 1;
+    margin-top: 1rem;
+    gap: 1rem;
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    flex: 5;
+}
+
+aside {
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+}
+
+section {
+    flex: 1 1 auto;
+    height: 10px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    /*word-break: break-word; required for long lines*/
+}
+
+.icon {
+    cursor: move;
+    height: 4.8rem;
+    margin: 0.2rem;
+    max-height: 4.8rem;
+    max-width: 4.8rem;
+}
+
+table {
+    font-size: 2.2rem;
+    line-height: 5rem;
+    text-align: center;
+    width: 100%;
+}
+
+table img {
+    vertical-align: middle;
+}
+
+table tbody tr {
+    background: #2C374F;
+}
+
+table tbody tr:nth-child(2n) {
+    background: #1E2536;
+}
+
+table td {
+    padding: 0.3rem;
+}
+
+table th {
+    line-height: 3rem;
+    padding: 0.3rem;
+}
+
+.selected {
+    color: #ffdb88;
+}
+
+*:focus {
+    outline-color: #ffdb88;
+    outline-style: solid;
+    outline-width: 1px;
+}
+
+.tooltip {
+    text-decoration: none;
+    position: relative;
+    overflow: visible;
+}
+
+.tooltip span {
+    display: none;
+}
+
+.tooltipContainer {
+    position: absolute;
+    max-width: 400px;
+}
+
+.tooltipBox {
+    background: rgb(17, 20, 29);
+    background: linear-gradient(0deg, rgba(17, 20, 29, 1) 0%, rgba(30, 37, 54, 1) 100%);
     box-shadow: 0 0 3px rgba(10, 10, 10, .4);
     border: 1px solid #11141D;
+    position: relative;
+    padding: 8px;
+    margin: 13px 0 0 0;
+    font-size: 1.4rem;
+}
+
+.tooltipBox img {
+    margin: 0;
+    padding: 0;
+    overflow: visible;
+    object-fit: contain;
+}
+
+.smallIcons img {
+    width: 24px;
+    max-width: 24px;
+}
+
+.tooltipColumn1 {
+    display: inline-block;
+    width: 7rem;
+}
+
+.tooltipColumn2 {
+    display: inline-block;
+    max-width: 25rem;
+    vertical-align: top;
+}
+
+.tooltipColumn2 header {
+    text-transform: uppercase;
+}
+
+::-webkit-scrollbar {
+    width: 2rem;
+}
+
+::-webkit-scrollbar-track {
+    background-color: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+    background-color: #d6dee1;
+    border-radius: 2rem;
+    border: 0.5rem solid transparent;
+    background-clip: content-box;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background-color: #a8bbbf;
+}
+
+.civBox {
     background: #1E2536;
     position: relative;
     padding: 8px;
-    margin: 13px 0 0 0
 }
 
 .civFlag {
@@ -185,182 +269,9 @@ a {
     right: 8px;
 }
 
-.buildActions {
-    position: absolute;
-    right: 0px;
-    top: 0px;
-    font-size: 1.1rem;
-}
-
-.contentInner {
-    display: grid;
-    width: 100%;
-    grid-template-columns: repeat(3, 1fr);
-    grid-column-gap: 10px;
-    margin: 0 auto;
-}
-
-.icon {
-    cursor: move;
-    object-fit: contain;
-    height: 48px;
-    max-height: 48px;
-    width: auto;
-    max-width: 48px;
-    margin: 3px;
-    margin-left: 4.5px;
-    /*background: rgb(30,34,33);*/
-}
-
-section {
-    margin-bottom: 10px
-}
-
-section header {
-    font-size: 1.6rem;
-    font-family: 'Times New Roman', Times, serif;
-    text-transform: uppercase;
-    padding: 6px 4px;
-    text-shadow: 1px 1px 2px #000;
-}
-
-section article {
-    box-shadow: 0 0 3px rgba(10, 10, 10, .4);
-    border: 1px solid #11141D;
-    background: #1E2536;
-}
-
-table {
-    width: 100%;
-    font-size: 2.2rem;
-    text-align: center;
-    line-height: 50px;
-    vertical-align: bottom;
-}
-
-table img {
-    vertical-align: middle;
-}
-
-table tbody tr {
-    background: #2C374F;
-}
-table tbody tr:nth-child(2n) {
-    background: #1E2536;
-}
-
-table td {
-    padding: 4px;
-    vertical-align: middle
-}
-
-table th {
-    line-height: 36px;
-    vertical-align: top;
-    padding: 4px;
-}
-
-.selected {
-    color: #ffdb88;
-}
-
-*:focus {
-    outline-color: #ffdb88;
-    outline-style: solid;
-    outline-width: 1px;
-}
-
-.fold {
-    cursor: pointer;
-}
-
-.fold:after {
-    content: '\002B';
-    float: right;
-}
-
-.unfold:after {
-    content: "\2212";
-}
-
-.boxed {
-    max-height: 0;
-    transition: max-height .2s ease-out;
-    padding: 0;
-    position: relative;
-    overflow-y: hidden;
-}
-
-.tooltip {
-    text-decoration: none;
-    position: relative;
-    overflow: visible;
-}
-
-.tooltip span {
-    display: none;
-}
-
-.tooltipContainer {
-    position: absolute;
-    max-width: 400px;
-}
-
-.tooltipBox {
-    box-shadow: 0 0 3px rgba(10, 10, 10, .4);
-    border: 1px solid #11141D;
-    background: rgb(17, 20, 29);
-    background: linear-gradient(0deg, rgba(17, 20, 29, 1) 0%, rgba(30, 37, 54, 1) 100%);
-    position: relative;
-    padding: 8px;
-    margin: 13px 0 0 0;
-    font-size: 1.4rem;
-}
-
-.tooltipBox img {
-    margin: 0;
-    padding: 0;
-    overflow: visible;
-    object-fit: contain;
-}
-
-.smallIcons img {
-    width: 24px;
-    max-width: 24px;
-}
-
-.tooltipColumn1 {
-    display: inline-block;
-    width: 68px;
-}
-
-.tooltipColumn2 {
-    display: inline-block;
-    max-width: 312px;
-    vertical-align: top;
-}
-
-.tooltipColumn2 header {
-    text-transform: uppercase;
-}
-
 @media screen and (max-width:800px) {
     html {
         font-size: 6.7px;
-    }
-
-    .titleLine {
-        height: 32px;
-    }
-
-    .titleDonate img {
-        height: 32px;
-        max-height: 32px;
-        width: auto;
-    }
-
-    .titleDonate a {
-        font-size: 0
     }
 
     .civBar ul li a {
@@ -397,10 +308,6 @@ table th {
         max-height: 32px;
     }
 
-    .buildMenu {
-        display: none
-    }
-
     .buildActions button {
         letter-spacing: .3px;
         line-height: 8px;
@@ -427,5 +334,9 @@ table th {
 
     .buildTime img {
         height: 16px;
-    } 
+    }
+
+    main {
+        flex-direction: column;
+    }
 }

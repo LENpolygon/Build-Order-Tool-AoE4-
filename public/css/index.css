@@ -6,6 +6,19 @@ table tr td {
     text-align: left;
 }
 
+footer {
+    color: rgba(255, 255, 255, .6);
+    margin: 6px 0 0 0;
+    padding: 4px 0;
+    font-size: 1.2rem;
+    text-align: center;
+    margin-top: auto;
+}
+
+footer a:hover {
+    text-decoration: underline
+}
+
 @media screen and (max-width:800px) {
     .contentInner {
         grid-template-columns: repeat(1, 1fr);
