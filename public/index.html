@@ -27,96 +27,70 @@
     </script>
 </head>
 
-<body>
-    <div class="containerOuter" id="background">
-        <div class="titleBar">
-            <div class="containerInner">
-                <a class="titleLine" href="./">Age of Empires IV<br />Build Order Tool</a>
-                <div class="titleDonate">
-                    <a href="https://github.com/LENpolygon/Build-Order-Tool-AoE4-" style="color:#fff;"
-                        title="This website is on Github, check out the code and build onto it!">Donate Code<img
-                            src="assets/GitHub-Mark/PNG/GitHub-Mark-Light-64px.png" class="icon"
-                            alt="This website is on Github, check out the code and build onto it!"></a>
-                    <a href="https://ko-fi.com/lenpolygon"
-                        title="This website is Ad-Free, consider donating to maintain it!">Donate
-                        Coin<img src="img/dropofftax.png" onerror="this.src = 'assets/placeholder.png';" class="icon"
-                            alt="This website is Ad-Free, consider donating to maintain it!"></a>
-                </div>
-            </div>
+<body id="background">
+    <header>
+        <a class="gold" href="./">Age of Empires IV<br />Build Order Tool</a>
+        <a href="https://github.com/LENpolygon/Build-Order-Tool-AoE4-"
+            title="This website is on Github, check out the code here!"><img
+                src="assets/GitHub-Mark/PNG/GitHub-Mark-Light-64px.png" class="icon"
+                alt="This website is on Github, check out the code here!">Donate<br />Code</a>
+        <a class="gold" href="https://ko-fi.com/lenpolygon"
+            title="This website is Ad-Free, consider donating to maintain it!"><img src="img/dropofftax.png"
+                onerror="this.src = 'assets/placeholder.png';" class="icon"
+                alt="This website is Ad-Free, consider donating to maintain it!">Donate<br />Coin</a>
+    </header>
+    <nav>
+        <menu id="civilizationsMenu"></menu>
+    </nav>
+    <div id="civBox" class="civBox">
+        <div class="civFlag">
+            <a id="civilizationFlag"></a>
         </div>
-        <div class="containerInner">
-            <nav class="civBar">
-                <ul id="civilizationsMenu"></ul>
-            </nav>
-            <div id="civBox" class="civBox">
-                <div class="civFlag">
-                    <a id="civilizationFlag"></a>
-                </div>
-                <div class="civStats">
-                    <h1 id="civilizationName"></h1><small id="civilizationFocus"></small>
-                </div>
-                <div class="civStatsMore" id="civilizationUniqueUnits">
-                </div>
-            </div>
-            <div class="contentInner">
-
-                <!-- page starts here -->
-
-                <div>
-                    <section>
-                        <header>Most Popular Builds</header>
-                        <article>
-                            <table id="popTable">
-                                <thead>
-                                    <tr>
-                                        <th class="buildTime">Views</th>
-                                        <th>Build Title</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>#1</td>
-                                        <td>The best AoE4 Build</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </article>
-                    </section>
-                </div>
-                <div>
-                    <section>
-                        <header>Newest Builds</header>
-                        <article>
-                            <table id="newTable">
-                                <thead>
-                                    <tr>
-                                        <th class="buildTime">Date</th>
-                                        <th>Build Title</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>2022/05/29</td>
-                                        <td>Todays Age of Empires 4 build</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </article>
-                    </section>
-                </div>
-
-                <!-- page ends here -->
-
-                <div class="push"></div>
-            </div>
+        <div class="civStats">
+            <h1 id="civilizationName"></h1><small id="civilizationFocus"></small>
+        </div>
+        <div class="civStatsMore" id="civilizationUniqueUnits">
         </div>
     </div>
+    <main>
+        <article>
+            <table id="popTable">
+                <thead>
+                    <tr>
+                        <th class="buildTime">#</th>
+                        <th>Most Popular Builds This Month</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>#1</td>
+                        <td>The best AoE4 Builds online</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+        <article>
+            <table id="newTable">
+                <thead>
+                    <tr>
+                        <th class="buildTime">Date</th>
+                        <th>Newest Builds This Month</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>2022/05/29</td>
+                        <td>Todays Age of Empires 4 builds</td>
+                    </tr>
+                </tbody>
+            </table>
+        </article>
+    </main>
     <footer>
-        <div class="footerBar">Build Order Tool v0.8.3 for the latest Age of Empires instalment. Copyright 2022 <a
-                target="_blank" rel="noopener" data-track-outgoing="true" href="http://lenpolygon.com">LEN polygon</a>.
-            Age of Empires IV and all its icons, artwork, and flair are property of Relic Entertainment, World's Edge &
-            Xbox Game
-            Studios.<br />This website is for educational purposes only.</div>
+        Build Order Tool v0.8.5 for the latest Age of Empires instalment. Copyright 2022 <a target="_blank"
+            rel="noopener" data-track-outgoing="true" href="http://lenpolygon.com">LEN polygon</a>.
+        Age of Empires IV and all its icons, artwork, and flair are property of Relic Entertainment, World's Edge &
+        Xbox Game Studios. This website is for educational purposes only.
     </footer>
     <script type="module" src="js/index.js"></script>
 </body>
