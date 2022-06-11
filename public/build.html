@@ -33,11 +33,11 @@
     <a href="https://github.com/LENpolygon/Build-Order-Tool-AoE4-"
       title="This website is on Github, check out the code here!"><img
         src="assets/GitHub-Mark/PNG/GitHub-Mark-Light-64px.png" class="icon"
-        alt="This website is on Github, check out the code here!">Donate<br />Code</a>
+        alt="This website is on Github, check out the code here!"><span>Donate<br />Code</span></a>
     <a class="gold" href="https://ko-fi.com/lenpolygon"
       title="This website is Ad-Free, consider donating to maintain it!"><img src="img/dropofftax.png"
         onerror="this.src = 'assets/placeholder.png';" class="icon"
-        alt="This website is Ad-Free, consider donating to maintain it!">Donate<br />Coin</a>
+        alt="This website is Ad-Free, consider donating to maintain it!"><span>Donate<br />Coin</span></a>
   </header>
   <nav class="civBar">
     <menu id="civilizationsMenu"></menu>
@@ -50,7 +50,8 @@
           <div class="civFlag" id="civilizationFlag">
           </div>
           <div class="civStats">
-            <h1 id="civilizationName"></h1><h4 id="civilizationFocus"></h4>
+            <h1 id="civilizationName"></h1>
+            <h4 id="civilizationFocus"></h4>
           </div>
           <div id="civilizationUniqueUnits">
           </div>
@@ -87,19 +88,22 @@
       </section>
     </article>
     <aside class="buildMenu">
-      <div>
-        <p>1) Use the following buttons to manipulate the rows in the Build Table:</p>
+      <div id="manual">
+        <p>1) Design your build order:</p>
         <button title="Move up" id="upNdownup">&ShortUpArrow;</button>
         <button title="Move down" id="upNdowndown">&ShortDownArrow;</button>
         <button title="Add row" id="createRowBtn">&plus;</button>
         <button title="Delete row" id="deleteRowBtn">x</button>
         <button title="Clear EVERYTHING" id="clearTableBtn">Clear ALL</button>
+        <div class="break"></div>
         <p>2) Save your build to URL:</p>
         <button title="Save" id="saveToURLBtn">Save</button>
-        <p>3) When your build is finalized; upload it to the database:</p>
+        <div class="break"></div>
+        <p>3) Upload build to the database:</p>
         <input type="hidden" id="scoreU" name="value" value="1"></input>
         <input type="hidden" id="optionsU" name="username" value=""></input>
         <button title="Upload" id="AddDocument_CustomIDBtn">Upload</button>
+        <div class="break"></div>
         <p>Drag the icons below to make your build:</p>
       </div>
       <section>

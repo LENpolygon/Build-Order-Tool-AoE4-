@@ -298,4 +298,8 @@ table th {
     .tooltipContainer {
         display: none;
     }
+
+    header a span {
+        display: none;
+    }
 }

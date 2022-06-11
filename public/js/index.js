@@ -50,8 +50,7 @@ for (let i = 0; i < civilizations.length; i++) {
     str += "><a href=\"index.html?c=" + civilizations[i].abbr + "\">" + civilizations[i].civilization + "</a></li>";
 }
 str += "<li><a href=\"index.html\">ALL</a></li>";
-if (selectedciv)
-{
+if (selectedciv) {
     str += "<li><a href=\"build.html?c=" + selectedciv.abbr + "\" class=\"gold\">✎ OPEN BUILDER</a></li>";
 } else {
     str += "<li><a href=\"build.html?c=EN\" class=\"gold\">✎ OPEN BUILDER</a></li>";
@@ -98,13 +97,36 @@ async function GetPopBuilds() {
         // doc.data() is never undefined for query doc snapshots
         var docId = doc.id;
         var docData = doc.data();
-        var rowstring = "<td>" + (counter+1) + "</td>";
-        rowstring += "<td><img src=\"img/flag" + docData.civ + ".png\" height=\"24\" onerror=\"this.src = 'assets/placeholder.png';\"><a href=\"view.html?f=" + docId +"\"></img> " + escapeHtml(docData.title).substring(0,titleLength) + " (by " + escapeHtml(docData.user).substring(0,nameLength) + ")</a></td>";
+        var rowstring = "<td>" + (counter + 1) + "</td>";
+        rowstring += "<td><img src=\"img/flag" + docData.civ + ".png\" height=\"24\" onerror=\"this.src = 'assets/placeholder.png';\"><a href=\"view.html?f=" + docId + "\"></img> " + escapeHtml(docData.title).substring(0, titleLength) + " (by " + escapeHtml(docData.user).substring(0, nameLength) + ")</a></td>";
         rows[counter + 1].innerHTML = rowstring;
         counter++;
     });
 }
 GetPopBuilds();
+
+//////////////////////////////////////////////////
+// GET Newest builds from Firestore
+//////////////////////////////////////////////////
+function timePassed(oldDate) {
+    var days = Math.floor((Date.now() - oldDate) / 86400000);
+    var str = "";
+    if (days == 0)
+    {
+        str = "now";
+    } else if (days <= 6)
+    {
+        str = days + "d"
+    } else if (days <= 28)
+    {
+        str = Math.floor(days/7) + "w"
+    } else
+    {
+        str = Math.floor(days/30) + "m"
+    } 
+    return str;
+}
+
 
 //////////////////////////////////////////////////
 // GET Newest builds from Firestore
@@ -124,8 +146,8 @@ async function GetNewBuilds() {
         // doc.data() is never undefined for query doc snapshots
         var docId = doc.id;
         var docData = doc.data();
-        var rowstring = "<td>" + new Date(docData.timestamp).toLocaleDateString() + "</td>";
-        rowstring += "<td><img src=\"img/flag" + docData.civ + ".png\" height=\"24\" onerror=\"this.src = 'assets/placeholder.png';\"><a href=\"view.html?f=" + docId +"\"></img> " + escapeHtml(docData.title).substring(0,titleLength) + " (by " + escapeHtml(docData.user).substring(0,nameLength) + ")</a></td>";
+        var rowstring = "<td>" + timePassed(docData.timestamp) + "</td>";
+        rowstring += "<td><img src=\"img/flag" + docData.civ + ".png\" height=\"24\" onerror=\"this.src = 'assets/placeholder.png';\"><a href=\"view.html?f=" + docId + "\"></img> " + escapeHtml(docData.title).substring(0, titleLength) + " (by " + escapeHtml(docData.user).substring(0, nameLength) + ")</a></td>";
         rows[counter + 1].innerHTML = rowstring;
         counter++;
     });
