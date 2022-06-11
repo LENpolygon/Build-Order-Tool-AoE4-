@@ -1,9 +1,15 @@
-.contentInner {
-    grid-template-columns: repeat(2, 1fr);
-}
-
 table tr td {
     text-align: left;
+}
+
+footer {
+    color: rgba(255, 255, 255, .6);
+    text-align: center;
+    margin-top: auto;
+}
+
+footer a:hover {
+    text-decoration: underline
 }
 
 @media screen and (max-width:800px) {

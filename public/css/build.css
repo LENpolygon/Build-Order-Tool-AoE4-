@@ -1,17 +1,19 @@
-.buildOrder {
-    grid-column: span 2
+html {
+    height: 100%;
 }
 
-.buildMenu {
-    grid-column: span 1;
-    display: block
+body {
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    overflow: hidden;
 }
 
 table .buildTime {
     width: 36px
 }
 
-.buildActions button {
+button {
     cursor: pointer;
     display: inline-block;
     font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
@@ -24,9 +26,8 @@ table .buildTime {
     border-width: 1px;
     border-style: solid;
     border-color: #ffdb88;
-    background: #1E2536;
+    background: #181C29;
     color: #ffdb88;
-    text-shadow: 1px 1px 0 rgba(10, 10, 10, .4)
 }
 
 .buildActions button:hover {
@@ -36,6 +37,7 @@ table .buildTime {
 table tbody tr td:nth-child(2) {
     background: #41394a;
 }
+
 table tbody tr:nth-child(2n) td:nth-child(2) {
     background: #342934;
 }
@@ -43,6 +45,7 @@ table tbody tr:nth-child(2n) td:nth-child(2) {
 table tbody tr td:nth-child(3) {
     background: #383a47;
 }
+
 table tbody tr:nth-child(2n) td:nth-child(3) {
     background: #2c2a31;
 }
@@ -50,6 +53,7 @@ table tbody tr:nth-child(2n) td:nth-child(3) {
 table tbody tr td:nth-child(4) {
     background: #374157;
 }
+
 table tbody tr:nth-child(2n) td:nth-child(4) {
     background: #2b3140;
 }
@@ -57,6 +61,7 @@ table tbody tr:nth-child(2n) td:nth-child(4) {
 table tbody tr td:nth-child(5) {
     background: #404448;
 }
+
 table tbody tr:nth-child(2n) td:nth-child(5) {
     background: #343432;
 }
@@ -65,48 +70,34 @@ table tbody tr td:nth-child(6) {
     padding-left: 10px;
 }
 
+#manual {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    row-gap: 1rem;
+}
+
+.break {
+    flex-basis: 100%;
+    height: 0;
+}
+
 @media screen and (max-width:800px) {
     html {
         font-size: 6.7px;
     }
 
-    .titleLine {
-        height: 32px;
-    }
-
-    .titleDonate img {
-        height: 32px;
-        max-height: 32px;
-        width: auto;
-    }
-
-    .titleDonate a {
-        font-size: 0
-    }
-
-    .civBar ul li a {
+    .civBar menu li a {
         padding: 5px 8px
     }
 
-    .civBar ul li {
+    .civBar menu li {
         font-size: 1.9rem;
         margin-right: 10px
     }
 
-    .civFlag img {
-        height: 32px;
-    }
-
-    .civStats h1 {
-        padding-bottom: 3px;
-    }
-
     .civStatsMore {
         display: none;
-    }
-
-    .buildOrder {
-        grid-column: span 3
     }
 
     table .buildTime {
@@ -120,35 +111,9 @@ table tbody tr td:nth-child(6) {
         max-width: 32px;
     }
 
-    .buildMenu {
-        display: none
-    }
-
     .buildActions button {
         letter-spacing: .3px;
         line-height: 8px;
         padding: 6px 8px;
     }
-
-    table {
-        font-size: 2.2rem;
-        line-height: 33.3px;
-    }
-
-    table td {
-        padding: 2.7px;
-    }
-
-    table th {
-        line-height: 24px;
-        padding: 2.7px;
-    }
-
-    .footerBar {
-        font-size: 1.5rem;
-    }
-
-    .buildTime img {
-        height: 16px;
-    } 
 }

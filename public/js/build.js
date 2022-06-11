@@ -19,27 +19,7 @@ var buildorder = null;
 var buildordercolumns = 2;
 var usp = new URLSearchParams(window.location.search);
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js"; import firebaseConfig from '../json/fs.js'; const app = initializeApp(firebaseConfig); import { getFirestore, doc, getDoc, setDoc, collection, updateDoc, addDoc } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"; const db = getFirestore();
-if (isNaN(usp.get("f"))) { // Update View counter
-    var ref = doc(db, "Age4Builds", usp.get("f"));
-    const docSnap = await getDoc(ref);
-    if (docSnap.exists()) {
-        var docData = docSnap.data();
-        await updateDoc(
-            ref, {
-            views: docData.views + 1
-        }).then(() => {
-            //alert("data updated successfully");
-            
-        }).catch((error) => {
-            console.log("Unsuccesful operation, error: " + error);
-        });
-        window.location.replace("build.html?c=" + docData.civ + "&" + docData.version + "=" + docData.build);
-    }
-    else {
-        alert("No such Document");
-    }
-
-} else if (isNaN(usp.get("c"))) {
+if (isNaN(usp.get("c"))) {
     for (let i = 0; i < civilizations.length; i++) {
         if (usp.get("c") == civilizations[i].abbr) {
             selectedciv = civilizations[i];
@@ -58,7 +38,7 @@ else if (isNaN(usp.get("b"))) { // uncompressed 2 column builds (very old)
     buildorder = usp.get("b");
 }
 if (!selectedciv && !isNaN(usp.get("f"))) {
-    window.location.href = "build.html?c=EN&t=AwWwPhEGIJYE4GcAuACAbCg3gVgMwF8UkB7LAdm3zFDDUjADkBTAD1RwKNMwqpoA56AFQAWTAHYoATFjyEARgFcYAGwAmWfgBZCKLAE4yhAIbiNIGOKblgVAIzhBEKWFyzOS1Rsz7OpjQDGiuxo-FRSjq7OYFruCsrqBkYo-igWVlho+lS4kbgxYC6YdpxWbHFcmWGukVoFLgBCCd52drYoAO4wSCLSFQBmcMQgNjmR2AXAYACC-UhMcCi4wMCZ2SgIEhrGKioDQyOYWYQkVVTYkXYuU43NWHb8YZ3dvbEchIPDZ2BAA";
+    window.location.href = "view.html?c=EN&t=AwWwPhEGIJYE4GcAuACAbCg3gVgMwF8UkB7LAdm3zFDDUjADkBTAD1RwKNMwqpoA56AFQAWTAHYoATFjyEARgFcYAGwAmWfgBZCKLAE4yhAIbiNIGOKblgVAIzhBEKWFyzOS1Rsz7OpjQDGiuxo-FRSjq7OYFruCsrqBkYo-igWVlho+lS4kbgxYC6YdpxWbHFcmWGukVoFLgBCCd52drYoAO4wSCLSFQBmcMQgNjmR2AXAYACC-UhMcCi4wMCZ2SgIEhrGKioDQyOYWYQkVVTYkXYuU43NWHb8YZ3dvbEchIPDZ2BAA";
 }
 
 //////////////////////////////////////////////////
@@ -78,13 +58,9 @@ for (let i = 0; i < civilizations.length; i++) {
     if (civilizations[i].abbr == selectedciv.abbr) {
         str += " class=\"active\"";
     }
-    str += "><a href=\"build.html?c=" + civilizations[i].abbr + "\">" + civilizations[i].civilization + "</a></li>";
+    str += "><a href=\"build.html?c=" + civilizations[i].abbr + "\">✎ " + civilizations[i].civilization + "</a></li>";
 }
-if (selectedciv) {
-    str += "<li><a href=\"index.html?c=" + selectedciv.abbr + "\">[BACK TO BUILDS LIST]</a></li>";
-} else {
-    str += "<li><a href=\"index.html\">[BACK TO BUILDS LIST]</a></li>";
-}
+str += "<li><a href=\"index.html\" class=\"gold\">👁 CLOSE BUILDER</a></li>";
 document.getElementById("civilizationsMenu").innerHTML = str;
 
 //////////////////////////////////////////////////
@@ -202,8 +178,9 @@ const imgstr = ["<a class=\"tooltip\">",
     "class=\"icon\" data-index=\"",
     "\" data-info=\"",
     "\" alt=\"",
-    "\" style=\"background: radial-gradient(circle, rgba(60,68,66,0.8) 0%, ",
-    " 80%); ",
+    //"\" style=\"background: radial-gradient(circle, rgba(60,68,66,0.8) 0%, ",
+    "\" style=\"background: radial-gradient(circle, rgba(69,69,69,0.69) 0%, ",
+    " 69%); ",
     "\"\></a>"];
 const tableitems = [["food", "resourcefoodicon"], ["wood", "resourcewoodicon"], ["gold", "resourcegoldicon"], ["stone", "resourcestoneicon"], ["time", "timetobuild"], ["pop", "house"]];
 function formatImage(reference, value, showTooltip) {
@@ -226,7 +203,7 @@ function formatImage(reference, value, showTooltip) {
                 }
             }
         }
-        tooltip += "</div></div><div class=\"tooltipColumn2\"><header>" + reference.name + " (age: " + reference.age + "+)</header></br></br>" + reference.description + "</div>";
+        tooltip += "</div></div><div class=\"tooltipColumn2\"><h3>" + reference.name + " (age: " + reference.age + "+)</h3></br></br>" + reference.description + "</div>";
     }
     return reference.color == "transparent"
         ? (imgstr[0] + imgstr[1] + reference[selectedciv.abbr] + imgstr[2] + imgstr[3] + value + imgstr[4] + LZString.compressToEncodedURIComponent(tooltip) + imgstr[5] + reference.name + imgstr[8])
@@ -331,7 +308,8 @@ async function AddDocument_CustomID() {
             patch: "14681",
             likers: [],
             likes: parseInt(document.getElementById("scoreU").value),
-            option: document.getElementById("optionsU").value
+            option: document.getElementById("optionsU").value,
+            score: 30
         }
         )
             .then(() => {
@@ -431,7 +409,7 @@ async function loadiconsJSON() {
     //////////////////////////////////////////////////
     var str = "";
     for (var header in headerData) {
-        str += "<section><header class=\"fold\">" + header + "</header><article class=\"boxed\">";
+        //str += "<h1>" + header + "</h1>";
         for (var genre in headerData[header]) {
             for (let age = 0; age < 4; age++) {
                 for (let i = 0; i < headerData[header][genre][age].length; i++) {
@@ -439,27 +417,9 @@ async function loadiconsJSON() {
                 }
             }
         }
-        str += "</article></section>";
+        str += "";
     }
     document.getElementById("buildIcons").innerHTML = str;
-
-    //////////////////////////////////////////////////
-    // COLLAPSE
-    //////////////////////////////////////////////////
-    var coll = document.getElementsByClassName("fold");
-    for (let i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function () {
-            this.classList.toggle("unfold");
-            var content = this.nextElementSibling;
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-            }
-        });
-    }
-    coll[0].click();
-    //coll[1].click();
 
     ///////////////////////////////////////////////////
     // SHOW tooltips
@@ -467,7 +427,7 @@ async function loadiconsJSON() {
     let tooltipContainer = document.getElementById('tooltipContainer');
     const tooltipBox = document.getElementById('tooltipBox');
     document.addEventListener('mousemove', function checkHover(e) {
-        tooltipContainer.style.left = getWidth() > e.pageX + 400 ? e.pageX + 4 + 'px' : e.pageX - 404 + 'px';
+        tooltipContainer.style.left = getWidth() > e.pageX + 330 ? e.pageX + 4 + 'px' : e.pageX - 333 + 'px';
         tooltipContainer.style.top = e.pageY + 2 + 'px';
         const allTooltips = document.getElementsByClassName('tooltip');
         if (tooltipindex < 0 || !allTooltips.item(tooltipindex).querySelector(':hover')) {
@@ -494,5 +454,5 @@ document.getElementById('tooltipBox').style.display = "none";
 //////////////////////////////////////////////////
 // RANDOMIZE background
 //////////////////////////////////////////////////
-const backgroundOptions = ["02celebration", "03focuslongbowmen", "04lordrobertsb", "07raisedstakestwoknights", "10mongoltrebuchet", "11chinesetradecaravans", "12mongolscharging", "15paytributeb", "alarm"];
-document.getElementById("background").style.backgroundImage = "url(img/" + backgroundOptions[Math.floor(Math.random() * backgroundOptions.length)] + ".png)";
+//const backgroundOptions = ["02celebration", "03focuslongbowmen", "04lordrobertsb", "07raisedstakestwoknights", "10mongoltrebuchet", "11chinesetradecaravans", "12mongolscharging", "15paytributeb", "alarm"];
+//document.getElementById("background").style.backgroundImage = "url(img/" + backgroundOptions[Math.floor(Math.random() * backgroundOptions.length)] + ".png)";
