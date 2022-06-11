@@ -71,20 +71,6 @@ table tbody tr td:nth-child(6) {
         font-size: 6.7px;
     }
 
-    .titleLine {
-        height: 32px;
-    }
-
-    .titleDonate img {
-        height: 32px;
-        max-height: 32px;
-        width: auto;
-    }
-
-    .titleDonate a {
-        font-size: 0
-    }
-
     .civBar menu li a {
         padding: 5px 8px
     }
@@ -92,14 +78,6 @@ table tbody tr td:nth-child(6) {
     .civBar menu li {
         font-size: 1.9rem;
         margin-right: 10px
-    }
-
-    .civFlag img {
-        height: 32px;
-    }
-
-    .civStats h1 {
-        padding-bottom: 3px;
     }
 
     .civStatsMore {
@@ -122,26 +100,4 @@ table tbody tr td:nth-child(6) {
         line-height: 8px;
         padding: 6px 8px;
     }
-
-    table {
-        font-size: 2.2rem;
-        line-height: 33.3px;
-    }
-
-    table td {
-        padding: 2.7px;
-    }
-
-    table th {
-        line-height: 24px;
-        padding: 2.7px;
-    }
-
-    .footerBar {
-        font-size: 1.5rem;
-    }
-
-    .buildTime img {
-        height: 16px;
-    } 
 }

@@ -24,11 +24,27 @@ table {
     border-spacing: 0
 }
 
+h1 {
+    font-size: 3rem;
+}
+
+h2 {
+    font-size: 2.5rem;
+}
+
+h3 {
+    font-size: 2rem;
+}
+
+h4 {
+    font-size: 1.5rem;
+}
+
 p {
     font-size: 1.4rem;
     line-height: 1.5rem;
-    padding-left: 5px;
-    padding-right: 5px;
+    padding-left: 0.25rem;
+    padding-right: 0.5rem;
 }
 
 a {
@@ -69,6 +85,7 @@ header a img {
 
 nav {
     background: #1E2536;
+    margin-bottom: 1rem;
 }
 
 menu li {
@@ -95,7 +112,6 @@ menu li.active a {
 main {
     display: flex;
     flex: 1;
-    margin-top: 1rem;
     gap: 1rem;
 }
 
@@ -165,6 +181,23 @@ table th {
     outline-width: 1px;
 }
 
+#civBox {
+    background: #1E2536;
+    display: flex;
+    align-items: center;
+    padding: 0.8rem;
+}
+
+.civFlag img {
+    height: 5rem;
+    margin-right: 0.8rem;
+}
+
+.civStats {
+    margin-top: -1rem;
+    flex: 1;
+}
+
 .tooltip {
     text-decoration: none;
     position: relative;
@@ -177,7 +210,7 @@ table th {
 
 .tooltipContainer {
     position: absolute;
-    max-width: 400px;
+    max-width: 35rem;
 }
 
 .tooltipBox {
@@ -186,8 +219,8 @@ table th {
     box-shadow: 0 0 3px rgba(10, 10, 10, .4);
     border: 1px solid #11141D;
     position: relative;
-    padding: 8px;
-    margin: 13px 0 0 0;
+    padding: 0.8rem;
+    margin: 1rem 0 0 0;
     font-size: 1.4rem;
 }
 
@@ -199,8 +232,8 @@ table th {
 }
 
 .smallIcons img {
-    width: 24px;
-    max-width: 24px;
+    width: 2.4rem;
+    max-width: 2.4rem;
 }
 
 .tooltipColumn1 {
@@ -237,95 +270,13 @@ table th {
     background-color: #a8bbbf;
 }
 
-.civBox {
-    background: #1E2536;
-    position: relative;
-    padding: 8px;
-}
-
-.civFlag {
-    display: inline-block;
-    margin-right: 7px;
-}
-
-.civFlag img {
-    height: 50px;
-}
-
-.civStats {
-    font-size: 1.4rem;
-    display: inline-block;
-    vertical-align: top
-}
-
-.civStats h1 {
-    font-size: 3rem;
-    padding-bottom: 5px;
-}
-
-.civStatsMore {
-    position: absolute;
-    top: 8px;
-    right: 8px;
-}
-
 @media screen and (max-width:800px) {
     html {
         font-size: 6.7px;
     }
 
-    .civBar ul li a {
-        padding: 5px 8px
-    }
-
-    .civBar ul li {
-        font-size: 1.9rem;
-        margin-right: 10px
-    }
-
-    .civFlag img {
-        height: 32px;
-    }
-
-    .civStats h1 {
-        padding-bottom: 3px;
-    }
-
-    .civStatsMore {
+    #civilizationUniqueUnits {
         display: none;
-    }
-
-    .buildOrder {
-        grid-column: span 3
-    }
-
-    table .buildTime {
-        width: 24px
-    }
-
-    .icon {
-        height: 32px;
-        max-height: 32px;
-    }
-
-    .buildActions button {
-        letter-spacing: .3px;
-        line-height: 8px;
-        padding: 6px 8px;
-    }
-
-    table {
-        font-size: 2.2rem;
-        line-height: 33.3px;
-    }
-
-    table td {
-        padding: 2.7px;
-    }
-
-    table th {
-        line-height: 24px;
-        padding: 2.7px;
     }
 
     .footerBar {
@@ -338,5 +289,9 @@ table th {
 
     main {
         flex-direction: column;
+    }
+
+    .tooltipContainer {
+        display: none;
     }
 }

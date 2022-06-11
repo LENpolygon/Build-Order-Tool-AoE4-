@@ -202,8 +202,9 @@ const imgstr = ["<a class=\"tooltip\">",
     "class=\"icon\" data-index=\"",
     "\" data-info=\"",
     "\" alt=\"",
-    "\" style=\"background: radial-gradient(circle, rgba(60,68,66,0.8) 0%, ",
-    " 80%); ",
+    //"\" style=\"background: radial-gradient(circle, rgba(60,68,66,0.8) 0%, ",
+    "\" style=\"background: radial-gradient(circle, rgba(69,69,69,0.69) 0%, ",
+    " 69%); ",
     "\"\></a>"];
 const tableitems = [["food", "resourcefoodicon"], ["wood", "resourcewoodicon"], ["gold", "resourcegoldicon"], ["stone", "resourcestoneicon"], ["time", "timetobuild"], ["pop", "house"]];
 function formatImage(reference, value, showTooltip) {
@@ -226,7 +227,7 @@ function formatImage(reference, value, showTooltip) {
                 }
             }
         }
-        tooltip += "</div></div><div class=\"tooltipColumn2\"><h2>" + reference.name + " (age: " + reference.age + "+)</h2></br></br>" + reference.description + "</div>";
+        tooltip += "</div></div><div class=\"tooltipColumn2\"><h3>" + reference.name + " (age: " + reference.age + "+)</h3></br></br>" + reference.description + "</div>";
     }
     return reference.color == "transparent"
         ? (imgstr[0] + imgstr[1] + reference[selectedciv.abbr] + imgstr[2] + imgstr[3] + value + imgstr[4] + LZString.compressToEncodedURIComponent(tooltip) + imgstr[5] + reference.name + imgstr[8])
@@ -431,7 +432,7 @@ async function loadiconsJSON() {
     //////////////////////////////////////////////////
     var str = "";
     for (var header in headerData) {
-        str += "<h1 class=\"fold\">" + header + "</h1>";
+        //str += "<h1>" + header + "</h1>";
         for (var genre in headerData[header]) {
             for (let age = 0; age < 4; age++) {
                 for (let i = 0; i < headerData[header][genre][age].length; i++) {
@@ -442,24 +443,6 @@ async function loadiconsJSON() {
         str += "";
     }
     document.getElementById("buildIcons").innerHTML = str;
-
-    //////////////////////////////////////////////////
-    // COLLAPSE
-    //////////////////////////////////////////////////
-    var coll = document.getElementsByClassName("fold");
-    for (let i = 0; i < coll.length; i++) {
-        coll[i].addEventListener("click", function () {
-            this.classList.toggle("unfold");
-            var content = this.nextElementSibling;
-            if (content.style.maxHeight) {
-                content.style.maxHeight = null;
-            } else {
-                content.style.maxHeight = content.scrollHeight + "px";
-            }
-        });
-    }
-    coll[0].click();
-    //coll[1].click();
 
     ///////////////////////////////////////////////////
     // SHOW tooltips
