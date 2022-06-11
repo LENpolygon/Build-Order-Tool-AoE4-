@@ -19,27 +19,7 @@ var buildorder = null;
 var buildordercolumns = 2;
 var usp = new URLSearchParams(window.location.search);
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js"; import firebaseConfig from '../json/fs.js'; const app = initializeApp(firebaseConfig); import { getFirestore, doc, getDoc, setDoc, collection, updateDoc, addDoc } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"; const db = getFirestore();
-if (isNaN(usp.get("f"))) { // Update View counter
-    var ref = doc(db, "Age4Builds", usp.get("f"));
-    const docSnap = await getDoc(ref);
-    if (docSnap.exists()) {
-        var docData = docSnap.data();
-        await updateDoc(
-            ref, {
-            views: docData.views + 1
-        }).then(() => {
-            //alert("data updated successfully");
-            
-        }).catch((error) => {
-            console.log("Unsuccesful operation, error: " + error);
-        });
-        window.location.replace("build.html?c=" + docData.civ + "&" + docData.version + "=" + docData.build);
-    }
-    else {
-        alert("No such Document");
-    }
-
-} else if (isNaN(usp.get("c"))) {
+if (isNaN(usp.get("c"))) {
     for (let i = 0; i < civilizations.length; i++) {
         if (usp.get("c") == civilizations[i].abbr) {
             selectedciv = civilizations[i];
@@ -58,7 +38,7 @@ else if (isNaN(usp.get("b"))) { // uncompressed 2 column builds (very old)
     buildorder = usp.get("b");
 }
 if (!selectedciv && !isNaN(usp.get("f"))) {
-    window.location.href = "build.html?c=EN&t=AwWwPhEGIJYE4GcAuACAbCg3gVgMwF8UkB7LAdm3zFDDUjADkBTAD1RwKNMwqpoA56AFQAWTAHYoATFjyEARgFcYAGwAmWfgBZCKLAE4yhAIbiNIGOKblgVAIzhBEKWFyzOS1Rsz7OpjQDGiuxo-FRSjq7OYFruCsrqBkYo-igWVlho+lS4kbgxYC6YdpxWbHFcmWGukVoFLgBCCd52drYoAO4wSCLSFQBmcMQgNjmR2AXAYACC-UhMcCi4wMCZ2SgIEhrGKioDQyOYWYQkVVTYkXYuU43NWHb8YZ3dvbEchIPDZ2BAA";
+    window.location.href = "view.html?c=EN&t=AwWwPhEGIJYE4GcAuACAbCg3gVgMwF8UkB7LAdm3zFDDUjADkBTAD1RwKNMwqpoA56AFQAWTAHYoATFjyEARgFcYAGwAmWfgBZCKLAE4yhAIbiNIGOKblgVAIzhBEKWFyzOS1Rsz7OpjQDGiuxo-FRSjq7OYFruCsrqBkYo-igWVlho+lS4kbgxYC6YdpxWbHFcmWGukVoFLgBCCd52drYoAO4wSCLSFQBmcMQgNjmR2AXAYACC-UhMcCi4wMCZ2SgIEhrGKioDQyOYWYQkVVTYkXYuU43NWHb8YZ3dvbEchIPDZ2BAA";
 }
 
 //////////////////////////////////////////////////
@@ -78,13 +58,9 @@ for (let i = 0; i < civilizations.length; i++) {
     if (civilizations[i].abbr == selectedciv.abbr) {
         str += " class=\"active\"";
     }
-    str += "><a href=\"build.html?c=" + civilizations[i].abbr + "\">" + civilizations[i].civilization + "</a></li>";
+    str += "><a href=\"build.html?c=" + civilizations[i].abbr + "\">✎ " + civilizations[i].civilization + "</a></li>";
 }
-if (selectedciv) {
-    str += "<li><a href=\"index.html?c=" + selectedciv.abbr + "\">[BACK TO BUILDS LIST]</a></li>";
-} else {
-    str += "<li><a href=\"index.html\">[BACK TO BUILDS LIST]</a></li>";
-}
+str += "<li><a href=\"index.html\" class=\"gold\">👁 CLOSE BUILDER</a></li>";
 document.getElementById("civilizationsMenu").innerHTML = str;
 
 //////////////////////////////////////////////////
@@ -332,7 +308,8 @@ async function AddDocument_CustomID() {
             patch: "14681",
             likers: [],
             likes: parseInt(document.getElementById("scoreU").value),
-            option: document.getElementById("optionsU").value
+            option: document.getElementById("optionsU").value,
+            score: 30
         }
         )
             .then(() => {

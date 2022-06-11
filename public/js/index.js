@@ -33,7 +33,7 @@ if (isNaN(usp.get("t")) || isNaN(usp.get("s")) || isNaN(usp.get("b"))) {
 //////////////////////////////////////////////////
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js"; import firebaseConfig from '../json/fs.js'; const app = initializeApp(firebaseConfig); import { getFirestore, doc, getDoc, getDocs, collection, query, where, orderBy, limit } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"; const db = getFirestore();
 var str = "";
-const loadLimit = 10;
+const loadLimit = 20;
 const titleLength = 48;
 const nameLength = 24;
 
@@ -52,9 +52,9 @@ for (let i = 0; i < civilizations.length; i++) {
 str += "<li><a href=\"index.html\">ALL</a></li>";
 if (selectedciv)
 {
-    str += "<li><a href=\"build.html?c=" + selectedciv.abbr + "\">[MAKE YOUR OWN BUILD!]</a></li>";
+    str += "<li><a href=\"build.html?c=" + selectedciv.abbr + "\" class=\"gold\">✎ OPEN BUILDER</a></li>";
 } else {
-    str += "<li><a href=\"build.html?c=\">[MAKE YOUR OWN BUILD!]</a></li>";
+    str += "<li><a href=\"build.html?c=EN\" class=\"gold\">✎ OPEN BUILDER</a></li>";
 }
 document.getElementById("civilizationsMenu").innerHTML = str;
 
@@ -86,9 +86,9 @@ else {
 async function GetPopBuilds() {
     var q;
     if (selectedciv) {
-        q = query(collection(db, "Age4Builds"), where("civ", "==", selectedciv.abbr), orderBy("views", "desc"), limit(loadLimit));
+        q = query(collection(db, "Age4Builds"), where("civ", "==", selectedciv.abbr), orderBy("score", "desc"), limit(loadLimit));
     } else {
-        q = query(collection(db, "Age4Builds"), orderBy("views", "desc"), limit(loadLimit));
+        q = query(collection(db, "Age4Builds"), orderBy("score", "desc"), limit(loadLimit));
     }
     const querySnapshot = await getDocs(q);
     var counter = 0;
@@ -98,8 +98,8 @@ async function GetPopBuilds() {
         // doc.data() is never undefined for query doc snapshots
         var docId = doc.id;
         var docData = doc.data();
-        var rowstring = "<td>" + docData.views + "</td>";
-        rowstring += "<td><img src=\"img/flag" + docData.civ + ".png\" height=\"24\" onerror=\"this.src = 'assets/placeholder.png';\"><a href=\"build.html?f=" + docId +"\"></img> " + escapeHtml(docData.title).substring(0,titleLength) + " (by " + escapeHtml(docData.user).substring(0,nameLength) + ")</a></td>";
+        var rowstring = "<td>" + (counter+1) + "</td>";
+        rowstring += "<td><img src=\"img/flag" + docData.civ + ".png\" height=\"24\" onerror=\"this.src = 'assets/placeholder.png';\"><a href=\"view.html?f=" + docId +"\"></img> " + escapeHtml(docData.title).substring(0,titleLength) + " (by " + escapeHtml(docData.user).substring(0,nameLength) + ")</a></td>";
         rows[counter + 1].innerHTML = rowstring;
         counter++;
     });
@@ -125,7 +125,7 @@ async function GetNewBuilds() {
         var docId = doc.id;
         var docData = doc.data();
         var rowstring = "<td>" + new Date(docData.timestamp).toLocaleDateString() + "</td>";
-        rowstring += "<td><img src=\"img/flag" + docData.civ + ".png\" height=\"24\" onerror=\"this.src = 'assets/placeholder.png';\"><a href=\"build.html?f=" + docId +"\"></img> " + escapeHtml(docData.title).substring(0,titleLength) + " (by " + escapeHtml(docData.user).substring(0,nameLength) + ")</a></td>";
+        rowstring += "<td><img src=\"img/flag" + docData.civ + ".png\" height=\"24\" onerror=\"this.src = 'assets/placeholder.png';\"><a href=\"view.html?f=" + docId +"\"></img> " + escapeHtml(docData.title).substring(0,titleLength) + " (by " + escapeHtml(docData.user).substring(0,nameLength) + ")</a></td>";
         rows[counter + 1].innerHTML = rowstring;
         counter++;
     });

@@ -83,6 +83,10 @@ header a img {
     color: #ffdb88;
 }
 
+.gold:hover {
+    color: #ffdb88;
+}
+
 nav {
     background: #1E2536;
     margin-bottom: 1rem;
