@@ -29,35 +29,45 @@
 
 <body id="background">
     <header>
-        <a class="gold" href="./">Age of Empires IV<br />Build Order Tool</a>
-        <a href="https://github.com/LENpolygon/Build-Order-Tool-AoE4-"
+        <a class="title gold" href="./">Age of Empires IV<br />Build Order Tool</a>
+        <a class="dropdown">
+            <nav class="dropbtn">
+                <div></div>
+                <div></div>
+                <div></div>
+            </nav>
+            <span>Filter<br />Civilization</span>
+            <menu id="civilizationsMenu"></menu>
+        </a>
+        <a id="BOforCIV" class="gold" href="./build.html?c=" title="Create your own AoE 4 Build Order Online!"><span
+                style="font-size: 4.8rem; margin-top: -0.8rem;">✎</span><span>Create New<br />Build Order</span></a>
+        <a class="desktop-only" href="https://github.com/LENpolygon/Build-Order-Tool-AoE4-"
             title="This website is on Github, check out the code here!"><img
-                src="assets/GitHub-Mark/PNG/GitHub-Mark-Light-64px.png" class="icon"
+                src="assets/GitHub-Mark/PNG/GitHub-Mark-Light-64px.png" class="desktop-only icon"
                 alt="This website is on Github, check out the code here!"><span>Donate<br />Code</span></a>
-        <a class="gold" href="https://ko-fi.com/lenpolygon"
+        <a class="desktop-only gold" href="https://ko-fi.com/lenpolygon"
             title="This website is Ad-Free, consider donating to maintain it!"><img src="img/dropofftax.png"
-                onerror="this.src = 'assets/placeholder.png';" class="icon"
+                onerror="this.src = 'assets/placeholder.png';" class="desktop-only icon"
                 alt="This website is Ad-Free, consider donating to maintain it!"><span>Donate<br />Coin</span></a>
     </header>
-    <nav>
-        <menu id="civilizationsMenu"></menu>
-    </nav>
+
     <div id="civBox">
         <div class="civFlag" id="civilizationFlag">
         </div>
         <div class="civStats">
-          <h1 id="civilizationName"></h1><h4 id="civilizationFocus"></h4>
+            <h1 id="civilizationName"></h1>
+            <h4 id="civilizationFocus"></h4>
         </div>
         <div id="civilizationUniqueUnits">
         </div>
-      </div>
+    </div>
     <main>
         <article>
             <table id="popTable">
                 <thead>
                     <tr>
                         <th class="buildTime">#</th>
-                        <th>POPULAR Builds This Month</th>
+                        <th><span class="gold">Popular</span> Builds this month</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -72,8 +82,9 @@
             <table id="newTable">
                 <thead>
                     <tr>
-                        <th class="buildTime"><img src="img/timetobuild.png" alt="Time" title="Time" height="24px"></img></th>
-                        <th>NEWEST Builds This Month</th>
+                        <th class="buildTime"><img src="img/timetobuild.png" alt="Time" title="Time"
+                                height="24px"></img></th>
+                        <th><span class="gold">Newest</span> Builds this month</th>
                     </tr>
                 </thead>
                 <tbody>

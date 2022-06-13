@@ -40,6 +40,7 @@ const nameLength = 24;
 //////////////////////////////////////////////////
 // WRITE civilizations menu
 //////////////////////////////////////////////////
+str +="<li class=\"mobile-only\"><p>Filter Civilization:</p></li>";
 for (let i = 0; i < civilizations.length; i++) {
     str += "<li";
     if (selectedciv) {
@@ -49,12 +50,17 @@ for (let i = 0; i < civilizations.length; i++) {
     }
     str += "><a href=\"index.html?c=" + civilizations[i].abbr + "\">" + civilizations[i].civilization + "</a></li>";
 }
-str += "<li><a href=\"index.html\">ALL</a></li>";
 if (selectedciv) {
-    str += "<li><a href=\"build.html?c=" + selectedciv.abbr + "\" class=\"gold\">✎ OPEN BUILDER</a></li>";
+    str += "<li><a href=\"index.html\">⭯ Remove Filter</a></li>";
+    str += "<li class=\"mobile-only\"><a href=\"build.html?c=" + selectedciv.abbr + "\" class=\"gold\">✎ Create New Build</a></li>";
+    document.getElementById("BOforCIV").href += selectedciv.abbr;
 } else {
-    str += "<li><a href=\"build.html?c=EN\" class=\"gold\">✎ OPEN BUILDER</a></li>";
+    str += "<li class=\"mobile-only\"><a href=\"build.html?c=EN\" class=\"gold\">✎ Create New Build</a></li>";
+    document.getElementById("BOforCIV").href += "EN";
 }
+str +="<li class=\"mobile-only\"><a href=\"https://github.com/LENpolygon/Build-Order-Tool-AoE4-\">💻 View Github Page</a></li>";
+str +="<li class=\"mobile-only\"><a href=\"https://ko-fi.com/lenpolygon\">💰 Support Website</a></li>";
+
 document.getElementById("civilizationsMenu").innerHTML = str;
 
 //////////////////////////////////////////////////
