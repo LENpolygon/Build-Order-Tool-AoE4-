@@ -60,7 +60,7 @@ if (selectedciv) {
 }
 str +="<li class=\"mobile-only\"><a href=\"https://github.com/LENpolygon/Build-Order-Tool-AoE4-\">💻 View Github Page</a></li>";
 str +="<li class=\"mobile-only\"><a href=\"https://ko-fi.com/lenpolygon\">💰 Support Website</a></li>";
-
+str +="<li class=\"mobile-only\"><a href=\"https://aoe4world.com/\">🌎 AoE4World.com</a></li>";
 document.getElementById("civilizationsMenu").innerHTML = str;
 
 //////////////////////////////////////////////////

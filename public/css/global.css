@@ -71,13 +71,22 @@ header a:first-child {
 
 header a:not(:first-child) {
     align-items: center;
+    justify-content: center;
     display: flex;
     font-size: 1.6rem;
-    margin: 1rem;
+    letter-spacing: 0.25rem;
+    padding: 0 .5rem;
+    margin: .5rem;
 }
 
-header a img {
-    padding-right: 1rem;
+header a:not(:first-child) span:last-child {
+    display: none;
+    position:absolute;
+    top: 6rem;
+}
+
+header a:not(:first-child):hover span:last-child {
+    display: block;
 }
 
 .gold {
@@ -86,6 +95,20 @@ header a img {
 
 .gold:hover {
     color: #ffdb88;
+}
+
+menu {
+    background: #1E2536;
+    box-shadow: 0 0 3px rgba(10, 10, 10, .4);
+    display: none;
+    min-width: 30rem;
+    outline-color: #ffdb88;
+    outline-style: solid;
+    outline-width: 1px;
+    position: absolute;
+    z-index: 1;
+    top: 5rem;
+    right: 0;
 }
 
 menu li {
@@ -141,19 +164,6 @@ menu li.active a {
     background-color: #2C374F;
 }
 
-menu {
-    background: #1E2536;
-    box-shadow: 0 0 3px rgba(10, 10, 10, .4);
-    display: none;
-    min-width: 30rem;
-    outline-color: #ffdb88;
-    outline-style: solid;
-    outline-width: 1px;
-    position: absolute;
-    z-index: 1;
-    top: 5rem;
-}
-
 main {
     display: flex;
     flex: 1;
@@ -177,7 +187,6 @@ section {
     height: 10px;
     overflow-x: hidden;
     overflow-y: auto;
-    /*word-break: break-word; required for long lines*/
 }
 
 .icon {
@@ -228,6 +237,7 @@ table th {
 
 #civBox {
     background: #1E2536;
+    background: linear-gradient(90deg, rgba(30,37,54,1) 0%, rgba(24,28,41,0) 100%);
     display: flex;
     align-items: center;
     padding: 0.8rem;
@@ -315,34 +325,9 @@ table th {
     background-color: #a8bbbf;
 }
 
-@media (max-width:1150px) {
-    header {
-        letter-spacing: 0.4rem;
-        font-size: 2rem;
-    }
-}
-
-@media (max-width:1050px) {
-    header {
-        letter-spacing: 0.2rem;
-        font-size: 1.8rem;
-    }
-}
-
-@media (max-width:925px) {
-    header {
-        letter-spacing: 0rem;
-        font-size: 1.6rem;
-    }
-}
-
 @media screen and (max-width:800px) {
     html {
         font-size: 6.7px;
-    }
-
-    #civilizationUniqueUnits {
-        display: none;
     }
 
     .buildTime img {
@@ -353,7 +338,9 @@ table th {
         flex-direction: column;
     }
 
-    .tooltipContainer {
+    .tooltipContainer,
+    header a span,
+    .desktop-only  {
         display: none;
     }
 
@@ -362,24 +349,8 @@ table th {
         font-size: 2.4rem;
     }
 
-    header a span {
-        display: none;
-    }
-
-    menu {
-        right: 0;
-    }
-    
-    .desktop-only {
-        display: none;
-    }
-
-    .dropdown {
-        order: 9;
-    }
-
-    .title {
-        display: block;
+    .dropbtn {
+        padding-left: 10rem;
     }
 }
 @media not screen and (max-width:800px) {

@@ -277,6 +277,42 @@ function saveToURL() {
 document.getElementById("saveToURLBtn").addEventListener("click", saveToURL);
 
 //////////////////////////////////////////////////
+// COPY for AoE4_Overlay event 
+// https://github.com/FluffyMaguro/AoE4_Overlay
+//////////////////////////////////////////////////
+function copyForOverlay() {
+    var rows = document.getElementById("buildTable").rows;
+    var str = "";
+    var newline = "\r\n";
+    for (let i = 1; i < rows.length; i++) {
+        for (let j = 0; j < 6; j++) {
+            if (j == 1) {
+                str += "[";
+            } else if (j == 4) {
+                str += "] ";
+            }
+            if (rows[i].cells[j].innerHTML != "" && rows[i].cells[j].innerHTML != " ") {
+                if (j == 0) {
+                    str += "@" + sanitizeNconvert(rows[i].cells[j].innerHTML) + " ";
+                } else {
+                    str += sanitizeNconvert(rows[i].cells[j].innerHTML);
+                }
+            } else if (j > 0 && j < 5)
+            {
+                str += "0";
+            }
+        }
+        str += newline;
+    }
+    navigator.clipboard.writeText(str).then(function () {
+        //console.log('Async: Copying to clipboard was successful!');
+    }, function (err) {
+        console.error('Async: Could not copy text: ', err);
+    });
+}
+//document.getElementById("copyForOverlayBtn").addEventListener("click", copyForOverlay);
+
+//////////////////////////////////////////////////
 // UPLOAD new Build to Firestore
 //////////////////////////////////////////////////
 async function AddDocument_CustomID() {

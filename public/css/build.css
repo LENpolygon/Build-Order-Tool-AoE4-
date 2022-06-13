@@ -18,9 +18,9 @@ button {
     display: inline-block;
     font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
     font-size: 1.3rem;
-    letter-spacing: .5px;
-    line-height: 13px;
-    padding: 9px 13px;
+    letter-spacing: .1rem;
+    line-height: 1.3rem;
+    padding: .9rem 1.3rem;
     text-transform: uppercase;
     -webkit-appearance: none;
     border-width: 1px;
@@ -74,7 +74,7 @@ table tbody tr td:nth-child(6) {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
-    row-gap: 1rem;
+    row-gap: .5rem;
 }
 
 .break {
@@ -87,33 +87,11 @@ table tbody tr td:nth-child(6) {
         font-size: 6.7px;
     }
 
-    .civBar menu li a {
-        padding: 5px 8px
-    }
-
-    .civBar menu li {
-        font-size: 1.9rem;
-        margin-right: 10px
-    }
-
     .civStatsMore {
         display: none;
     }
 
     table .buildTime {
-        width: 24px
-    }
-
-    .icon {
-        height: 32px;
-        max-height: 32px;
-        width: 32px;
-        max-width: 32px;
-    }
-
-    .buildActions button {
-        letter-spacing: .3px;
-        line-height: 8px;
-        padding: 6px 8px;
+        width: 24px;
     }
 }
