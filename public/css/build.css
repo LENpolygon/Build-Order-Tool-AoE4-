@@ -82,6 +82,38 @@ table tbody tr td:nth-child(6) {
     height: 0;
 }
 
+#copyForOverlayBtn {
+    display: flex;
+    position: relative;
+}
+
+#AoE4_Overlay {
+    background: aqua;
+    outline: #181C29 solid 0.1rem;
+    color: #181C29;
+    font-weight: bolder;
+    width: 2rem;
+    height: 2rem;
+    border-radius: 1.1rem;
+    position: absolute;
+    text-align: center;
+    padding-left: 0.2rem;
+    padding-top: 0.2rem;
+    bottom: 0;
+    right: 0;
+    z-index: 2;
+}
+
+#hybridOverlayText {
+    margin-top: -.7rem;
+}
+
+#AoE4_Overlay:hover {
+    background: black;
+    color:#fff;
+    outline-color: #fff;
+}
+
 @media screen and (max-width:800px) {
     html {
         font-size: 6.7px;

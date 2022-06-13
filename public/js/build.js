@@ -64,6 +64,8 @@ for (let i = 0; i < civilizations.length; i++) {
 str += "<li class=\"mobile-only\"><a class =\"gold\" href=\"index.html\">👁 Browse all Builds</a></li>";
 str += "<li class=\"mobile-only\"><a href=\"https://github.com/LENpolygon/Build-Order-Tool-AoE4-\">💻 View Github Page</a></li>";
 str += "<li class=\"mobile-only\"><a href=\"https://ko-fi.com/lenpolygon\">💰 Support Website</a></li>";
+str +="<li class=\"mobile-only\"><a style=\"color: aqua;\" id=\"copyForOverlayBtnMobile\">🗗 Build to Clipboard (text)</a></li>";
+str +="<li class=\"mobile-only\"><a style=\"color: #c4c4c4;\" href=\"https://github.com/FluffyMaguro/AoE4_Overlay\">？ Learn about AoE4_Overlay</a></li>";
 document.getElementById("civilizationsMenu").innerHTML = str;
 
 //////////////////////////////////////////////////
@@ -337,6 +339,7 @@ function copyForOverlay() {
     });
 }
 document.getElementById("copyForOverlayBtn").addEventListener("click", copyForOverlay);
+document.getElementById("copyForOverlayBtnMobile").addEventListener("click", copyForOverlay);
 
 //////////////////////////////////////////////////
 // UPLOAD new Build to Firestore
