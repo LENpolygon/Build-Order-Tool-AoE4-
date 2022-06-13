@@ -65,7 +65,7 @@ if (isNaN(usp.get("f"))) { // Update View counter
         //////////////////////////////////////////////////
         // WRITE civilizations menu
         //////////////////////////////////////////////////
-        str +="<li class=\"mobile-only\"><p>Browse Civilization:</p></li>";
+        str += "<li class=\"mobile-only\"><p>Browse Civilization:</p></li>";
         for (let i = 0; i < civilizations.length; i++) {
             str += "<li";
             if (civilizations[i].abbr == selectedciv.abbr) {
@@ -183,6 +183,68 @@ if (isNaN(usp.get("f"))) { // Update View counter
             }
             return output;
         }
+
+        //////////////////////////////////////////////////
+        // SANITIZE and CONVERT images to names for AoE4_Overlay
+        //////////////////////////////////////////////////
+        function sanitizeNconvertToName(input) {
+            input = " " + input;
+            var array = input.split("<");
+            var output = array[0].substring(1);
+            for (let i = 1; i < array.length; i++) {
+                var array2 = array[i].split(">");
+                if (/alt.+?".+?"/.test(array2[0])) {
+                    output += " " + array2[0].match(/alt.+?".+?"/)[0].split("\"")[1] + " ";
+                }
+                for (let j = 1; j < array2.length; j++) {
+                    output += array2[j];
+                }
+            }
+            return output.replace(/&nbsp;/g, " ");
+        }
+
+        //////////////////////////////////////////////////
+        // COPY for AoE4_Overlay event 
+        // https://github.com/FluffyMaguro/AoE4_Overlay
+        //////////////////////////////////////////////////
+        function htmlDecode(input) {
+            var doc = new DOMParser().parseFromString(input, "text/html");
+            return doc.documentElement.textContent;
+        }
+        function copyForOverlay() {
+            var rows = document.getElementById("buildTable").rows;
+            var str = "";
+            var newline = "\r\n";
+            for (let i = 1; i < rows.length; i++) {
+                for (let j = 0; j < 6; j++) {
+                    if (j == 1) {
+                        str += "[";
+                    } else if (j == 5) {
+                        str += "] ";
+                    }
+                    if (rows[i].cells[j].innerHTML != "" && rows[i].cells[j].innerHTML != " ") {
+                        if (j == 0) {
+                            str += "@" + sanitizeNconvertToName(rows[i].cells[j].innerHTML) + " ";
+                        } else {
+                            str += sanitizeNconvertToName(rows[i].cells[j].innerHTML);
+                        }
+                    } else if (j > 0 && j < 5) {
+                        str += "0";
+                    }
+                    if (j > 0 && j < 4) {
+                        str += "/";
+                    }
+                }
+                str += newline;
+            }
+            //console.log(str);
+            navigator.clipboard.writeText(htmlDecode(str)).then(function () {
+                //console.log('Async: Copying to clipboard was successful!');
+            }, function (err) {
+                console.error('Async: Could not copy text: ', err);
+            });
+        }
+        document.getElementById("copyForOverlayBtn").addEventListener("click", copyForOverlay);
 
         //////////////////////////////////////////////////
         // READ json/icons.json data
