@@ -53,6 +53,7 @@ var tooltipindex = -1;
 //////////////////////////////////////////////////
 // WRITE civilizations menu
 //////////////////////////////////////////////////
+str += "<li class=\"mobile-only\"><p>Select Civilization:</p></li>";
 for (let i = 0; i < civilizations.length; i++) {
     str += "<li";
     if (civilizations[i].abbr == selectedciv.abbr) {
@@ -60,7 +61,9 @@ for (let i = 0; i < civilizations.length; i++) {
     }
     str += "><a href=\"build.html?c=" + civilizations[i].abbr + "\">✎ " + civilizations[i].civilization + "</a></li>";
 }
-str += "<li><a href=\"index.html\" class=\"gold\">👁 CLOSE BUILDER</a></li>";
+str += "<li class=\"mobile-only\"><a class =\"gold\" href=\"index.html\">👁 Browse all Builds</a></li>";
+str += "<li class=\"mobile-only\"><a href=\"https://github.com/LENpolygon/Build-Order-Tool-AoE4-\">💻 View Github Page</a></li>";
+str += "<li class=\"mobile-only\"><a href=\"https://ko-fi.com/lenpolygon\">💰 Support Website</a></li>";
 document.getElementById("civilizationsMenu").innerHTML = str;
 
 //////////////////////////////////////////////////

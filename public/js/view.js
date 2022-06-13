@@ -49,10 +49,9 @@ if (isNaN(usp.get("f"))) { // Update View counter
             }
         }
         buildorder = LZString.decompressFromEncodedURIComponent(docData.build);
-        switch (docData.version)
-        {
+        switch (docData.version) {
             case "t":
-            default: 
+            default:
                 buildordercolumns = 6;
                 break;
         }
@@ -66,6 +65,7 @@ if (isNaN(usp.get("f"))) { // Update View counter
         //////////////////////////////////////////////////
         // WRITE civilizations menu
         //////////////////////////////////////////////////
+        str +="<li class=\"mobile-only\"><p>Browse Civilization:</p></li>";
         for (let i = 0; i < civilizations.length; i++) {
             str += "<li";
             if (civilizations[i].abbr == selectedciv.abbr) {
@@ -73,9 +73,12 @@ if (isNaN(usp.get("f"))) { // Update View counter
             }
             str += "><a href=\"index.html?c=" + civilizations[i].abbr + "\">" + civilizations[i].civilization + "</a></li>";
         }
-        str += "<li><a href=\"index.html\">ALL</a></li>";
-        str += "<li><a href=\"build.html?c=" + selectedciv.abbr + "&" + docData.version + "=" + docData.build + "\" class=\"gold\">✎ OPEN BUILDER</a></li>";
+        str += "<li><a href=\"index.html\">⭯ Browse All Civs</a></li>";
+        str += "<li class=\"mobile-only\"><a href=\"build.html?c=" + selectedciv.abbr + "&" + docData.version + "=" + docData.build + "\" class=\"gold\">✎ Edit this Build</a></li>";
+        str += "<li class=\"mobile-only\"><a href=\"https://github.com/LENpolygon/Build-Order-Tool-AoE4-\">💻 View Github Page</a></li>";
+        str += "<li class=\"mobile-only\"><a href=\"https://ko-fi.com/lenpolygon\">💰 Support Website</a></li>";
         document.getElementById("civilizationsMenu").innerHTML = str;
+        document.getElementById("BOforthisBO").href += (selectedciv.abbr + "&" + docData.version + "=" + docData.build);
 
         //////////////////////////////////////////////////
         // GET page width

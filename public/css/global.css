@@ -62,13 +62,14 @@ header {
     margin-bottom: 1rem;
     padding: 0.5rem 1rem;
     text-transform: uppercase;
+    white-space: nowrap;
 }
 
 header a:first-child {
     margin-right: auto;
 }
 
-header a:not(:first-child){
+header a:not(:first-child) {
     align-items: center;
     display: flex;
     font-size: 1.6rem;
@@ -87,30 +88,70 @@ header a img {
     color: #ffdb88;
 }
 
-nav {
-    background: #1E2536;
-    margin-bottom: 1rem;
-}
-
 menu li {
-    display: inline-block;
+    display: block;
 }
 
-menu li a {
-    color: #c4c4c4;
+menu li a,
+menu li p {
     display: block;
     font-size: 1.3rem;
     padding: 0.8rem 2.5rem;
+    padding-top: 2rem;
+    padding-bottom: 2rem;
+}
+
+menu li p {
+    color: #c4c4c4;
 }
 
 menu li a:hover {
     background: #2C374F;
-    color: #fff;
+    color: #ffdb88;
 }
 
 menu li.active a {
     background: #11141D;
     color: #ffdb88;
+}
+
+.dropbtn {
+    background-color: #181C29;
+    padding: 1rem;
+}
+
+.dropbtn div {
+    width: 3.5rem;
+    height: 0.3rem;
+    background-color: #ffdb88;
+    margin: 0.7rem 0;
+}
+
+.dropdown {
+    position: relative;
+    display: inline-block;
+    cursor: pointer;
+}
+
+.dropdown:hover menu {
+    display: block;
+}
+
+.dropdown:hover button {
+    background-color: #2C374F;
+}
+
+menu {
+    background: #1E2536;
+    box-shadow: 0 0 3px rgba(10, 10, 10, .4);
+    display: none;
+    min-width: 30rem;
+    outline-color: #ffdb88;
+    outline-style: solid;
+    outline-width: 1px;
+    position: absolute;
+    z-index: 1;
+    top: 5rem;
 }
 
 main {
@@ -274,6 +315,27 @@ table th {
     background-color: #a8bbbf;
 }
 
+@media (max-width:1150px) {
+    header {
+        letter-spacing: 0.4rem;
+        font-size: 2rem;
+    }
+}
+
+@media (max-width:1050px) {
+    header {
+        letter-spacing: 0.2rem;
+        font-size: 1.8rem;
+    }
+}
+
+@media (max-width:925px) {
+    header {
+        letter-spacing: 0rem;
+        font-size: 1.6rem;
+    }
+}
+
 @media screen and (max-width:800px) {
     html {
         font-size: 6.7px;
@@ -281,10 +343,6 @@ table th {
 
     #civilizationUniqueUnits {
         display: none;
-    }
-
-    .footerBar {
-        font-size: 1.5rem;
     }
 
     .buildTime img {
@@ -299,7 +357,33 @@ table th {
         display: none;
     }
 
+    header {
+        letter-spacing: 0.5rem;
+        font-size: 2.4rem;
+    }
+
     header a span {
+        display: none;
+    }
+
+    menu {
+        right: 0;
+    }
+    
+    .desktop-only {
+        display: none;
+    }
+
+    .dropdown {
+        order: 9;
+    }
+
+    .title {
+        display: block;
+    }
+}
+@media not screen and (max-width:800px) {
+    .mobile-only {
         display: none;
     }
 }
