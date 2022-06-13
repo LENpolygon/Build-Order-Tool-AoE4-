@@ -223,12 +223,6 @@ if (isNaN(usp.get("f"))) { // Update View counter
             }
             str += "</span>";
             document.getElementById("civilizationName").innerHTML = str;
-            str = "";
-            selectedciv.uniqueunits.forEach(element => {
-                str += formatImage(data[element], element, true);
-            });
-            document.getElementById("civilizationUniqueUnits").innerHTML = str;
-
             str = escapeHtml(docData.title).substring(0, titleLength) + " (by " + escapeHtml(docData.user).substring(0, nameLength) + ")";
             document.getElementById("civilizationFocus").innerHTML = str;
 
