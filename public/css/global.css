@@ -81,7 +81,7 @@ header a:not(:first-child) {
 
 header a:not(:first-child) span:last-child {
     display: none;
-    position:absolute;
+    position: absolute;
     top: 6rem;
 }
 
@@ -237,7 +237,7 @@ table th {
 
 #civBox {
     background: #1E2536;
-    background: linear-gradient(90deg, rgba(30,37,54,1) 0%, rgba(24,28,41,0) 100%);
+    background: linear-gradient(90deg, rgba(30, 37, 54, 1) 0%, rgba(24, 28, 41, 0) 100%);
     display: flex;
     align-items: center;
     padding: 0.8rem;
@@ -340,7 +340,7 @@ table th {
 
     .tooltipContainer,
     header a span,
-    .desktop-only  {
+    .desktop-only {
         display: none;
     }
 
@@ -353,6 +353,7 @@ table th {
         padding-left: 10rem;
     }
 }
+
 @media not screen and (max-width:800px) {
     .mobile-only {
         display: none;

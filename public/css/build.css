@@ -85,6 +85,7 @@ table tbody tr td:nth-child(6) {
 #copyForOverlayBtn {
     display: flex;
     position: relative;
+    cursor: pointer;
 }
 
 #AoE4_Overlay {
@@ -102,6 +103,7 @@ table tbody tr td:nth-child(6) {
     bottom: 0;
     right: 0;
     z-index: 2;
+    cursor: pointer;
 }
 
 #hybridOverlayText {
