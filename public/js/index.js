@@ -140,9 +140,11 @@ function timePassed(oldDate) {
 async function GetNewBuilds() {
     var q;
     if (selectedciv) {
-        q = query(collection(db, "Age4Builds"), where("civ", "==", selectedciv.abbr), where("timestamp", ">", Date.now() - 2592000000), orderBy("timestamp", "desc"), limit(loadLimit));
+        //q = query(collection(db, "Age4Builds"), where("civ", "==", selectedciv.abbr), where("timestamp", ">", Date.now() - 2592000000), orderBy("timestamp", "desc"), limit(loadLimit));
+        q = query(collection(db, "Age4Builds"), where("civ", "==", selectedciv.abbr), orderBy("timestamp", "desc"), limit(loadLimit));
     } else {
-        q = query(collection(db, "Age4Builds"), where("timestamp", ">", Date.now() - 2592000000), orderBy("timestamp", "desc"), limit(loadLimit));
+        //q = query(collection(db, "Age4Builds"), where("timestamp", ">", Date.now() - 2592000000), orderBy("timestamp", "desc"), limit(loadLimit));
+        q = query(collection(db, "Age4Builds"), orderBy("timestamp", "desc"), limit(loadLimit));
     }
     const querySnapshot = await getDocs(q);
     var counter = 0;
