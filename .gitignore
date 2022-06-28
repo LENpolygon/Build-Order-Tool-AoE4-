@@ -21,3 +21,4 @@ fs.js
 # Other
 public/img/
 todo.txt
+*.min.*
