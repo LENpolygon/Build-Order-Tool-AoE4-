@@ -93,7 +93,7 @@ async function GetPopBuilds() {
     if (selectedciv) {
         q = query(collection(db, "Age4Builds"), where("civ", "==", selectedciv.abbr), orderBy("score", "desc"), limit(loadLimit));
     } else {
-        q = query(collection(db, "Age4Builds"), orderBy("score", "desc"), limit(loadLimit));
+        q = query(collection(db, "Age4Builds"), where("score", ">=", 100), orderBy("score", "desc"), limit(loadLimit));
     }
     const querySnapshot = await getDocs(q);
     var counter = 0;

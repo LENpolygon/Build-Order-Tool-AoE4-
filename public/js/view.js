@@ -27,7 +27,7 @@ if (isNaN(usp.get("f"))) { // Update View counter
         //console.log(docData.timestamp);
         //console.log(Date.now());
         //console.log((Date.now()-docData.timestamp)/(1000*60*60*24));
-        var newScore = Math.max(docData.score - 10, Math.min(docData.score + 10, docData.views + docData.likes * 10 - Math.floor((Date.now() - docData.timestamp) / (1000 * 60 * 60 * 24))));
+        var newScore = Math.max(docData.score - 10, Math.min(docData.score + 10, docData.views + docData.likes * 10 - Math.pow(Math.floor((Date.now() - docData.timestamp) / (1000 * 60 * 60 * 24)),2)));
         await updateDoc(
             ref, {
             views: docData.views + 1,
