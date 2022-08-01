@@ -325,6 +325,23 @@ table th {
     background-color: #a8bbbf;
 }
 
+button {
+    cursor: pointer;
+    display: inline-block;
+    font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: .1rem;
+    line-height: 1.3rem;
+    padding: .9rem 1.3rem;
+    text-transform: uppercase;
+    -webkit-appearance: none;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #ffdb88;
+    background: #181C29;
+    color: #ffdb88;
+}
+
 @media screen and (max-width:800px) {
     html {
         font-size: 6.7px;
@@ -358,4 +375,61 @@ table th {
     .mobile-only {
         display: none;
     }
+}
+
+.modal {
+    -webkit-box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12), 0 11px 15px -7px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 24px 38px 3px rgba(0, 0, 0, 0.14), 0 9px 46px 8px rgba(0, 0, 0, 0.12), 0 11px 15px -7px rgba(0, 0, 0, 0.2)
+}
+
+.modal {
+    display: none;
+    position: fixed;
+    left: 0;
+    right: 0;
+    background: #2C374F;
+    padding: 0;
+    max-height: 70%;
+    width: 55%;
+    margin: auto;
+    overflow-y: auto;
+    border-radius: 2px;
+    will-change: top, opacity;
+    font-size: 1.6rem;
+}
+
+.modal:focus {
+    outline: none
+}
+
+@media only screen and (max-width: 992px) {
+    .modal {
+        width: 80%
+    }
+}
+
+.modal .modal-content {
+    padding: 24px
+}
+
+.modal .modal-close {
+    cursor: pointer
+}
+
+.modal .modal-footer .btn, .modal .modal-footer .btn-large, .modal .modal-footer .btn-small, .modal .modal-footer .btn-flat {
+    margin: 6px 0
+}
+
+.modal-overlay {
+    position: fixed;
+    z-index: 999;
+    top: -25%;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    height: 125%;
+    width: 100%;
+    background: #000;
+    display: none;
+    will-change: opacity
 }

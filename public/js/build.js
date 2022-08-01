@@ -18,7 +18,9 @@ var selectedciv = null;
 var buildorder = null;
 var buildordercolumns = 2;
 var usp = new URLSearchParams(window.location.search);
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js"; import firebaseConfig from '../json/fs.js'; const app = initializeApp(firebaseConfig); import { getFirestore, doc, getDoc, setDoc, collection, updateDoc, addDoc } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"; const db = getFirestore();
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js"; import firebaseConfig from '../json/fs.js'; const app = initializeApp(firebaseConfig); 
+import { getFirestore, doc, getDoc, setDoc, collection, updateDoc, addDoc } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"; const db = getFirestore();
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-auth.js"; const auth = getAuth();
 if (isNaN(usp.get("c"))) {
     for (let i = 0; i < civilizations.length; i++) {
         if (usp.get("c") == civilizations[i].abbr) {
@@ -62,6 +64,8 @@ for (let i = 0; i < civilizations.length; i++) {
     str += "><a href=\"build.html?c=" + civilizations[i].abbr + "\">✎ " + civilizations[i].civilization + "</a></li>";
 }
 str += "<li class=\"mobile-only\"><a class =\"gold\" href=\"index.html\">👁 Browse all Builds</a></li>";
+str += "<li class=\"mobile-only\"><a href=\"#\" class=\"logged-in modal-trigger\" data-target=\"modal-account\">👤 Your Account</a></li>";
+str += "<li class=\"mobile-only\"><a href=\"#\" class=\"logged-out modal-trigger\" data-target=\"modal-signup\">👤 Login / Signup</a></li>";
 str += "<li class=\"mobile-only\"><a href=\"https://github.com/LENpolygon/Build-Order-Tool-AoE4-\">💻 View Github Page</a></li>";
 str += "<li class=\"mobile-only\"><a href=\"https://ko-fi.com/lenpolygon\">💰 Support Website</a></li>";
 str +="<li class=\"mobile-only\"><a style=\"color: aqua;\" id=\"copyForOverlayBtnMobile\">🗗 Build to Clipboard (text)</a></li>";
@@ -524,3 +528,79 @@ document.getElementById('tooltipBox').style.display = "none";
 //////////////////////////////////////////////////
 //const backgroundOptions = ["02celebration", "03focuslongbowmen", "04lordrobertsb", "07raisedstakestwoknights", "10mongoltrebuchet", "11chinesetradecaravans", "12mongolscharging", "15paytributeb", "alarm"];
 //document.getElementById("background").style.backgroundImage = "url(img/" + backgroundOptions[Math.floor(Math.random() * backgroundOptions.length)] + ".png)";
+
+// signup
+const signupForm = document.querySelector('#signup-form');
+signupForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    // get user info
+    const email = signupForm['signup-email'].value;
+    const password = signupForm['signup-password'].value;
+    // sign up the user
+    createUserWithEmailAndPassword(auth, email, password).then(cred => {
+        return setDoc(doc(db, "users", cred.user.uid), { user: signupForm['username'].value });
+    }).then(() => {
+        // console.log(cred.user);
+        // close the signup modal & reset form
+        const modal = document.querySelector('#modal-signup');
+        M.Modal.getInstance(modal).close();
+        signupForm.reset();
+    });
+});
+
+// logout
+const logout = document.querySelector('#logout');
+logout.addEventListener('click', (e) => {
+    e.preventDefault();
+    const modal = document.querySelector('#modal-account');
+    M.Modal.getInstance(modal).close();
+    auth.signOut();
+})
+
+// login
+const loginForm = document.querySelector('#login-form');
+loginForm.addEventListener('submit', (e) => {
+    e.preventDefault();
+    // get user info
+    const email = loginForm['login-email'].value;
+    const password = loginForm['login-password'].value;
+    signInWithEmailAndPassword(auth, email, password).then(cred => {
+        // console.log(cred.user);
+        // close the login modal & reset form
+        const modal = document.querySelector('#modal-signup');
+        M.Modal.getInstance(modal).close();
+        loginForm.reset();
+    })
+})
+
+// listen for auth status changes
+auth.onAuthStateChanged(user => {
+    console.log(user);
+    if (user) {
+        setupUI(user);
+    } else {
+        setupUI();
+    }
+})
+
+const loggedOutLinks = document.querySelectorAll('.logged-out');
+const loggedInLinks = document.querySelectorAll('.logged-in');
+const accountDetails = document.querySelector('.account-details');
+const setupUI = (user) => {
+    if (user) {
+        accountDetails.innerHTML = `<div>Logged in as ${user.email}</div>`;
+        // toggle UI elements
+        loggedInLinks.forEach(item => item.style.display = 'block');
+        loggedOutLinks.forEach(item => item.style.display = 'none');
+    } else {
+        // hide account info
+        accountDetails.innerHTML = '';
+        loggedInLinks.forEach(item => item.style.display = 'none');
+        loggedOutLinks.forEach(item => item.style.display = 'block');
+    }
+}
+// setup materialize components
+document.addEventListener('DOMContentLoaded', function () {
+    var modals = document.querySelectorAll('.modal');
+    M.Modal.init(modals);
+});
