@@ -32,7 +32,7 @@ if (isNaN(usp.get("t")) || isNaN(usp.get("s")) || isNaN(usp.get("b"))) {
 // INITIALIZE
 //////////////////////////////////////////////////
 import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js"; import firebaseConfig from '../json/fs.js'; const app = initializeApp(firebaseConfig);
-import { getFirestore, doc, setDoc, getDoc, getDocs, collection, query, where, orderBy, limit } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"; const db = getFirestore();
+import { getFirestore, doc, setDoc, getDoc, getDocs, deleteDoc, collection, query, where, orderBy, limit } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"; const db = getFirestore();
 import { getAuth, onAuthStateChanged, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-auth.js"; const auth = getAuth();
 var str = "";
 const loadLimit = 20;
@@ -137,7 +137,7 @@ function timePassed(oldDate) {
 //////////////////////////////////////////////////
 // GET Newest builds from Firestore
 //////////////////////////////////////////////////
-async function GetNewBuilds() {
+async function GetNewBuilds(uid) {
     var q;
     if (selectedciv) {
         //q = query(collection(db, "Age4Builds"), where("civ", "==", selectedciv.abbr), where("timestamp", ">", Date.now() - 2592000000), orderBy("timestamp", "desc"), limit(loadLimit));
@@ -161,6 +161,43 @@ async function GetNewBuilds() {
     });
 }
 GetNewBuilds();
+
+//////////////////////////////////////////////////
+// GET Personal builds from Firestore
+//////////////////////////////////////////////////
+async function GetYourBuilds(uid) {
+    var q = query(collection(db, "Age4Builds"), where("uid", "==", uid), orderBy("timestamp", "desc"), limit(loadLimit));
+    const querySnapshot = await getDocs(q);
+    var html = "";
+    querySnapshot.forEach((doc) => {
+        // doc.data() is never undefined for query doc snapshots
+        var docId = doc.id;
+        var docData = doc.data();
+        html += `<tr><td><a href="#" class="delete-builds" bid="${docId}" style="color: red">Delete Build?</a></td>`;
+        html += "<td><img src=\"img/flag" + docData.civ + ".png\" height=\"24\" onerror=\"this.src = 'assets/placeholder.png';\"><a href=\"view.html?f=" + docId + "\"></img> " + escapeHtml(docData.title).substring(0, titleLength) + " (by " + escapeHtml(docData.user).substring(0, nameLength) + ")</a></td></tr>";
+    });
+    document.querySelector('#yourBuilds').innerHTML = `
+    <table id="yourTable" style="border: 1px solid">
+        <thead style="border: 1px solid">
+            <tr>
+                <th class="buildTime">Action:</th>
+                <th>View <span class="gold">Your</span> Builds:</th>
+            </tr>
+        </thead>
+        <tbody style="border: 1px solid">
+        ${html}
+        </tbody>
+    </table>
+    <p style="color: red">Deleting builds cannot be undone! Click once, then refresh page and your build is gone!</p>
+    `
+    const deleteYourDocs = document.querySelectorAll('.delete-builds');
+    deleteYourDocs.forEach(link => {
+        link.addEventListener('click', (e) => {
+            //console.log(link.getAttribute('bid'));
+            deleteDoc(doc(db, "Age4Builds", link.getAttribute('bid')));
+        })
+    });
+}
 
 //////////////////////////////////////////////////
 // RANDOMIZE background
@@ -214,7 +251,7 @@ loginForm.addEventListener('submit', (e) => {
 
 // listen for auth status changes
 auth.onAuthStateChanged(user => {
-    console.log(user);
+    //console.log(user);
     if (user) {
         setupUI(user);
     } else {
@@ -231,6 +268,7 @@ const setupUI = (user) => {
         // toggle UI elements
         loggedInLinks.forEach(item => item.style.display = 'block');
         loggedOutLinks.forEach(item => item.style.display = 'none');
+        GetYourBuilds(user.uid);
     } else {
         // hide account info
         accountDetails.innerHTML = '';

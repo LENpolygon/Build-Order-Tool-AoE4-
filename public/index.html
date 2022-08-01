@@ -19,15 +19,15 @@
     <link rel="android-chrome-icon-precomposed" sizes="512x512" href="/assets/android-chrome-512x512.png" />
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-SXELHG62RJ"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'G-SXELHG62RJ');
-    </script>
 </head>
 
 <body id="background">
+    <div id="cookies-eu-banner" style="display: none;">
+        By continuing to visit this site, you accept the use of cookies by Google Analytics for statistical purposes.
+        <a href="https://www.lenpolygon.com/" id="cookies-eu-more">Read more</a>
+        <button id="cookies-eu-reject">Reject</button>
+        <button id="cookies-eu-accept">Accept</button>
+    </div>
     <header>
         <a class="title gold" href="./">Age of Empires IV<br />Build Order Tool</a>
         <a href="#" class="desktop-only logged-in modal-trigger" id="account" title="Account"
@@ -106,9 +106,19 @@
     <div id="modal-account" class="modal">
         <div class="modal-content center-align">
             <h2 class="title gold">Account details</h2><br />
+            <br/>
             <div class="account-details"></div>
-            <br />
-            <a href="#" class="grey-text" id="logout">Logout</a>
+            <br/>
+            <a href="#" class="gold" id="logout">Logout?</a>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <br/>
+            <div id="yourBuilds"></div>
+            <br/>
+            <br/>
+            <br/>
         </div>
     </div>
 
@@ -165,6 +175,16 @@
     </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script type="module" src="js/index.js"></script>
+    <script src="js/eu_cookie_banner.js"></script>
+    <script>
+        new CookiesEuBanner(function () {
+            // Your code to launch when user accept cookies
+            window.dataLayer = window.dataLayer || [];
+            function gtag() { dataLayer.push(arguments); }
+            gtag('js', new Date());
+            gtag('config', 'G-SXELHG62RJ');
+        });
+    </script>
 </body>
 
 </html>
