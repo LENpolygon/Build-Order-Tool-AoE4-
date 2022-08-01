@@ -13,23 +13,6 @@ table .buildTime {
     width: 36px
 }
 
-button {
-    cursor: pointer;
-    display: inline-block;
-    font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
-    font-size: 1.3rem;
-    letter-spacing: .1rem;
-    line-height: 1.3rem;
-    padding: .9rem 1.3rem;
-    text-transform: uppercase;
-    -webkit-appearance: none;
-    border-width: 1px;
-    border-style: solid;
-    border-color: #ffdb88;
-    background: #181C29;
-    color: #ffdb88;
-}
-
 .buildActions button:hover {
     background: #2C374F;
 }

@@ -19,18 +19,25 @@
   <link rel="android-chrome-icon-precomposed" sizes="512x512" href="/assets/android-chrome-512x512.png" />
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-SXELHG62RJ"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-SXELHG62RJ');
-  </script>
-  <script language="javascript"  src="js/AoE4_Overlay.js"></script>
 </head>
 
 <body>
+  <div id="cookies-eu-banner" style="display: none;">
+    By continuing to visit this site, you accept the use of cookies by Google Analytics for statistical purposes.
+    <a href="https://www.lenpolygon.com/" id="cookies-eu-more">Read more</a>
+    <button id="cookies-eu-reject">Reject</button>
+    <button id="cookies-eu-accept">Accept</button>
+  </div>
   <header>
     <a class="title gold" href="./">Age of Empires IV<br />Build Order Tool</a>
+    <a href="#" class="desktop-only logged-in modal-trigger" id="account" title="Account"
+      data-target="modal-account"><span
+        style="font-size: 3.8rem; margin-top: -0.8rem; color: transparent; text-shadow: 0 0 0 #ffdb88;">👤</span><span
+        class="gold">Account Details</span></a>
+    <a href="#" class="desktop-only logged-out modal-trigger" id="signup" title="Login/Signup"
+      data-target="modal-signup"><span
+        style="font-size: 3.8rem; margin-top: -0.8rem; color: transparent; text-shadow: 0 0 0 white;">👤</span><span>Login
+        or Signup</span></a>
     <a id="BOforthisBO" class="gold" href="./build.html?c=" title="Make your own AoE 4 Build Orders Online!"><span
         style="font-size: 4.8rem; margin-top: -0.8rem;">✎</span><span>Edit this Build</span></a>
     <a class="desktop-only" href="https://github.com/LENpolygon/Build-Order-Tool-AoE4-"
@@ -43,9 +50,10 @@
         alt="This website is Ad-Free, consider donating to maintain it!"><span>Donate Coin</span></a>
     <a id="copyForOverlayBtn" class="desktop-only" style="color:aqua;"
       title="Copy build to Clipboard for AoE4_Overlay!">
-        <span style="font-size: 4.8rem; margin-top: -0.8rem;">M</span>
-        <span onclick="window.open('https://github.com/FluffyMaguro/AoE4_Overlay')" onmouseenter="overlayEnterHelp()" onmouseleave="overlayLeaveHelp() " title="Click to learn more about AoE4_Overlay!" id="AoE4_Overlay">?</span>
-        <span id="hybridOverlayText" style="text-align: center;">Text to Clipboard</span></a>
+      <span style="font-size: 4.8rem; margin-top: -0.8rem;">M</span>
+      <span onclick="window.open('https://github.com/FluffyMaguro/AoE4_Overlay')" onmouseenter="overlayEnterHelp()"
+        onmouseleave="overlayLeaveHelp() " title="Click to learn more about AoE4_Overlay!" id="AoE4_Overlay">?</span>
+      <span id="hybridOverlayText" style="text-align: center;">Text to Clipboard</span></a>
     <a class="dropdown">
       <nav class="dropbtn">
         <div></div>
@@ -56,6 +64,65 @@
       <menu id="civilizationsMenu"></menu>
     </a>
   </header>
+
+  <!-- SIGN UP/LOGIN MODAL -->
+  <div id="modal-signup" class="modal">
+    <div class="modal-content">
+      <h2 class="title gold">Login</h2><br />
+      <form id="login-form">
+        <div class="input-field">
+          <label>Email address</label>
+          <input type="email" id="login-email" required />
+        </div>
+        <br />
+        <div class="input-field">
+          <label>Your password</label>
+          <input type="password" id="login-password" required />
+        </div>
+        <br />
+        <button class="btn yellow darken-2 z-depth-0">Login</button>
+      </form>
+      <br />
+      <h2 class="title gold">Sign up</h2><br />
+      <form id="signup-form">
+        <div class="input-field">
+          <label>Email address</label>
+          <input type="email" id="signup-email" required />
+        </div>
+        <br />
+        <div class="input-field">
+          <label>Username</label>
+          <input type="text" id="username" required />
+        </div>
+        <br />
+        <div class="input-field">
+          <label>Choose password</label>
+          <input type="password" id="signup-password" required />
+        </div>
+        <br />
+        <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+      </form>
+    </div>
+  </div>
+  <!-- ACCOUNT MODAL -->
+  <div id="modal-account" class="modal">
+    <div class="modal-content center-align">
+      <h2 class="title gold">Account details</h2><br />
+      <br />
+      <div class="account-details"></div>
+      <br />
+      <a href="#" class="gold" id="logout">Logout?</a>
+      <br />
+      <br />
+      <br />
+      <br />
+      <br />
+      <div id="yourBuilds"></div>
+      <br />
+      <br />
+      <br />
+    </div>
+  </div>
 
   <main>
     <article>
@@ -111,7 +178,19 @@
     <div id="tooltipBox" class="tooltipBox">
     </div>
     <script language="javascript" src="js/lz-string.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
     <script type="module" src="js/view.js"></script>
+    <script language="javascript" src="js/AoE4_Overlay.js"></script>
+    <script src="js/eu_cookie_banner.js"></script>
+    <script>
+      new CookiesEuBanner(function () {
+        // Your code to launch when user accept cookies
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-SXELHG62RJ');
+      });
+    </script>
   </div>
 </body>
 
