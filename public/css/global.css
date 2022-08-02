@@ -191,7 +191,7 @@ section {
 
 .icon {
     cursor: move;
-    height: 4.8rem;
+    width: 4.8rem;
     margin: 0.2rem;
     max-height: 4.8rem;
     max-width: 4.8rem;
