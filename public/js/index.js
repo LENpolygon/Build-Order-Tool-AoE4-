@@ -173,7 +173,7 @@ async function GetYourBuilds(uid) {
         // doc.data() is never undefined for query doc snapshots
         var docId = doc.id;
         var docData = doc.data();
-        html += `<tr><td><a href="#" class="delete-builds" bid="${docId}" style="color: red">Delete Build?</a></td>`;
+        html += `<tr><td><a href="#" class="delete-builds" bid="${docId}" style="color: red" onmouseover="this.style['text-decoration']='underline';" onmouseout="this.style['text-decoration']='none';">Delete Build?</a></td>`;
         html += "<td><img src=\"img/flag" + docData.civ + ".png\" height=\"24\" onerror=\"this.src = 'assets/placeholder.png';\"><a href=\"view.html?f=" + docId + "\"></img> " + escapeHtml(docData.title).substring(0, titleLength) + " (by " + escapeHtml(docData.user).substring(0, nameLength) + ")</a></td></tr>";
     });
     document.querySelector('#yourBuilds').innerHTML = `
@@ -188,13 +188,14 @@ async function GetYourBuilds(uid) {
         ${html}
         </tbody>
     </table>
-    <p style="color: red">Deleting builds cannot be undone! Click once, then refresh page and your build is gone!</p>
+    <p style="color: red">Deleting builds cannot be undone!!</p>
     `
     const deleteYourDocs = document.querySelectorAll('.delete-builds');
     deleteYourDocs.forEach(link => {
         link.addEventListener('click', (e) => {
             //console.log(link.getAttribute('bid'));
             deleteDoc(doc(db, "Age4Builds", link.getAttribute('bid')));
+            location.reload();
         })
     });
 }

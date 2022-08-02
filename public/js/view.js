@@ -21,7 +21,7 @@ const loadLimit = 20;
 const titleLength = 48;
 const nameLength = 24;
 var usp = new URLSearchParams(window.location.search);
-import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js"; import firebaseConfig from '../json/fs.js'; const app = initializeApp(firebaseConfig); 
+import { initializeApp } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-app.js"; import firebaseConfig from '../json/fs.js'; const app = initializeApp(firebaseConfig);
 import { getFirestore, doc, getDoc, setDoc, getDocs, collection, deleteDoc, query, updateDoc, addDoc, where, orderBy, limit } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-firestore.js"; const db = getFirestore();
 import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/9.8.1/firebase-auth.js"; const auth = getAuth();
 if (isNaN(usp.get("f"))) { // Update View counter
@@ -32,7 +32,7 @@ if (isNaN(usp.get("f"))) { // Update View counter
         //console.log(docData.timestamp);
         //console.log(Date.now());
         //console.log((Date.now()-docData.timestamp)/(1000*60*60*24));
-        var newScore = Math.max(docData.score - 10, Math.min(docData.score + 10, docData.views + docData.likes * 10 - Math.pow(Math.floor((Date.now() - docData.timestamp) / (1000 * 60 * 60 * 24)),1.337)));
+        var newScore = Math.max(docData.score - 10, Math.min(docData.score + 10, docData.views + Math.pow(docData.likes * 10, 1.069) - Math.pow(Math.floor((Date.now() - docData.timestamp) / (1000 * 60 * 60 * 24)), 1.337)));
         await updateDoc(
             ref, {
             views: docData.views + 1,
@@ -257,6 +257,63 @@ if (isNaN(usp.get("f"))) { // Update View counter
         document.getElementById("copyForOverlayBtnMobile").addEventListener("click", copyForOverlay);
 
         //////////////////////////////////////////////////
+        // UPVOTE / DOWNVOTE SYSTEM
+        //////////////////////////////////////////////////
+        const usr = auth.currentUser;
+        if (usr != null) {
+            var liked = false;
+            var disliked = false;
+            var newDislikers = [];
+            if (docData.likers.includes(usr.uid)) {
+                liked = true;
+            } else if (docData.hasOwnProperty("dislikers")) {
+                newDislikers = docData.dislikers;
+                if (docData.dislikers.includes(usr.uid)) {
+                    disliked = true;
+                }
+            }
+            if (liked == false) {
+                document.querySelector('#upvote').addEventListener('click', (e) => {
+                    var newLikers = docData.likers;
+                    newLikers.push(usr.uid);
+                    var newLikes = docData.likes + 1;
+                    if (disliked == true) {
+                        newDislikers = newDislikers.filter(item => item !== usr.uid)
+                        newLikes += 1;
+                    }
+                    return updateDoc(
+                        ref, {
+                        likers: newLikers,
+                        dislikers: newDislikers,
+                        likes: newLikes
+                    }).catch((error) => {
+                        console.log("Unsuccesful operation, error: " + error);
+                    });
+                });
+            }
+            if (disliked == false) {
+                document.querySelector('#downvote').addEventListener('click', (e) => {
+
+                    newDislikers.push(usr.uid);
+                    var newLikes = docData.likes - 1;
+                    var newLikers = docData.likers;
+                    if (liked == true) {
+                        newLikers = newLikers.filter(item => item !== usr.uid)
+                        newLikes -= 1;
+                    }
+                    return updateDoc(
+                        ref, {
+                        likers: newLikers,
+                        dislikers: newDislikers,
+                        likes: newLikes
+                    }).catch((error) => {
+                        console.log("Unsuccesful operation, error: " + error);
+                    });
+                });
+            }
+        }
+
+        //////////////////////////////////////////////////
         // READ json/icons.json data
         //////////////////////////////////////////////////
         async function loadiconsJSON() {
@@ -385,7 +442,7 @@ async function GetYourBuilds(uid) {
         // doc.data() is never undefined for query doc snapshots
         var docId = doc.id;
         var docData = doc.data();
-        html += `<tr><td><a href="#" class="delete-builds" bid="${docId}" style="color: red">Delete Build?</a></td>`;
+        html += `<tr><td><a href="#" class="delete-builds" bid="${docId}" style="color: red" onmouseover="this.style['text-decoration']='underline';" onmouseout="this.style['text-decoration']='none';">Delete Build?</a></td>`;
         html += "<td><img src=\"img/flag" + docData.civ + ".png\" height=\"24\" onerror=\"this.src = 'assets/placeholder.png';\"><a href=\"view.html?f=" + docId + "\"></img> " + escapeHtml(docData.title).substring(0, titleLength) + " (by " + escapeHtml(docData.user).substring(0, nameLength) + ")</a></td></tr>";
     });
     document.querySelector('#yourBuilds').innerHTML = `
@@ -400,13 +457,14 @@ async function GetYourBuilds(uid) {
         ${html}
         </tbody>
     </table>
-    <p style="color: red">Deleting builds cannot be undone! Click once, then refresh page and your build is gone!</p>
+    <p style="color: red">Deleting builds cannot be undone!!</p>
     `
     const deleteYourDocs = document.querySelectorAll('.delete-builds');
     deleteYourDocs.forEach(link => {
         link.addEventListener('click', (e) => {
             //console.log(link.getAttribute('bid'));
             deleteDoc(doc(db, "Age4Builds", link.getAttribute('bid')));
+            location.reload();
         })
     });
 }
@@ -493,3 +551,4 @@ document.addEventListener('DOMContentLoaded', function () {
     var modals = document.querySelectorAll('.modal');
     M.Modal.init(modals);
 });
+
