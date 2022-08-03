@@ -457,14 +457,13 @@ async function GetYourBuilds(uid) {
         ${html}
         </tbody>
     </table>
-    <p style="color: red">Deleting builds cannot be undone!!</p>
+    <p style="color: red">Deleting builds cannot be undone!! (you might need to manually refresh the page)</p>
     `
     const deleteYourDocs = document.querySelectorAll('.delete-builds');
     deleteYourDocs.forEach(link => {
         link.addEventListener('click', (e) => {
             //console.log(link.getAttribute('bid'));
             deleteDoc(doc(db, "Age4Builds", link.getAttribute('bid')));
-            location.reload();
         })
     });
 }
