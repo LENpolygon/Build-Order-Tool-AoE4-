@@ -197,6 +197,14 @@ section {
     max-width: 4.8rem;
 }
 
+.salamander_icon {
+    cursor: pointer;
+    width: 4.8rem;
+    margin: 0.2rem;
+    max-height: 4.8rem;
+    max-width: 4.8rem;
+}
+
 table {
     font-size: 2.2rem;
     line-height: 5rem;
@@ -346,26 +354,21 @@ button {
     html {
         font-size: 6.7px;
     }
-
     .buildTime img {
         height: 16px;
     }
-
     main {
         flex-direction: column;
     }
-
     .tooltipContainer,
     header a span,
     .desktop-only {
         display: none;
     }
-
     header {
         letter-spacing: 0.5rem;
         font-size: 2.4rem;
     }
-
     .dropbtn {
         padding-left: 10rem;
     }
@@ -416,7 +419,10 @@ button {
     cursor: pointer
 }
 
-.modal .modal-footer .btn, .modal .modal-footer .btn-large, .modal .modal-footer .btn-small, .modal .modal-footer .btn-flat {
+.modal .modal-footer .btn,
+.modal .modal-footer .btn-large,
+.modal .modal-footer .btn-small,
+.modal .modal-footer .btn-flat {
     margin: 6px 0
 }
 
@@ -441,6 +447,7 @@ button {
     font-size: 13px;
     text-align: center;
 }
+
 #cookies-eu-more,
 #cookies-eu-accept,
 #cookies-eu-reject {
@@ -455,6 +462,7 @@ button {
     font-weight: bold;
     transition: background 0.07s, color 0.07s, border-color 0.07s;
 }
+
 #cookies-eu-more:hover,
 #cookies-eu-more:focus,
 #cookies-eu-accept:hover,
@@ -462,6 +470,7 @@ button {
     background: #fff;
     color: #222;
 }
+
 #cookies-eu-more {
     margin-left: 7px;
 }
@@ -475,6 +484,7 @@ button {
     margin: 2px 0;
     border: 1px solid #666;
 }
+
 #cookies-eu-reject:hover,
 #cookies-eu-reject:focus {
     border-color: #fff;

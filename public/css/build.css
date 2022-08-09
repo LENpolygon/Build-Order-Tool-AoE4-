@@ -71,6 +71,12 @@ table tbody tr td:nth-child(6) {
     cursor: pointer;
 }
 
+#copyForIllustratedOverlayBtn {
+    display: flex;
+    position: relative;
+    cursor: pointer;
+}
+
 #AoE4_Overlay {
     background: aqua;
     outline: #181C29 solid 0.1rem;
@@ -89,13 +95,17 @@ table tbody tr td:nth-child(6) {
     cursor: pointer;
 }
 
-#hybridOverlayText {
+#hybridSimpleTxtOverlayText {
+    margin-top: -.7rem;
+}
+
+#hybridIllustratedOverlayText {
     margin-top: -.7rem;
 }
 
 #AoE4_Overlay:hover {
     background: black;
-    color:#fff;
+    color: #fff;
     outline-color: #fff;
 }
 
@@ -103,11 +113,9 @@ table tbody tr td:nth-child(6) {
     html {
         font-size: 6.7px;
     }
-
     .civStatsMore {
         display: none;
     }
-
     table .buildTime {
         width: 24px;
     }
