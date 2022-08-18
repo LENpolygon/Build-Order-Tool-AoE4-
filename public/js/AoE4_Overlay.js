@@ -1,33 +1,9 @@
-// Help when hovering the simple TXT build (entering)
-function simpleTxtOverlayEnterHelp() {
-    document.getElementById('hybridSimpleTxtOverlayText').innerHTML = 'What is the simple TXT format for AoE4_Overlay?';
-    document.getElementById('hybridSimpleTxtOverlayText').style.color = '#fff';
-}
-
-// Help when hovering the simple TXT build (leaving)
-function simpleTxtOverlayLeaveHelp() {
-    document.getElementById('hybridSimpleTxtOverlayText').innerHTML = 'Simple TXT Build Order to Clipboard';
-    document.getElementById('hybridSimpleTxtOverlayText').style.color = 'aqua';
-}
-
-// Help when hovering the Illustrated Build Order (entering)
-function illustratedOverlayEnterHelp() {
-    document.getElementById('hybridIllustratedOverlayText').innerHTML = 'What is the Illustrated format for AoE4_Overlay?';
-    document.getElementById('hybridIllustratedOverlayText').style.color = '#fff';
-}
-
-// Help when hovering the Illustrated Build Order (leaving)
-function illustratedOverlayLeaveHelp() {
-    document.getElementById('hybridIllustratedOverlayText').innerHTML = 'Illustrated Build Order to Clipboard';
-    document.getElementById('hybridIllustratedOverlayText').style.color = 'aqua';
-}
-
 /** Copy for AoE4_Overlay event
  * https://github.com/FluffyMaguro/AoE4_Overlay
  *
  * @param input - input to convert
  */
-function htmlDecode(input) {
+export const htmlDecode = (input) => {
     var doc = new DOMParser().parseFromString(input, "text/html");
     return doc.documentElement.textContent;
 }
@@ -614,10 +590,10 @@ function focusToAuthorName(input) {
     } else {
         return 'unknown';
     }
-}
+};
 
 // Copy to clipboard for Illustrated Build Order format
-function copyForIllustratedOverlay() {
+export const copyForIllustratedOverlay = () => {
 
     // selected civilization
     var civName = civToOverlayName(document.getElementById("civilizationName").innerHTML);
