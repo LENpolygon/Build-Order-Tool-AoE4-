@@ -1,5 +1,6 @@
 import escapeHtml from './global.js';
 import civilizations from '../json/civilizations.js';
+import {htmlDecode, copyForIllustratedOverlay} from './AoE4_Overlay.js';
 
 //////////////////////////////////////////////////
 // DEFINE menu structure
@@ -71,7 +72,8 @@ str += "<li class=\"mobile-only\"><a href=\"#\" class=\"logged-in modal-trigger\
 str += "<li class=\"mobile-only\"><a href=\"#\" class=\"logged-out modal-trigger\" data-target=\"modal-signup\">👤 Login / Signup</a></li>";
 str += "<li class=\"mobile-only\"><a href=\"https://github.com/LENpolygon/Build-Order-Tool-AoE4-\">💻 View Github Page</a></li>";
 str += "<li class=\"mobile-only\"><a href=\"https://ko-fi.com/lenpolygon\">💰 Support Website</a></li>";
-str += "<li class=\"mobile-only\"><a style=\"color: aqua;\" id=\"copyForOverlayBtnMobile\">🗗 Build to Clipboard (text)</a></li>";
+str += "<li class=\"mobile-only\"><a style=\"color: aqua;\" id=\"copyForOverlayBtnMobile\">🗗 Simple TXT Build Order to Clipboard</a></li>";
+str += "<li class=\"mobile-only\"><a style=\"color: aqua;\" id=\"copyForIllustratedOverlayBtnMobile\">🗗 Illustrated Build Order to Clipboard</a></li>";
 str += "<li class=\"mobile-only\"><a style=\"color: #c4c4c4;\" href=\"https://github.com/FluffyMaguro/AoE4_Overlay\">？ Learn about AoE4_Overlay</a></li>";
 document.getElementById("civilizationsMenu").innerHTML = str;
 
@@ -304,15 +306,8 @@ function sanitizeNconvertToName(input) {
     return output.replace(/&nbsp;/g, " ");
 }
 
-//////////////////////////////////////////////////
-// COPY for AoE4_Overlay event 
-// https://github.com/FluffyMaguro/AoE4_Overlay
-//////////////////////////////////////////////////
-function htmlDecode(input) {
-    var doc = new DOMParser().parseFromString(input, "text/html");
-    return doc.documentElement.textContent;
-}
-function copyForOverlay() {
+// Copy to clipboard for Simple TXT Build Order format
+function copyForSimpleTxtOverlay() {
     var rows = document.getElementById("buildTable").rows;
     var str = "";
     var newline = "\r\n";
@@ -345,8 +340,13 @@ function copyForOverlay() {
         console.error('Async: Could not copy text: ', err);
     });
 }
-document.getElementById("copyForOverlayBtn").addEventListener("click", copyForOverlay);
-document.getElementById("copyForOverlayBtnMobile").addEventListener("click", copyForOverlay);
+// Simple TXT Build Order
+document.getElementById("copyForOverlayBtn").addEventListener("click", copyForSimpleTxtOverlay);
+document.getElementById("copyForOverlayBtnMobile").addEventListener("click", copyForSimpleTxtOverlay);
+
+// Illustrated Build Order
+document.getElementById('copyForIllustratedOverlayBtn').addEventListener('click', copyForIllustratedOverlay);
+document.getElementById('copyForIllustratedOverlayBtnMobile').addEventListener('click', copyForIllustratedOverlay);
 
 //////////////////////////////////////////////////
 // READ json/icons.json data
