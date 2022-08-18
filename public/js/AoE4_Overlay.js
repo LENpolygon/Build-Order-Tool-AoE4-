@@ -155,6 +155,7 @@ function getCommonImages() {
         'knight2': 'unit_cavalry/knight-2.png',
         'knight3': 'unit_cavalry/knight-2.png',
         'knight4': 'unit_cavalry/knight-2.png',
+        'lancer3': 'unit_cavalry/lancer-4.png',
         'lancer_3': 'unit_cavalry/lancer-4.png',
         'lancer_4': 'unit_cavalry/lancer-4.png',
         'scout': 'unit_cavalry/scout.png',
@@ -543,8 +544,8 @@ function convertNotesIllustrations(civ_name, input) {
 function resourceValue(input) {
     if ((input != '') && (input != ' ')) {
 
-        if ((typeof input == "string") && !isNaN(input) && !isNaN(parseFloat(input))) {
-            return input;
+        if ((typeof input == 'string') && !isNaN(input) && !isNaN(parseInt(input))) {
+            return parseInt(input);
         } else {
             return -1;
         }
@@ -617,77 +618,81 @@ function focusToAuthorName(input) {
 
 // Copy to clipboard for Illustrated Build Order format
 function copyForIllustratedOverlay() {
-    var rows = document.getElementById('buildTable').rows;
-    var str = ''; // output string
-    var newline = '\r\n';
-
-    str += '{' + newline;
 
     // selected civilization
-    var civ_name = civToOverlayName(document.getElementById('civilizationName').innerHTML);
-    str += '    "civilization": "' + civ_name + '",' + newline
-        // name, author, source
-    str += '    "name": "' + focusToBuildOrderName(document.getElementById("civilizationFocus").innerHTML) + '",' + newline
-    str += '    "author": "' + focusToAuthorName(document.getElementById("civilizationFocus").innerHTML) + '",' + newline
-    str += '    "source": "unknown",' + newline
+    var civName = civToOverlayName(document.getElementById("civilizationName").innerHTML);
 
-    // build order
-    str += '    "build_order": [' + newline
+    // start JSON Obj
+    var jsonObj = {
+        civilization: civName,
+        name: focusToBuildOrderName(document.getElementById("civilizationFocus").innerHTML),
+        author: focusToAuthorName(document.getElementById("civilizationFocus").innerHTML),
+        source: "unknown",
+        build_order: []
+    };
 
-    for (let row_id = 1; row_id < rows.length; row_id++) { // loop on the steps of the build order (one row per step)
+    // loop on the rows of the build table
+    var firstRow = true;
+    var rows = document.getElementById("buildTable").rows;
 
-        // population and age undefined
-        str += '        {' + newline
-        str += '            "population_count": -1,' + newline
-        str += '            "villager_count": -1,' + newline
-        str += '            "age": -1,' + newline
+    for (var currentLine of rows) {
+        // skip the first row
+        if (firstRow) {
+            firstRow = false;
+            continue;
+        }
 
-        // time option
-        var time_target = rows[row_id].cells[0].innerHTML;
-        if (time_target != "" && time_target != " ") {
-            str += '            "time": ' + time_target + ',' + newline
+        // new step element for the JSON format
+        var newStepJson = {
+            age: -1, // unknown
+            population_count: -1 // unknown
+        };
+
+        // add time if indicated
+        var timeTarget = currentLine.cells[0].innerHTML;
+        if (timeTarget != "" && timeTarget != " ") {
+            newStepJson["time"] = timeTarget;
+        }
+
+        // villagers per resource
+        var foodValue = resourceValue(currentLine.cells[1].innerHTML);
+        var woodValue = resourceValue(currentLine.cells[2].innerHTML);
+        var goldValue = resourceValue(currentLine.cells[4].innerHTML);
+        var stoneValue = resourceValue(currentLine.cells[3].innerHTML);
+
+        // set villager count to all of the villagers on resouces combined
+        if ((foodValue >= 0 && woodValue >= 0 && goldValue >= 0 && stoneValue >= 0)) {
+            newStepJson["villager_count"] = foodValue + woodValue + goldValue + stoneValue;
+        } else { // at least one resource not specified
+            newStepJson["villager_count"] = -1;
         }
 
         // resources
-        str += '            "resources": {' + newline
-        str += '                "food": ' + resourceValue(rows[row_id].cells[1].innerHTML) + ',' + newline
-        str += '                "wood": ' + resourceValue(rows[row_id].cells[2].innerHTML) + ',' + newline
-        str += '                "gold": ' + resourceValue(rows[row_id].cells[4].innerHTML) + ',' + newline
-        str += '                "stone": ' + resourceValue(rows[row_id].cells[3].innerHTML) + newline
-        str += '            },' + newline
+        newStepJson["resources"] = {
+            food: foodValue,
+            wood: woodValue,
+            gold: goldValue,
+            stone: stoneValue
+        };
 
         // notes in a single line
-        var single_line_notes = convertNotesIllustrations(civ_name, rows[row_id].cells[5].innerHTML);
+        var single_line_notes = convertNotesIllustrations(civName, currentLine.cells[5].innerHTML);
 
-        // split the single line to multiple ones, using the '. ' pattern
-        array_notes = single_line_notes.split('. ');
-
-        str += '            "notes": [' + newline;
-        for (var array_id = 0; array_id < array_notes.length; array_id++) {
-            str += '                "' + array_notes[array_id];
-            if (array_id < array_notes.length - 1) {
-                str += '.",' + newline;
-            } else {
-                str += '"' + newline;
-            }
+        // split the single line to multiple ones, using the ". " pattern
+        var notes = single_line_notes.split(". ");
+        for (let i = 0; i < notes.length - 1; i++) {
+            notes[i] += '.'; // add dot removed by split
         }
-        str += '            ]' + newline;
+        newStepJson["notes"] = notes;
 
-        if (row_id < rows.length - 1) {
-            str += '        },' + newline
-        } else {
-            str += '        }' + newline
-        }
+        // add new step
+        jsonObj["build_order"].push(newStepJson);
     }
-
-    // finish build order and JSON
-    str += '    ]' + newline
-    str += '}'
-
+    var str = JSON.stringify(jsonObj, null, 4); // JSON to output string
     //console.log(str);
     navigator.clipboard.writeText(htmlDecode(str)).then(function() {
         //console.log('Async: Copying to clipboard was successful!');
     }, function(err) {
-        console.error('Async: Could not copy text: ', err);
+        console.error("Async: Could not copy text: ", err);
     });
 }
