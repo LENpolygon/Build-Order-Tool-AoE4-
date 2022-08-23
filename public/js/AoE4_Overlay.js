@@ -60,9 +60,13 @@ function getCommonImages() {
         'fish': 'resource/fish.png',
         'gaiatreeprototypetree': 'resource/gaiatreeprototypetree.png',
         'resourcefoodicon': 'resource/resource_food.png',
+        'treasuryfood': 'resource/resource_food.png',
         'resourcegoldicon': 'resource/resource_gold.png',
+        'treasurygold': 'resource/resource_gold.png',
         'resourcestoneicon': 'resource/resource_stone.png',
+        'treasurystone': 'resource/resource_stone.png',
         'resourcewoodicon': 'resource/resource_wood.png',
+        'treasurywood': 'resource/resource_wood.png',
         'sheep': 'resource/sheep.png',
         'wolf': 'resource/wolf.png',
 
@@ -142,6 +146,10 @@ function getCommonImages() {
         'manatarms1': 'unit_infantry/man-at-arms-1.png',
         'manatarms2': 'unit_infantry/man-at-arms-1.png',
         'manatarms3': 'unit_infantry/man-at-arms-1.png',
+        'spearman1': 'unit_infantry/spearman-1.png',
+        'spearman_2': 'unit_infantry/spearman-1.png',
+        'spearman_3': 'unit_infantry/spearman-1.png',
+        'spearman_4': 'unit_infantry/spearman-1.png',
 
         'fireship': 'unit_ship/demolition-ship.png',
         'fishingboat': 'unit_ship/fishing-boat.png',
@@ -157,6 +165,7 @@ function getCommonImages() {
         'ribauldequin': 'unit_siege/ribauldequin-4.png',
         'siegetower': 'unit_siege/siege-tower.png',
         'siegetower2': 'unit_siege/siege-tower.png',
+        'scorpion3': 'unit_siege/springald.png',
         'springald': 'unit_siege/springald.png',
         'trebuchet3': 'unit_siege/trebuchet.png',
 
@@ -230,7 +239,7 @@ function getCivilizationImages(civ_name) {
             'warship': 'unit_ship/carrack.png',
             'generalship': 'unit_ship/hulk.png'
         };
-    } else if (civ_name === 'Delhi') {
+    } else if (civ_name === 'Delhi Sultanate') {
         return {
             'buildinglandmarkage2sirifort': 'landmark_delhi/compound-of-the-defender.png',
             'buildinglandmarkage1landmarkquwwatulislam': 'landmark_delhi/dome-of-the-faith.png',
@@ -473,7 +482,7 @@ function convertToIllustratedBuildImage(civ_name, input) {
         return '@' + common_images[input] + '@'
     }
 
-    return input;
+    return ' ' + input + ' ';
 }
 
 /** Convert notes line to add the correct format for the images of the Illustrated Build Order
@@ -542,7 +551,7 @@ function civToOverlayName(input) {
     } else if (input_lower.includes('french')) {
         return 'French';
     } else if (input_lower.includes('delhi')) {
-        return 'Delhi';
+        return 'Delhi Sultanate';
     } else if (input_lower.includes('mongols')) {
         return 'Mongols';
     } else if (input_lower.includes('holy')) {
