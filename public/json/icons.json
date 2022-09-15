@@ -31,6 +31,8 @@
   "HR": "attackmove",
   "MO": "attackmove",
   "RU": "attackmove",
+  "MA": "attackmove",
+  "OT": "attackmove",
   "color": "black"
 },
 {
@@ -66,6 +68,8 @@
   "HR": "delete",
   "MO": "delete",
   "RU": "delete",
+  "MA": "delete",
+  "OT": "delete",
   "color": "black"
 },
 {
@@ -83,6 +87,8 @@
   "HR": "delete",
   "MO": "delete",
   "RU": "delete",
+  "MA": "delete",
+  "OT": "delete",
   "color": "black"
 },
 {
@@ -117,6 +123,8 @@
   "HR": "garrison",
   "MO": "garrison",
   "RU": "garrison",
+  "MA": "garrison",
+  "OT": "garrison",
   "color": "black"
 },
 {
@@ -133,6 +141,8 @@
   "HR": "herd",
   "MO": "herd",
   "RU": "herd",
+  "MA": "herd",
+  "OT": "herd",
   "color": "black"
 },
 {
@@ -149,6 +159,8 @@
   "HR": "formationlinedisabled",
   "MO": "formationlinedisabled",
   "RU": "formationlinedisabled",
+  "MA": "formationlinedisabled",
+  "OT": "formationlinedisabled",
   "color": "black"
 },
 {
@@ -174,6 +186,8 @@
   "HR": "rally",
   "MO": "rally",
   "RU": "rally",
+  "MA": "rally",
+  "OT": "rally",
   "color": "black"
 },
 {
@@ -190,6 +204,8 @@
   "HR": "repair",
   "MO": "repair",
   "RU": "repair",
+  "MA": "repair",
+  "OT": "repair",
   "color": "black"
 },
 {
@@ -206,6 +222,8 @@
   "HR": "returnalltowork",
   "MO": "returnalltowork",
   "RU": "returnalltowork",
+  "MA": "returnalltowork",
+  "OT": "returnalltowork",
   "color": "black"
 },
 {
@@ -222,6 +240,8 @@
   "HR": "returntowork",
   "MO": "returntowork",
   "RU": "returntowork",
+  "MA": "returntowork",
+  "OT": "returntowork",
   "color": "black"
 },
 {
@@ -247,6 +267,8 @@
   "HR": "seekshelter",
   "MO": "seekshelter",
   "RU": "seekshelter",
+  "MA": "seekshelter",
+  "OT": "seekshelter",
   "color": "black"
 },
 {
@@ -263,6 +285,8 @@
   "HR": "spearwall",
   "MO": "spearwall",
   "RU": "spearwall",
+  "MA": "spearwall",
+  "OT": "spearwall",
   "color": "black"
 },
 {
@@ -279,6 +303,8 @@
   "HR": "formationstaggereddisabled",
   "MO": "formationstaggereddisabled",
   "RU": "formationstaggereddisabled",
+  "MA": "formationstaggereddisabled",
+  "OT": "formationstaggereddisabled",
   "color": "black"
 },
 {
@@ -295,6 +321,8 @@
   "HR": "holdpositiondisabled",
   "MO": "holdpositiondisabled",
   "RU": "holdpositiondisabled",
+  "MA": "holdpositiondisabled",
+  "OT": "holdpositiondisabled",
   "color": "black"
 },
 {
@@ -311,6 +339,8 @@
   "HR": "stop",
   "MO": "stop",
   "RU": "stop",
+  "MA": "stop",
+  "OT": "stop",
   "color": "black"
 },
 {
@@ -347,6 +377,8 @@
   "HR": "unloadhere",
   "MO": "unloadhere",
   "RU": "unloadhere",
+  "MA": "unloadhere",
+  "OT": "unloadhere",
   "color": "black"
 },
 {
@@ -363,6 +395,8 @@
   "HR": "unloadhere",
   "MO": "unloadhere",
   "RU": "unloadhere",
+  "MA": "unloadhere",
+  "OT": "unloadhere",
   "color": "black"
 },
 {
@@ -388,6 +422,8 @@
   "HR": "formationwedgedisabled",
   "MO": "formationwedgedisabled",
   "RU": "formationwedgedisabled",
+  "MA": "formationwedgedisabled",
+  "OT": "formationwedgedisabled",
   "color": "black"
 },
 {
@@ -625,6 +661,8 @@
   "HR": "villager",
   "MO": "villagerMO",
   "RU": "villager",
+  "MA": "villagerMA",
+  "OT": "villagerOT",
   "color": "black"
 },
 {
@@ -729,6 +767,8 @@
   "HR": "spearman1",
   "MO": "spearman1",
   "RU": "spearman1",
+  "MA": "spearman1",
+  "OT": "spearman1",
   "color": "sienna"
 },
 {
@@ -789,6 +829,8 @@
   "HR": "scout",
   "MO": "scout",
   "RU": "scout",
+  "MA": "scout",
+  "OT": "scout",
   "color": "sienna"
 },
 {
@@ -832,6 +874,8 @@
   "HR": "resourcewoodicon",
   "MO": "resourcewoodicon",
   "RU": "resourcewoodicon",
+  "MA": "resourcewoodicon",
+  "OT": "resourcewoodicon",
   "color": "transparent"
 },
 {
@@ -849,6 +893,8 @@
   "HR": "resourcestoneicon",
   "MO": "resourcestoneicon",
   "RU": "resourcestoneicon",
+  "MA": "resourcestoneicon",
+  "OT": "resourcestoneicon",
   "color": "transparent"
 },
 {
@@ -866,6 +912,8 @@
   "HR": "resourcegoldicon",
   "MO": "resourcegoldicon",
   "RU": "resourcegoldicon",
+  "MA": "resourcegoldicon",
+  "OT": "resourcegoldicon",
   "color": "transparent"
 },
 {
@@ -883,6 +931,8 @@
   "HR": "berrybush",
   "MO": "berrybush",
   "RU": "berrybush",
+  "MA": "berrybush",
+  "OT": "berrybush",
   "color": "transparent"
 },
 {
@@ -915,6 +965,8 @@
   "HR": "fish",
   "MO": "fish",
   "RU": "fish",
+  "MA": "fish",
+  "OT": "fish",
   "color": "transparent"
 },
 {
@@ -932,6 +984,8 @@
   "HR": "deer",
   "MO": "deer",
   "RU": "deer",
+  "MA": "deer",
+  "OT": "deer",
   "color": "transparent"
 },
 {
@@ -949,6 +1003,8 @@
   "HR": "sheep",
   "MO": "sheep",
   "RU": "sheep",
+  "MA": "sheep",
+  "OT": "sheep",
   "color": "transparent"
 },
 {
@@ -966,6 +1022,8 @@
   "HR": "fish",
   "MO": "fish",
   "RU": "fish",
+  "MA": "fish",
+  "OT": "fish",
   "color": "transparent"
 },
 {
@@ -982,6 +1040,8 @@
   "HR": "wolf",
   "MO": "wolf",
   "RU": "wolf",
+  "MA": "wolf",
+  "OT": "wolf",
   "color": "transparent"
 },
 {
@@ -1070,6 +1130,8 @@
   "FR": "house",
   "HR": "house",
   "RU": "house",
+  "MA": "house",
+  "OT": "house",
   "color": "gray"
 },
 {
@@ -1088,6 +1150,8 @@
   "HR": "barracks",
   "MO": "barracks",
   "RU": "barracks",
+  "MA": "barracks",
+  "OT": "barracks",
   "color": "sienna"
 },
 {
@@ -1127,6 +1191,8 @@
   "HR": "dock",
   "MO": "dock",
   "RU": "dock",
+  "MA": "dock",
+  "OT": "dock",
   "color": "sienna"
 },
 {
@@ -1144,6 +1210,8 @@
   "HR": "wheatfield",
   "MO": "wheatfield",
   "RU": "wheatfield",
+  "MA": "wheatfield",
+  "OT": "wheatfield",
   "color": "gray"
 },
 {
@@ -1194,6 +1262,8 @@
   "HR": "lumbercamp",
   "MO": "lumbercamp",
   "RU": "lumbercamp",
+  "MA": "lumbercamp",
+  "OT": "lumbercamp",
   "color": "gray"
 },
 {
@@ -1222,6 +1292,8 @@
   "HR": "gristmill",
   "MO": "gristmill",
   "RU": "gristmill",
+  "MA": "gristmill",
+  "OT": "gristmill",
   "color": "gray"
 },
 {
@@ -1250,6 +1322,8 @@
   "HR": "goldminingcamp",
   "MO": "goldminingcamp",
   "RU": "goldminingcamp",
+  "MA": "goldminingcamp",
+  "OT": "goldminingcamp",
   "color": "gray"
 },
 {
@@ -1310,6 +1384,8 @@
   "EN": "outpost",
   "FR": "outpost",
   "HR": "outpost",
+  "MA": "outpost",
+  "OT": "outpost",
   "color": "gray"
 },
 {
@@ -1337,6 +1413,8 @@
   "EN": "palisadegate",
   "FR": "palisadegate",
   "HR": "palisadegate",
+  "MA": "palisadegate",
+  "OT": "palisadegate",
   "color": "gray"
 },
 {
@@ -1353,6 +1431,8 @@
   "EN": "palisadewall",
   "FR": "palisadewall",
   "HR": "palisadewall",
+  "MA": "palisadewall",
+  "OT": "palisadewall",
   "color": "gray"
 },
 {
@@ -1550,6 +1630,8 @@
   "HR": "treefellrate",
   "MO": "treefellrate",
   "RU": "treefellrate",
+  "MA": "treefellrate",
+  "OT": "treefellrate",
   "color": "teal"
 },
 {
@@ -1593,6 +1675,8 @@
   "HR": "wheelbarrow",
   "MO": "wheelbarrow",
   "RU": "wheelbarrow",
+  "MA": "wheelbarrow",
+  "OT": "wheelbarrow",
   "color": "teal"
 },
 {
@@ -1658,6 +1742,8 @@
   "HR": "huntingvillager",
   "MO": "huntingvillager",
   "RU": "huntingvillager",
+  "MA": "huntingvillager",
+  "OT": "huntingvillager",
   "color": "teal"
 },
 {
@@ -1745,6 +1831,8 @@
   "FR": "fishingboat",
   "HR": "fishingboat",
   "MO": "fishingboat",
+  "MA": "fishingboat",
+  "OT": "fishingboat",
   "color": "black"
 },
 {
@@ -1794,6 +1882,8 @@
   "HR": "attackground",
   "MO": "attackground",
   "RU": "attackground",
+  "MA": "attackground",
+  "OT": "attackground",
   "color": "black"
 },
 {
@@ -1810,6 +1900,8 @@
   "HR": "dropoffitem",
   "MO": "dropoffitem",
   "RU": "dropoffitem",
+  "MA": "dropoffitem",
+  "OT": "dropoffitem",
   "color": "black"
 },
 {
@@ -1844,6 +1936,8 @@
   "HR": "sethomemarket",
   "MO": "sethomemarket",
   "RU": "sethomemarket",
+  "MA": "sethomemarket",
+  "OT": "sethomemarket",
   "color": "black"
 },
 {
@@ -1904,6 +1998,8 @@
   "HR": "trade",
   "MO": "trade",
   "RU": "trade",
+  "MA": "trade",
+  "OT": "trade",
   "color": "black"
 },
 {
@@ -1922,6 +2018,8 @@
   "FR": "arrowslitemplacement",
   "MO": "arrowslitemplacement",
   "RU": "arrowslitemplacement",
+  "MA": "arrowslitemplacement",
+  "OT": "arrowslitemplacement",
   "color": "teal"
 },
 {
@@ -1984,6 +2082,8 @@
   "EN": "stoneoutpost",
   "FR": "stoneoutpost",
   "MO": "stoneoutpost",
+  "MA": "stoneoutpost",
+  "OT": "stoneoutpost",
   "color": "teal"
 },
 {
@@ -2011,6 +2111,8 @@
   "HR": "walldefense",
   "MO": "walldefense",
   "RU": "walldefense",
+  "MA": "walldefense",
+  "OT": "walldefense",
   "color": "transparent"
 },
 {
@@ -2036,6 +2138,8 @@
   "HR": "charge",
   "MO": "charge",
   "RU": "charge",
+  "MA": "charge",
+  "OT": "charge",
   "color": "black"
 },
 {
@@ -2131,6 +2235,8 @@
   "HR": "tradecart",
   "MO": "tradecart",
   "RU": "tradecart",
+  "MA": "tradecart",
+  "OT": "tradecart",
   "color": "black"
 },
 {
@@ -2163,6 +2269,8 @@
   "HR": "ram2",
   "MO": "ram2",
   "RU": "ram2",
+  "MA": "ram2",
+  "OT": "ram2",
   "color": "sienna"
 },
 {
@@ -2181,6 +2289,8 @@
   "HR": "siegetower2",
   "MO": "siegetower2",
   "RU": "siegetower2",
+  "MA": "siegetower2",
+  "OT": "siegetower2",
   "color": "sienna"
 },
 {
@@ -2200,6 +2310,8 @@
   "HR": "archer2",
   "MO": "archer2",
   "RU": "archer2",
+  "MA": "archer2",
+  "OT": "archer2",
   "color": "sienna"
 },
 {
@@ -2286,6 +2398,8 @@
   "FR": "horseman2",
   "HR": "horseman2",
   "RU": "horseman2",
+  "MA": "horseman2",
+  "OT": "horseman2",
   "color": "sienna"
 },
 {
@@ -2343,6 +2457,8 @@
   "HR": "blacksmith",
   "MO": "blacksmith",
   "RU": "blacksmith",
+  "MA": "blacksmith",
+  "OT": "blacksmith",
   "color": "teal"
 },
 {
@@ -2373,6 +2489,8 @@
   "HR": "archeryrange",
   "MO": "archeryrange",
   "RU": "archeryrange",
+  "MA": "archeryrange",
+  "OT": "archeryrange",
   "color": "sienna"
 },
 {
@@ -2390,6 +2508,8 @@
   "FR": "stable",
   "HR": "stable",
   "RU": "stable",
+  "MA": "stable",
+  "OT": "stable",
   "color": "sienna"
 },
 {
@@ -2408,6 +2528,8 @@
   "HR": "market",
   "MO": "market",
   "RU": "market",
+  "MA": "market",
+  "OT": "market",
   "color": "gray"
 },
 {
@@ -2438,6 +2560,8 @@
   "FR": "town_center",
   "HR": "town_center",
   "RU": "town_center",
+  "MA": "town_center",
+  "OT": "town_center",
   "color": "gray"
 },
 {
@@ -2466,6 +2590,8 @@
   "EN": "stonewall",
   "FR": "stonewall",
   "HR": "stonewall",
+  "MA": "stonewall",
+  "OT": "stonewall",
   "color": "gray"
 },
 {
@@ -2482,6 +2608,8 @@
   "EN": "stonegate",
   "FR": "stonegate",
   "HR": "stonegate",
+  "MA": "stonegate",
+  "OT": "stonegate",
   "color": "gray"
 },
 {
@@ -2498,6 +2626,8 @@
   "EN": "stoneoutpost",
   "FR": "stoneoutpost",
   "HR": "stoneoutpost",
+  "MA": "stoneoutpost",
+  "OT": "stoneoutpost",
   "color": "gray"
 },
 {
@@ -2685,6 +2815,8 @@
   "HR": "woodgather1",
   "MO": "woodgather1",
   "RU": "woodgather1",
+  "MA": "woodgather1",
+  "OT": "woodgather1",
   "color": "teal"
 },
 {
@@ -2741,6 +2873,8 @@
   "HR": "silkbowstring",
   "MO": "silkbowstring",
   "RU": "silkbowstring",
+  "MA": "silkbowstring",
+  "OT": "silkbowstring",
   "color": "teal"
 },
 {
@@ -2783,6 +2917,8 @@
   "HR": "siegeengineers",
   "MO": "siegeengineers",
   "RU": "siegeengineers",
+  "MA": "siegeengineers",
+  "OT": "siegeengineers",
   "color": "teal"
 },
 {
@@ -2859,6 +2995,8 @@
   "HR": "rangeddamagetechnology1",
   "MO": "rangeddamagetechnology1",
   "RU": "rangeddamagetechnology1",
+  "MA": "rangeddamagetechnology1",
+  "OT": "rangeddamagetechnology1",
   "color": "teal"
 },
 {
@@ -2878,6 +3016,8 @@
   "HR": "rangedarmortechnology1",
   "MO": "rangedarmortechnology1",
   "RU": "rangedarmortechnology1",
+  "MA": "rangedarmortechnology1",
+  "OT": "rangedarmortechnology1",
   "color": "teal"
 },
 {
@@ -2921,6 +3061,8 @@
   "HR": "additionalsails",
   "MO": "additionalsails",
   "RU": "additionalsails",
+  "MA": "additionalsails",
+  "OT": "additionalsails",
   "color": "teal"
 },
 {
@@ -2997,6 +3139,8 @@
   "HR": "goldgather1",
   "MO": "goldgather1",
   "RU": "goldgather1",
+  "MA": "goldgather1",
+  "OT": "goldgather1",
   "color": "teal"
 },
 {
@@ -3041,6 +3185,8 @@
   "HR": "meleedamagetechnology1",
   "MO": "meleedamagetechnology1",
   "RU": "meleedamagetechnology1",
+  "MA": "meleedamagetechnology1",
+  "OT": "meleedamagetechnology1",
   "color": "teal"
 },
 {
@@ -3060,6 +3206,8 @@
   "HR": "meleearmortechnology1",
   "MO": "meleearmortechnology1",
   "RU": "meleearmortechnology1",
+  "MA": "meleearmortechnology1",
+  "OT": "meleearmortechnology1",
   "color": "teal"
 },
 {
@@ -3140,6 +3288,8 @@
   "HR": "huntingscout",
   "MO": "huntingscout",
   "RU": "huntingscout",
+  "MA": "huntingscout",
+  "OT": "huntingscout",
   "color": "teal"
 },
 {
@@ -3171,6 +3321,8 @@
   "HR": "foodgather1",
   "MO": "foodgather1",
   "RU": "foodgather1",
+  "MA": "foodgather1",
+  "OT": "foodgather1",
   "color": "teal"
 },
 {
@@ -3213,6 +3365,8 @@
   "HR": "extendedlines",
   "MO": "extendedlines",
   "RU": "extendedlines",
+  "MA": "extendedlines",
+  "OT": "extendedlines",
   "color": "teal"
 },
 {
@@ -3280,6 +3434,8 @@
   "HR": "spearman_2",
   "MO": "spearman_2",
   "RU": "spearman_2",
+  "MA": "spearman_2",
+  "OT": "spearman_2",
   "color": "teal"
 },
 {
@@ -3323,6 +3479,8 @@
   "FR": "tradeship",
   "HR": "tradeship",
   "MO": "tradeship",
+  "MA": "tradeship",
+  "OT": "tradeship",
   "color": "black"
 },
 {
@@ -3365,6 +3523,8 @@
   "FR": "transport",
   "HR": "transport",
   "MO": "transport",
+  "MA": "transport",
+  "OT": "transport",
   "color": "sienna"
 },
 {
@@ -3482,6 +3642,8 @@
   "HR": "autohealdisabled",
   "MO": "autohealdisabled",
   "RU": "autohealdisabled",
+  "MA": "autohealdisabled",
+  "OT": "autohealdisabled",
   "color": "black"
 },
 {
@@ -3507,6 +3669,8 @@
   "HR": "convert",
   "MO": "convert",
   "RU": "convert",
+  "MA": "convert",
+  "OT": "convert",
   "color": "black"
 },
 {
@@ -3532,6 +3696,8 @@
   "HR": "detonate",
   "MO": "detonate",
   "RU": "detonate",
+  "MA": "detonate",
+  "OT": "detonate",
   "color": "black"
 },
 {
@@ -3548,6 +3714,8 @@
   "HR": "dropoffrelic",
   "MO": "dropoffrelic",
   "RU": "dropoffrelic",
+  "MA": "dropoffrelic",
+  "OT": "dropoffrelic",
   "color": "black"
 },
 {
@@ -3610,6 +3778,8 @@
   "HR": "heal",
   "MO": "heal",
   "RU": "heal",
+  "MA": "heal",
+  "OT": "heal",
   "color": "black"
 },
 {
@@ -3649,6 +3819,8 @@
   "FR": "springald",
   "MO": "springald",
   "RU": "springald",
+  "MA": "springald",
+  "OT": "springald",
   "color": "teal"
 },
 {
@@ -3748,6 +3920,8 @@
   "HR": "mangonel",
   "MO": "mangonel",
   "RU": "mangonel",
+  "MA": "mangonel",
+  "OT": "mangonel",
   "color": "sienna"
 },
 {
@@ -3782,6 +3956,8 @@
   "HR": "scorpion3",
   "MO": "scorpion3",
   "RU": "scorpion3",
+  "MA": "scorpion3",
+  "OT": "scorpion3",
   "color": "sienna"
 },
 {
@@ -3842,6 +4018,8 @@
   "FR": "trebuchet3",
   "HR": "trebuchet3",
   "RU": "trebuchet3",
+  "MA": "trebuchet3",
+  "OT": "trebuchet3",
   "color": "sienna"
 },
 {
@@ -3951,6 +4129,8 @@
   "HR": "crossbowman2",
   "MO": "crossbowman2",
   "RU": "crossbowman2",
+  "MA": "crossbowman2",
+  "OT": "crossbowman2",
   "color": "sienna"
 },
 {
@@ -4035,6 +4215,8 @@
   "FR": "manatarms3",
   "MO": "manatarms3",
   "RU": "manatarms3",
+  "MA": "manatarms3",
+  "OT": "manatarms3",
   "color": "sienna"
 },
 {
@@ -4104,6 +4286,8 @@
   "CH": "lancer3",
   "DS": "lancer3",
   "MO": "lancer3",
+  "MA": "lancer3",
+  "OT": "lancer3",
   "color": "sienna"
 },
 {
@@ -4133,6 +4317,8 @@
   "FR": "monastery",
   "HR": "monastery",
   "RU": "monastery",
+  "MA": "monastery",
+  "OT": "monastery",
   "color": "gray"
 },
 {
@@ -4173,6 +4359,8 @@
   "HR": "siegeworkshop",
   "MO": "siegeworkshop",
   "RU": "siegeworkshop",
+  "MA": "siegeworkshop",
+  "OT": "siegeworkshop",
   "color": "sienna"
 },
 {
@@ -4201,6 +4389,8 @@
   "FR": "keep",
   "HR": "keep",
   "RU": "keep",
+  "MA": "keep",
+  "OT": "keep",
   "color": "gray"
 },
 {
@@ -4388,6 +4578,8 @@
   "HR": "woodgather2",
   "MO": "woodgather2",
   "RU": "woodgather2",
+  "MA": "woodgather2",
+  "OT": "woodgather2",
   "color": "teal"
 },
 {
@@ -4456,6 +4648,8 @@
   "HR": "greasedaxle",
   "MO": "greasedaxle",
   "RU": "greasedaxle",
+  "MA": "greasedaxle",
+  "OT": "greasedaxle",
   "color": "teal"
 },
 {
@@ -4566,6 +4760,8 @@
   "HR": "rangeddamagetechnology2",
   "MO": "rangeddamagetechnology2",
   "RU": "rangeddamagetechnology2",
+  "MA": "rangeddamagetechnology2",
+  "OT": "rangeddamagetechnology2",
   "color": "teal"
 },
 {
@@ -4597,6 +4793,8 @@
   "HR": "rangedarmortechnology2",
   "MO": "rangedarmortechnology2",
   "RU": "rangedarmortechnology2",
+  "MA": "rangedarmortechnology2",
+  "OT": "rangedarmortechnology2",
   "color": "teal"
 },
 {
@@ -4641,6 +4839,8 @@
   "HR": "militaryacademy",
   "MO": "militaryacademy",
   "RU": "militaryacademy",
+  "MA": "militaryacademy",
+  "OT": "militaryacademy",
   "color": "teal"
 },
 {
@@ -4692,6 +4892,8 @@
   "HR": "armoredhull",
   "MO": "armoredhull",
   "RU": "armoredhull",
+  "MA": "armoredhull",
+  "OT": "armoredhull",
   "color": "teal"
 },
 {
@@ -4734,6 +4936,8 @@
   "HR": "navigatorlookout",
   "MO": "navigatorlookout",
   "RU": "navigatorlookout",
+  "MA": "navigatorlookout",
+  "OT": "navigatorlookout",
   "color": "teal"
 },
 {
@@ -4788,6 +4992,8 @@
   "HR": "goldgather2",
   "MO": "goldgather2",
   "RU": "goldgather2",
+  "MA": "goldgather2",
+  "OT": "goldgather2",
   "color": "teal"
 },
 {
@@ -4832,6 +5038,8 @@
   "HR": "meleedamagetechnology2",
   "MO": "meleedamagetechnology2",
   "RU": "meleedamagetechnology2",
+  "MA": "meleedamagetechnology2",
+  "OT": "meleedamagetechnology2",
   "color": "teal"
 },
 {
@@ -4851,6 +5059,8 @@
   "HR": "meleearmortechnology2",
   "MO": "meleearmortechnology2",
   "RU": "meleearmortechnology2",
+  "MA": "meleearmortechnology2",
+  "OT": "meleearmortechnology2",
   "color": "teal"
 },
 {
@@ -4949,6 +5159,8 @@
   "HR": "herbalmedicine",
   "MO": "herbalmedicine",
   "RU": "herbalmedicine",
+  "MA": "herbalmedicine",
+  "OT": "herbalmedicine",
   "color": "teal"
 },
 {
@@ -4991,6 +5203,8 @@
   "HR": "foodgather2",
   "MO": "foodgather2",
   "RU": "foodgather2",
+  "MA": "foodgather2",
+  "OT": "foodgather2",
   "color": "teal"
 },
 {
@@ -5033,6 +5247,8 @@
   "HR": "driftnets",
   "MO": "driftnets",
   "RU": "driftnets",
+  "MA": "driftnets",
+  "OT": "driftnets",
   "color": "teal"
 },
 {
@@ -5088,6 +5304,8 @@
   "HR": "boilingoil",
   "MO": "boilingoil",
   "RU": "boilingoil",
+  "MA": "boilingoil",
+  "OT": "boilingoil",
   "color": "teal"
 },
 {
@@ -5200,6 +5418,8 @@
   "HR": "springald",
   "MO": "springald",
   "RU": "springald",
+  "MA": "springald",
+  "OT": "springald",
   "color": "teal"
 },
 {
@@ -5268,6 +5488,8 @@
   "HR": "spearman_3",
   "MO": "spearman_3",
   "RU": "spearman_3",
+  "MA": "spearman_3",
+  "OT": "spearman_3",
   "color": "teal"
 },
 {
@@ -5298,6 +5520,8 @@
   "HR": "archer_3",
   "MO": "archer_3",
   "RU": "archer_3",
+  "MA": "archer_3",
+  "OT": "archer_3",
   "color": "teal"
 },
 {
@@ -5328,6 +5552,8 @@
   "FR": "horseman_3",
   "HR": "horseman_3",
   "RU": "horseman_3",
+  "MA": "horseman_3",
+  "OT": "horseman_3",
   "color": "teal"
 },
 {
@@ -5556,6 +5782,8 @@
   "FR": "cannon",
   "MO": "cannon",
   "RU": "cannon",
+  "MA": "cannon",
+  "OT": "cannon",
   "color": "teal"
 },
 {
@@ -5633,6 +5861,8 @@
   "HR": "bombard",
   "MO": "bombard",
   "RU": "bombard",
+  "MA": "bombard",
+  "OT": "bombard",
   "color": "sienna"
 },
 {
@@ -5748,6 +5978,8 @@
   "FR": "handcannon",
   "HR": "handcannon",
   "MO": "handcannon",
+  "MA": "handcannon",
+  "OT": "handcannon",
   "color": "sienna"
 },
 {
@@ -5913,6 +6145,8 @@
   "FR": "university",
   "HR": "university",
   "RU": "university",
+  "MA": "university",
+  "OT": "university",
   "color": "teal"
 },
 {
@@ -5942,6 +6176,8 @@
   "HR": "woodgather3",
   "MO": "woodgather3",
   "RU": "woodgather3",
+  "MA": "woodgather3",
+  "OT": "woodgather3",
   "color": "teal"
 },
 {
@@ -5985,6 +6221,8 @@
   "HR": "wargalleycannon",
   "MO": "wargalleycannon",
   "RU": "wargalleycannon",
+  "MA": "wargalleycannon",
+  "OT": "wargalleycannon",
   "color": "teal"
 },
 {
@@ -6099,6 +6337,8 @@
   "HR": "rollershuttertrigger",
   "MO": "rollershuttertrigger",
   "RU": "rollershuttertrigger",
+  "MA": "rollershuttertrigger",
+  "OT": "rollershuttertrigger",
   "color": "teal"
 },
 {
@@ -6143,6 +6383,8 @@
   "HR": "mathematics",
   "MO": "mathematics",
   "RU": "mathematics",
+  "MA": "mathematics",
+  "OT": "mathematics",
   "color": "teal"
 },
 {
@@ -6162,6 +6404,8 @@
   "HR": "siegewrapping",
   "MO": "siegewrapping",
   "RU": "siegewrapping",
+  "MA": "siegewrapping",
+  "OT": "siegewrapping",
   "color": "teal"
 },
 {
@@ -6205,6 +6449,8 @@
   "HR": "piety",
   "MO": "piety",
   "RU": "piety",
+  "MA": "piety",
+  "OT": "piety",
   "color": "teal"
 },
 {
@@ -6235,6 +6481,8 @@
   "HR": "tithebarn",
   "MO": "tithebarn",
   "RU": "tithebarn",
+  "MA": "tithebarn",
+  "OT": "tithebarn",
   "color": "teal"
 },
 {
@@ -6276,6 +6524,8 @@
   "HR": "firearrows",
   "MO": "firearrows",
   "RU": "firearrows",
+  "MA": "firearrows",
+  "OT": "firearrows",
   "color": "teal"
 },
 {
@@ -6295,6 +6545,8 @@
   "HR": "rangeddamagetechnology3",
   "MO": "rangeddamagetechnology3",
   "RU": "rangeddamagetechnology3",
+  "MA": "rangeddamagetechnology3",
+  "OT": "rangeddamagetechnology3",
   "color": "teal"
 },
 {
@@ -6327,6 +6579,8 @@
   "HR": "rangedarmortechnology3",
   "MO": "rangedarmortechnology3",
   "RU": "rangedarmortechnology3",
+  "MA": "rangedarmortechnology3",
+  "OT": "rangedarmortechnology3",
   "color": "teal"
 },
 {
@@ -6418,6 +6672,8 @@
   "HR": "goldgather3",
   "MO": "goldgather3",
   "RU": "goldgather3",
+  "MA": "goldgather3",
+  "OT": "goldgather3",
   "color": "teal"
 },
 {
@@ -6462,6 +6718,8 @@
   "HR": "elitearmytactics",
   "MO": "elitearmytactics",
   "RU": "elitearmytactics",
+  "MA": "elitearmytactics",
+  "OT": "elitearmytactics",
   "color": "teal"
 },
 {
@@ -6494,6 +6752,8 @@
   "HR": "meleedamagetechnology3",
   "MO": "meleedamagetechnology3",
   "RU": "meleedamagetechnology3",
+  "MA": "meleedamagetechnology3",
+  "OT": "meleedamagetechnology3",
   "color": "teal"
 },
 {
@@ -6513,6 +6773,8 @@
   "HR": "meleearmortechnology3",
   "MO": "meleearmortechnology3",
   "RU": "meleearmortechnology3",
+  "MA": "meleearmortechnology3",
+  "OT": "meleearmortechnology3",
   "color": "teal"
 },
 {
@@ -6532,6 +6794,8 @@
   "HR": "adjustablecrossbar",
   "MO": "adjustablecrossbar",
   "RU": "adjustablecrossbar",
+  "MA": "adjustablecrossbar",
+  "OT": "adjustablecrossbar",
   "color": "teal"
 },
 {
@@ -6646,6 +6910,8 @@
   "HR": "chemistry",
   "MO": "chemistry",
   "RU": "chemistry",
+  "MA": "chemistry",
+  "OT": "chemistry",
   "color": "teal"
 },
 {
@@ -6689,6 +6955,8 @@
   "HR": "foodgather3",
   "MO": "foodgather3",
   "RU": "foodgather3",
+  "MA": "foodgather3",
+  "OT": "foodgather3",
   "color": "teal"
 },
 {
@@ -6776,6 +7044,8 @@
   "HR": "demolitionship",
   "MO": "demolitionship",
   "RU": "demolitionship",
+  "MA": "demolitionship",
+  "OT": "demolitionship",
   "color": "teal"
 },
 {
@@ -6818,6 +7088,8 @@
   "HR": "biology",
   "MO": "biology",
   "RU": "biology",
+  "MA": "biology",
+  "OT": "biology",
   "color": "teal"
 },
 {
@@ -6886,6 +7158,8 @@
   "HR": "architecture",
   "MO": "architecture",
   "RU": "architecture",
+  "MA": "architecture",
+  "OT": "architecture",
   "color": "teal"
 },
 {
@@ -6966,6 +7240,8 @@
   "HR": "spearman_4",
   "MO": "spearman_4",
   "RU": "spearman_4",
+  "MA": "spearman_4",
+  "OT": "spearman_4",
   "color": "teal"
 },
 {
@@ -6984,6 +7260,8 @@
   "HR": "archer_4",
   "MO": "archer_4",
   "RU": "archer_4",
+  "MA": "archer_4",
+  "OT": "archer_4",
   "color": "teal"
 },
 {
@@ -7014,6 +7292,8 @@
   "FR": "horseman_4",
   "HR": "horseman_4",
   "RU": "horseman_4",
+  "MA": "horseman_4",
+  "OT": "horseman_4",
   "color": "teal"
 },
 {
@@ -7116,6 +7396,8 @@
   "HR": "crossbowman_4",
   "MO": "crossbowman_4",
   "RU": "crossbowman_4",
+  "MA": "crossbowman_4",
+  "OT": "crossbowman_4",
   "color": "teal"
 },
 {
@@ -7156,6 +7438,8 @@
   "DS": "knight4",
   "EN": "knight4",
   "HR": "knight4",
+  "MA": "knight4",
+  "OT": "knight4",
   "color": "teal"
 },
 {
@@ -7196,6 +7480,8 @@
   "FR": "manatarms_4",
   "MO": "manatarms_4",
   "RU": "manatarms_4",
+  "MA": "manatarms_4",
+  "OT": "manatarms_4",
   "color": "teal"
 },
 {
@@ -7279,6 +7565,8 @@
   "HR": "resourcefoodicon",
   "MO": "resourcefoodicon",
   "RU": "resourcefoodicon",
+  "MA": "resourcefoodicon",
+  "OT": "resourcefoodicon",
   "color": "transparent"
 },
 {
@@ -7295,6 +7583,8 @@
   "HR": "age2dark",
   "MO": "age2dark",
   "RU": "age2dark",
+  "MA": "age2dark",
+  "OT": "age2dark",
   "color": "transparent"
 },
 {
@@ -7311,6 +7601,8 @@
   "HR": "age3dark",
   "MO": "age3dark",
   "RU": "age3dark",
+  "MA": "age3dark",
+  "OT": "age3dark",
   "color": "transparent"
 },
 {
@@ -7327,6 +7619,8 @@
   "HR": "age4dark",
   "MO": "age4dark",
   "RU": "age4dark",
+  "MA": "age4dark",
+  "OT": "age4dark",
   "color": "transparent"
 },
 {
@@ -7379,6 +7673,8 @@
   "HR": "victoryconditionconquest",
   "MO": "victoryconditionconquest",
   "RU": "victoryconditionconquest",
+  "MA": "victoryconditionconquest",
+  "OT": "victoryconditionconquest",
   "color": "transparent"
 },
 {
@@ -7403,6 +7699,8 @@
   "HR": "victoryconditionreligious",
   "MO": "victoryconditionreligious",
   "RU": "victoryconditionreligious",
+  "MA": "victoryconditionreligious",
+  "OT": "victoryconditionreligious",
   "color": "transparent"
 },
 {
@@ -7419,6 +7717,8 @@
   "HR": "victoryconditionwonder",
   "MO": "victoryconditionwonder",
   "RU": "victoryconditionwonder",
+  "MA": "victoryconditionwonder",
+  "OT": "victoryconditionwonder",
   "color": "transparent"
 },
 {
@@ -7443,6 +7743,8 @@
   "HR": "objective",
   "MO": "objective",
   "RU": "objective",
+  "MA": "objective",
+  "OT": "objective",
   "color": "transparent"
 },
 {
@@ -7459,6 +7761,8 @@
   "HR": "objectivecomplete",
   "MO": "objectivecomplete",
   "RU": "objectivecomplete",
+  "MA": "objectivecomplete",
+  "OT": "objectivecomplete",
   "color": "transparent"
 },
 {
@@ -7475,6 +7779,8 @@
   "HR": "cancel",
   "MO": "cancel",
   "RU": "cancel",
+  "MA": "cancel",
+  "OT": "cancel",
   "color": "transparent"
 },
 {
@@ -7491,6 +7797,8 @@
   "HR": "statflowergold",
   "MO": "statflowergold",
   "RU": "statflowergold",
+  "MA": "statflowergold",
+  "OT": "statflowergold",
   "color": "transparent"
 },
 {
@@ -7507,6 +7815,8 @@
   "HR": "holy_site",
   "MO": "holy_site",
   "RU": "holy_site",
+  "MA": "holy_site",
+  "OT": "holy_site",
   "color": "transparent"
 },
 {
@@ -7523,6 +7833,8 @@
   "HR": "gaiatreeprototypetree",
   "MO": "gaiatreeprototypetree",
   "RU": "gaiatreeprototypetree",
+  "MA": "gaiatreeprototypetree",
+  "OT": "gaiatreeprototypetree",
   "color": "transparent"
 },
 {
