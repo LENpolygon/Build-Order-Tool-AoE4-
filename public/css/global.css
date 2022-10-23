@@ -6,6 +6,14 @@
     vertical-align: baseline;
 }
 
+.banner{
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    display: none;
+}
+
 html {
     color: #fff;
     font-family: "Lucida Grande", Tahoma, Verdana, Arial, sans-serif;
