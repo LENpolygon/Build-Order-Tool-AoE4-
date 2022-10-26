@@ -461,6 +461,10 @@ function getCivilizationImages(civ_name) {
             'streltsy': 'unit_rus/streltsy.png',
             'warriormonk': 'unit_rus/warrior-monk.png'
         };
+    } else if (civ_name === 'Malians') {
+        return {};
+    } else if (civ_name === 'Ottomans') {
+        return {};
     } else {
         return {};
     }
@@ -546,20 +550,24 @@ function resourceValue(input) {
 function civToOverlayName(input) {
     var input_lower = input.toLowerCase()
 
-    if (input_lower.includes('english')) {
+    if (input_lower.includes('abbasid')) {
+        return 'Abbasid Dynasty';
+    } else if (input_lower.includes('chinese')) {
+        return 'Chinese';
+    } else if (input_lower.includes('delhi')) {
+        return 'Delhi Sultanate';
+    } else if (input_lower.includes('english')) {
         return 'English';
     } else if (input_lower.includes('french')) {
         return 'French';
-    } else if (input_lower.includes('delhi')) {
-        return 'Delhi Sultanate';
-    } else if (input_lower.includes('mongols')) {
-        return 'Mongols';
     } else if (input_lower.includes('holy')) {
         return 'Holy Roman Empire';
-    } else if (input_lower.includes('chinese')) {
-        return 'Chinese';
-    } else if (input_lower.includes('abbasid')) {
-        return 'Abbasid Dynasty';
+    } else if (input_lower.includes('malians')) {
+        return 'Malians';
+    } else if (input_lower.includes('mongols')) {
+        return 'Mongols';
+    } else if (input_lower.includes('ottomans')) {
+        return 'Ottomans';
     } else if (input_lower.includes('rus')) {
         return 'Rus';
     } else {
