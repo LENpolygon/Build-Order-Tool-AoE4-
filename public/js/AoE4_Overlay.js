@@ -179,7 +179,9 @@ function getCommonImages() {
         'villagerFR': 'unit_worker/villager.png',
         'villagerHR': 'unit_worker/villager.png',
         'villagerMO': 'unit_worker/villager.png',
-        'villagerRU': 'unit_worker/villager.png'
+        'villagerRU': 'unit_worker/villager.png',
+        'villagerMA': 'unit_worker/villager.png',
+        'villagerOT': 'unit_worker/villager.png'
     };
 }
 
