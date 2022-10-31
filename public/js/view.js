@@ -1,6 +1,5 @@
 import escapeHtml from './global.js';
 import civilizations from '../json/civilizations.js';
-import {htmlDecode, copyForIllustratedOverlay} from './AoE4_Overlay.js';
 
 //////////////////////////////////////////////////
 // DEFINE menu structure
@@ -18,7 +17,7 @@ for (var header in headerData) {
 var selectedciv = null;
 var buildorder = null;
 var buildordercolumns = 6;
-const loadLimit = 10;
+const loadLimit = 20;
 const titleLength = 48;
 const nameLength = 24;
 var usp = new URLSearchParams(window.location.search);
@@ -85,8 +84,7 @@ if (isNaN(usp.get("f"))) { // Update View counter
         str += "<li class=\"mobile-only\"><a href=\"build.html?c=" + selectedciv.abbr + "&" + docData.version + "=" + docData.build + "\" class=\"gold\">✎ Edit this Build</a></li>";
         str += "<li class=\"mobile-only\"><a href=\"https://github.com/LENpolygon/Build-Order-Tool-AoE4-\">💻 View Github Page</a></li>";
         str += "<li class=\"mobile-only\"><a href=\"https://ko-fi.com/lenpolygon\">💰 Support Website</a></li>";
-        str += "<li class=\"mobile-only\"><a style=\"color: aqua;\" id=\"copyForOverlayBtnMobile\">🗗 Simple TXT Build Order to Clipboard</a></li>";
-        str += "<li class=\"mobile-only\"><a style=\"color: aqua;\" id=\"copyForIllustratedOverlayBtnMobile\">🗗 Illustrated Build Order to Clipboard</a></li>";
+        str += "<li class=\"mobile-only\"><a style=\"color: aqua;\" id=\"copyForOverlayBtnMobile\">🗗 Build to Clipboard (text)</a></li>";
         str += "<li class=\"mobile-only\"><a style=\"color: #c4c4c4;\" href=\"https://github.com/FluffyMaguro/AoE4_Overlay\">？ Learn about AoE4_Overlay</a></li>";
         document.getElementById("civilizationsMenu").innerHTML = str;
         document.getElementById("BOforthisBO").href += (selectedciv.abbr + "&" + docData.version + "=" + docData.build);
@@ -214,8 +212,15 @@ if (isNaN(usp.get("f"))) { // Update View counter
             return output.replace(/&nbsp;/g, " ");
         }
 
-        // Copy to clipboard for Simple TXT Build Order format
-        function copyForSimpleTxtOverlay() {
+        //////////////////////////////////////////////////
+        // COPY for AoE4_Overlay event 
+        // https://github.com/FluffyMaguro/AoE4_Overlay
+        //////////////////////////////////////////////////
+        function htmlDecode(input) {
+            var doc = new DOMParser().parseFromString(input, "text/html");
+            return doc.documentElement.textContent;
+        }
+        function copyForOverlay() {
             var rows = document.getElementById("buildTable").rows;
             var str = "";
             var newline = "\r\n";
@@ -248,13 +253,8 @@ if (isNaN(usp.get("f"))) { // Update View counter
                 console.error('Async: Could not copy text: ', err);
             });
         }
-        // Simple TXT Build Order
-        document.getElementById("copyForOverlayBtn").addEventListener("click", copyForSimpleTxtOverlay);
-        document.getElementById("copyForOverlayBtnMobile").addEventListener("click", copyForSimpleTxtOverlay);
-
-        // Illustrated Build Order
-        document.getElementById('copyForIllustratedOverlayBtn').addEventListener('click', copyForIllustratedOverlay);
-        document.getElementById('copyForIllustratedOverlayBtnMobile').addEventListener('click', copyForIllustratedOverlay);
+        document.getElementById("copyForOverlayBtn").addEventListener("click", copyForOverlay);
+        document.getElementById("copyForOverlayBtnMobile").addEventListener("click", copyForOverlay);
 
         //////////////////////////////////////////////////
         // UPVOTE / DOWNVOTE SYSTEM
