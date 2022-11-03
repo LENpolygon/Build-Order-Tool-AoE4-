@@ -18,7 +18,7 @@ for (var header in headerData) {
 var selectedciv = null;
 var buildorder = null;
 var buildordercolumns = 2;
-const loadLimit = 20;
+const loadLimit = 15;
 const titleLength = 48;
 const nameLength = 24;
 var usp = new URLSearchParams(window.location.search);
