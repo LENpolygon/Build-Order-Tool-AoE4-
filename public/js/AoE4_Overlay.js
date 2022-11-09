@@ -19,6 +19,7 @@ function getCommonImages() {
 
         'keep': 'building_defensive/keep.png',
         'outpost': 'building_defensive/outpost.png',
+        'uilding_outpost': 'building_defensive/outpost.png',
         'palisadegate': 'building_defensive/palisade-gate.png',
         'palisadewall': 'building_defensive/palisade-wall.png',
         'stonewall': 'building_defensive/stone-wall.png',
@@ -464,9 +465,75 @@ function getCivilizationImages(civ_name) {
             'warriormonk': 'unit_rus/warrior-monk.png'
         };
     } else if (civ_name === 'Malians') {
-        return {};
+        return {
+            'arrior_scout_1': 'unit_malians/warrior-scout-2.png',
+            'arrior_scout_2': 'unit_malians/warrior-scout-2.png',
+            'arrior_scout_3': 'unit_malians/warrior-scout-2.png',
+            'arrior_scout_4': 'unit_malians/warrior-scout-2.png',
+            'avelin_throw': 'unit_malians/javelin-thrower-2.png',
+            'avelin_thrower': 'unit_malians/javelin-thrower-2.png',
+            'avelin_thrower_2': 'unit_malians/javelin-thrower-2.png',
+            'avelin_thrower_3': 'unit_malians/javelin-thrower-2.png',
+            'avelin_thrower_4': 'unit_malians/javelin-thrower-2.png',
+            'ofa': 'unit_malians/sofa-2.png',
+            'ofa_2': 'unit_malians/sofa-2.png',
+            'ofa_3': 'unit_malians/sofa-2.png',
+            'ofa_4': 'unit_malians/sofa-2.png',
+            'onso': 'unit_malians/donso-1.png',
+            'onso_1': 'unit_malians/donso-1.png',
+            'onso_2': 'unit_malians/donso-1.png',
+            'onso_3': 'unit_malians/donso-1.png',
+            'onso_4': 'unit_malians/donso-1.png',
+            'usofadi': 'unit_malians/musofadi-warrior-2.png',
+            'usofadi_1': 'unit_malians/musofadi-warrior-2.png',
+            'usofadi_2': 'unit_malians/musofadi-warrior-2.png',
+            'usofadi_3': 'unit_malians/musofadi-warrior-2.png',
+            'usofadi_4': 'unit_malians/musofadi-warrior-2.png',
+            'unner': 'unit_malians/musofadi-gunner-4.png',
+
+            'attle': 'building_malians/cattle-ranch-2.png',
+            'uilding_pit_mine': 'building_malians/pit-mine-1.png',
+            'uilding_toll_outpost': 'building_malians/toll-outpost-1.png',
+
+            'anco_repairs': 'technology_malians/banco-repairs-2.png',
+            'arima_leadership': 'technology_malians/farima-leadership-4.png',
+            'mported_armor': 'technology_malians/imported-armor-3.png',
+            'ocal_knowledge': 'technology_malians/local-knowledge-4.png',
+            'recision_training': 'technology_malians/precision-training-4.png',
+            'oison': 'technology_malians/poisoned-arrows-3.png',
+
+            'uilding_wonder': 'landmark_malians/great-mosque-4.png'
+        };
     } else if (civ_name === 'Ottomans') {
-        return {};
+        return {
+            'annisary': 'unit_ottomans/janissary-3.png',
+            'annisary_3': 'unit_ottomans/janissary-3.png',
+            'annisary_4': 'unit_ottomans/janissary-3.png',
+            'ehter': 'unit_ottomans/mehter-2.png',
+            'ipahi': 'unit_ottomans/sipahi-2.png',
+            'ipahi_1': 'unit_ottomans/sipahi-2.png',
+            'ipahi_2': 'unit_ottomans/sipahi-2.png',
+            'ipahi_3': 'unit_ottomans/sipahi-2.png',
+            'ipahi_4': 'unit_ottomans/sipahi-2.png',
+            'reat_bombard': 'unit_ottomans/great-bombard-4.png',
+            'rand_galley': 'unit_ottomans/grand-galley-4.png',
+
+            'ilitary_school': 'building_ottomans/military-school-1.png',
+
+            'annisary_company': 'technology_ottomans/janissary-company-1.png',
+            'annisary_guns': 'technology_ottomans/janissary-guns-4.png',
+            'ast_training': 'technology_ottomans/fast-training-1.png',
+            'dvanced_academy': 'technology_ottomans/advanced-academy-1.png',
+            'ehter_drums': 'technology_ottomans/mehter-drums-1.png',
+            'iege_crews': 'technology_ottomans/siege-crews-1.png',
+            'ilitary_campus': 'technology_ottomans/military-campus-1.png',
+            'mperial_fleet': 'technology_ottomans/imperial-fleet-4.png',
+            'natolian_hills': 'technology_ottomans/anatolian-hills-1.png',
+            'rade_bags': 'technology_ottomans/trade-bags-1.png',
+            'ield_work': 'technology_ottomans/field-work-1.png',
+
+            'uilding_wonder': 'landmark_ottomans/azure-mosque-4.png'
+        };
     } else {
         return {};
     }
