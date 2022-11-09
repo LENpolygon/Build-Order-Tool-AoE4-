@@ -7956,5 +7956,731 @@
   "class": "Flag",
   "description": "civiconsmallsultinates",
   "color": "transparent"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "anco_repairs",
+  "MA": "anco_repairs",
+  "OT": "anco_repairs"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "anding_parties",
+  "MA": "anding_parties",
+  "OT": "anding_parties"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "annisary",
+  "OT": "annisary"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "annisary_3",
+  "OT": "annisary_3"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "annisary_4",
+  "OT": "annisary_4"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "annisary_company",
+  "OT": "annisary_company"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "annisary_guns",
+  "OT": "annisary_guns"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "anuscript_trade",
+  "MA": "anuscript_trade",
+  "OT": "anuscript_trade"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "arima_leadership",
+  "MA": "arima_leadership",
+  "OT": "arima_leadership"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "arrior_scout_1",
+  "MA": "arrior_scout_1",
+  "OT": "arrior_scout_1"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "arrior_scout_2",
+  "MA": "arrior_scout_2",
+  "OT": "arrior_scout_2"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "arrior_scout_3",
+  "MA": "arrior_scout_3",
+  "OT": "arrior_scout_3"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "arrior_scout_4",
+  "MA": "arrior_scout_4",
+  "OT": "arrior_scout_4"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "ast_training",
+  "MA": "ast_training",
+  "OT": "ast_training"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "attle",
+  "MA": "attle",
+  "OT": "attle"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "avelin_throw",
+  "MA": "avelin_throw",
+  "OT": "avelin_throw"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "avelin_thrower",
+  "MA": "avelin_thrower",
+  "OT": "avelin_thrower"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "avelin_thrower_2",
+  "MA": "avelin_thrower_2",
+  "OT": "avelin_thrower_2"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "avelin_thrower_3",
+  "MA": "avelin_thrower_3",
+  "OT": "avelin_thrower_3"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "avelin_thrower_4",
+  "MA": "avelin_thrower_4",
+  "OT": "avelin_thrower_4"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "ax_aura",
+  "MA": "ax_aura",
+  "OT": "ax_aura"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "cout",
+  "MA": "cout",
+  "OT": "cout"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "dvanced_academy",
+  "MA": "dvanced_academy",
+  "OT": "dvanced_academy"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "ehter",
+  "MA": "ehter",
+  "OT": "ehter"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "ehter_drums",
+  "MA": "ehter_drums",
+  "OT": "ehter_drums"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "einforced_hulls",
+  "MA": "einforced_hulls",
+  "OT": "einforced_hulls"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "hoton_man",
+  "MA": "hoton_man",
+  "OT": "hoton_man"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "iege_crews",
+  "MA": "iege_crews",
+  "OT": "iege_crews"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "iege_festival",
+  "MA": "iege_festival",
+  "OT": "iege_festival"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "ield_work",
+  "MA": "ield_work",
+  "OT": "ield_work"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "ilitary_campus",
+  "OT": "ilitary_campus"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "ilitary_festival",
+  "OT": "ilitary_festival"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "ilitary_school",
+  "OT": "ilitary_school"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "ipahi",
+  "MA": "ipahi",
+  "OT": "ipahi"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "ipahi_1",
+  "MA": "ipahi_1",
+  "OT": "ipahi_1"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "ipahi_2",
+  "MA": "ipahi_2",
+  "OT": "ipahi_2"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "ipahi_3",
+  "MA": "ipahi_3",
+  "OT": "ipahi_3"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "ipahi_4",
+  "MA": "ipahi_4",
+  "OT": "ipahi_4"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "ipahi_stamina",
+  "MA": "ipahi_stamina",
+  "OT": "ipahi_stamina"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "irst_strike",
+  "MA": "irst_strike",
+  "OT": "irst_strike"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "lacksmith_stockpile",
+  "MA": "lacksmith_stockpile",
+  "OT": "lacksmith_stockpile"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "mperial_fleet",
+  "MA": "mperial_fleet",
+  "OT": "mperial_fleet"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "mported_armor",
+  "MA": "mported_armor",
+  "OT": "mported_armor"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "natolian_hills",
+  "MA": "natolian_hills",
+  "OT": "natolian_hills"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "oastal_navigation",
+  "MA": "oastal_navigation",
+  "OT": "oastal_navigation"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "ocal_knowledge",
+  "MA": "ocal_knowledge",
+  "OT": "ocal_knowledge"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "ofa",
+  "MA": "ofa",
+  "OT": "ofa"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "ofa_2",
+  "MA": "ofa_2",
+  "OT": "ofa_2"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "ofa_3",
+  "MA": "ofa_3",
+  "OT": "ofa_3"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "ofa_4",
+  "MA": "ofa_4",
+  "OT": "ofa_4"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "oison",
+  "MA": "oison",
+  "OT": "oison"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "onso",
+  "MA": "onso",
+  "OT": "onso"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "onso_1",
+  "MA": "onso_1",
+  "OT": "onso_1"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "onso_2",
+  "MA": "onso_2",
+  "OT": "onso_2"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "onso_3",
+  "MA": "onso_3",
+  "OT": "onso_3"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "onso_4",
+  "MA": "onso_4",
+  "OT": "onso_4"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "ood_festival",
+  "MA": "ood_festival",
+  "OT": "ood_festival"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "opkapi_palace_buff",
+  "MA": "opkapi_palace_buff",
+  "OT": "opkapi_palace_buff"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "ow_fatten",
+  "MA": "ow_fatten",
+  "OT": "ow_fatten"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "rade_bags",
+  "MA": "rade_bags",
+  "OT": "rade_bags"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "rand_galley",
+  "MA": "rand_galley",
+  "OT": "rand_galley"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "reat_bombard",
+  "OT": "reat_bombard"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "recision_training",
+  "MA": "recision_training",
+  "OT": "recision_training"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "tealth",
+  "MA": "tealth",
+  "OT": "tealth"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "uilding_outpost",
+  "MA": "uilding_outpost",
+  "OT": "uilding_outpost"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "uilding_pit_mine",
+  "MA": "uilding_pit_mine",
+  "OT": "uilding_pit_mine"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "uilding_toll_outpost",
+  "MA": "uilding_toll_outpost",
+  "OT": "uilding_toll_outpost"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "uilding_wonder",
+  "MA": "uilding_wonder",
+  "OT": "uilding_wonder"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "unner",
+  "MA": "unner",
+  "OT": "unner"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "usofadi",
+  "MA": "usofadi"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "usofadi_1",
+  "MA": "usofadi_1"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "usofadi_2",
+  "MA": "usofadi_2"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "usofadi_3",
+  "MA": "usofadi_3"
+},
+{
+  "genre": "Ability",
+  "class": "Misc",
+  "age": 1,
+  "color": "transparent",
+  "description": "Help update the icons.js file on Github!",
+  "name": "usofadi_4",
+  "MA": "usofadi_4"
 }
 ]
