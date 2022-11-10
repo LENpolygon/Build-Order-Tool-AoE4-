@@ -60,14 +60,14 @@ export default
         "uniqueunits": [440, 304, 295, 138, 255, 252, 263, 415]
     },
     {
-        "civilization": "Ottomans [BETA]",
+        "civilization": "Ottomans",
         "abbr": "OT",
         "focus": "Military, Imperial, Military School",
         "difficulty": 3,
         "uniqueunits": []
     },
     {
-        "civilization": "Malians [BETA]",
+        "civilization": "Malians",
         "abbr": "MA",
         "focus": "Economic, Strategic, Unique Infantry",
         "difficulty": 3,
