@@ -719,8 +719,8 @@ export const copyForIllustratedOverlay = () => {
         // villagers per resource
         var foodValue = resourceValue(currentLine.cells[1].innerHTML);
         var woodValue = resourceValue(currentLine.cells[2].innerHTML);
-        var goldValue = resourceValue(currentLine.cells[4].innerHTML);
-        var stoneValue = resourceValue(currentLine.cells[3].innerHTML);
+        var goldValue = resourceValue(currentLine.cells[3].innerHTML);
+        var stoneValue = resourceValue(currentLine.cells[4].innerHTML);
 
         // set villager count to all of the villagers on resouces combined
         if ((foodValue >= 0 && woodValue >= 0 && goldValue >= 0 && stoneValue >= 0)) {
