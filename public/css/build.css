@@ -17,6 +17,22 @@ table .buildTime {
     background: #2C374F;
 }
 
+header {
+    padding-bottom: 0;
+    margin: 0;
+}
+
+thead {
+    top: 0;
+    background-color: #181C29;
+    z-index: 2;
+    position: sticky;
+}
+
+th {
+    position: sticky;
+}
+
 table tbody tr td:nth-child(2) {
     background: #41394a;
 }
@@ -113,9 +129,11 @@ table tbody tr td:nth-child(6) {
     html {
         font-size: 6.7px;
     }
+
     .civStatsMore {
         display: none;
     }
+
     table .buildTime {
         width: 24px;
     }
