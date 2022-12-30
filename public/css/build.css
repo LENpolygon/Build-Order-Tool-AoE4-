@@ -18,7 +18,8 @@ table .buildTime {
 }
 
 header {
-    padding-bottom: 0;
+    padding-bottom: 5px;
+    padding-top: 5px;
     margin: 0;
 }
 
@@ -136,5 +137,10 @@ table tbody tr td:nth-child(6) {
 
     table .buildTime {
         width: 24px;
+    }
+
+    header {
+        padding-bottom: 3px;
+        padding-top: 3px;
     }
 }
