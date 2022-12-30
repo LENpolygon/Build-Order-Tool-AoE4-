@@ -24,7 +24,7 @@ header {
 }
 
 thead {
-    top: 0;
+    top: -1px;
     background-color: #181C29;
     z-index: 2;
     position: sticky;
