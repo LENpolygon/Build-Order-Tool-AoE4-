@@ -18,7 +18,7 @@ for (var header in headerData) {
 var selectedciv = null;
 var buildorder = null;
 var buildordercolumns = 6;
-const loadLimit = 15;
+const loadLimit = 20;
 const titleLength = 48;
 const nameLength = 24;
 var usp = new URLSearchParams(window.location.search);
@@ -33,7 +33,7 @@ if (isNaN(usp.get("f"))) { // Update View counter
         //console.log(docData.timestamp);
         //console.log(Date.now());
         //console.log((Date.now()-docData.timestamp)/(1000*60*60*24));
-        var newScore = Math.max(docData.score - 10, Math.min(docData.score + 10, docData.views + Math.pow(docData.likes * 10, 1.069) - Math.pow(Math.floor((Date.now() - docData.timestamp) / (1000 * 60 * 60 * 24)), 1.337)));
+        var newScore = Math.max(docData.score - 10, Math.min(docData.score + 10, docData.views + Math.pow(docData.likes * 10, 1.069) - Math.pow(Math.floor((Date.now() - docData.timestamp) / (1000 * 60 * 60 * 24)), 1.42)));
         await updateDoc(
             ref, {
             views: docData.views + 1,
