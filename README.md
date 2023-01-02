@@ -31,6 +31,26 @@ Now I've identified the following goals for this tool to fulfill:
 As per request I figured out how to put the project on Github. 
 I will use this to track issues for myself and allow others to help building this tool into something amazing!
 
+## Getting Started
+
+To run the project locally first clone the repo with
+```
+git clone git@github.com:LENpolygon/Build-Order-Tool-AoE4-.git
+```
+
+next go into the root of the cloned repo
+```
+cd Build-Order-Tool-AoE4-
+```
+
+now, run the dev server to get started testing locally! (Requires [Python3](https://www.python.org/downloads/))
+```
+python devserver.py
+```
+### Dev Server Notes
+The Dev Server caches and serves images from the prod `/img` dir to avoid storing the game textures in the git repo.
+The first time opening a page  will be slow as it retrieves and caches the required images.
+
 ## Contact
 
 I'm sure you can contact me through here. If you're looking for something else then you can find me on lenpolygon.com
