@@ -186,42 +186,51 @@ function sToTime(input) {
 //////////////////////////////////////////////////
 // FORMAT and PRINT image
 //////////////////////////////////////////////////
-const imgstr = ["<a class=\"tooltip\">",
-    "<img src=\"img/",
-    ".png\" onerror=\"this.src = 'assets/placeholder.png';\"",
-    "class=\"icon\" data-index=\"",
-    "\" data-info=\"",
-    "\" alt=\"",
-    //"\" style=\"background: radial-gradient(circle, rgba(60,68,66,0.8) 0%, ",
-    "\" style=\"background: radial-gradient(circle, rgba(69,69,69,0.69) 0%, ",
-    " 69%); ",
-    "\"\></a>"];
+const onImageErrorHandler = "this.src = 'assets/placeholder.png';"
 const tableitems = [["food", "resourcefoodicon"], ["wood", "resourcewoodicon"], ["gold", "resourcegoldicon"], ["stone", "resourcestoneicon"], ["time", "timetobuild"], ["pop", "house"]];
 function formatImage(reference, value, showTooltip) {
     var tooltip = "";
     if (showTooltip) {
-        tooltip = "<div class=\"tooltipColumn1\">";
-        tooltip += imgstr[1] + reference[selectedciv.abbr] + imgstr[2] + "></img><br/><div class=\"smallIcons\">";
+        let costBlock = ""
         for (let h = 0; h < tableitems.length; h++) {
             if (reference[tableitems[h][0]]) {
+                costBlock += `<img src="img/${tableitems[h][1]}.png" onerror="${onImageErrorHandler}">`
                 if (selectedciv.abbr == "CH" && (reference.genre == "Building" || reference.genre == "Landmark") && tableitems[h][0] == "time") { // Chinese building modifier
-                    tooltip += imgstr[1] + tableitems[h][1] + imgstr[2] + ">" + sToTime(reference[tableitems[h][0]] * buildingTimeModifier) + "<br/>";
+                    costBlock += sToTime(reference[tableitems[h][0]] * buildingTimeModifier);
                 }
                 else if (selectedciv.abbr == "DS" && (reference.genre == "Technology" || reference.genre == "Upgrade" || reference.genre == "Blacksmith")) { // Dehli upgrade modifier
-                    if (tableitems[h][0] == "time") {
-                        tooltip += imgstr[1] + tableitems[h][1] + imgstr[2] + ">" + sToTime(reference[tableitems[h][0]] * upgradeDSTimeModifier[reference.age - 1]) + "<br/>";
-                    }
+                    costBlock += sToTime(reference[tableitems[h][0]] *upgradeDSTimeModifier[reference.age - 1]);
                 }
                 else {
-                    tooltip += imgstr[1] + tableitems[h][1] + imgstr[2] + ">" + (tableitems[h][0] == "time" ? sToTime(reference[tableitems[h][0]]) : reference[tableitems[h][0]]) + "<br/>";
+                    costBlock += tableitems[h][0] == "time" ? sToTime(reference[tableitems[h][0]]) : reference[tableitems[h][0]]
                 }
+                costBlock += "<br/>"
             }
         }
-        tooltip += "</div></div><div class=\"tooltipColumn2\"><h3>" + reference.name + " (age: " + reference.age + "+)</h3></br></br>" + reference.description + "</div>";
+
+        tooltip = `
+        <div class="tooltipColumn1">
+            <img src="img/${reference[selectedciv.abbr]}.png" onerror="${onImageErrorHandler}">
+            <br/>
+            <div class="smallIcons">
+                ${costBlock}
+            </div>
+        </div>
+        <div class="tooltipColumn2">
+            <h3>${reference.name} (age: ${reference.age}+)</h3>
+            </br></br>
+            ${reference.description}
+        </div>`;
     }
-    return reference.color == "transparent"
-        ? (imgstr[0] + imgstr[1] + reference[selectedciv.abbr] + imgstr[2] + imgstr[3] + value + imgstr[4] + LZString.compressToEncodedURIComponent(tooltip) + imgstr[5] + reference.name + imgstr[8])
-        : (imgstr[0] + imgstr[1] + reference[selectedciv.abbr] + imgstr[2] + imgstr[3] + value + imgstr[4] + LZString.compressToEncodedURIComponent(tooltip) + imgstr[5] + reference.name + imgstr[6] + reference.color + imgstr[7] + imgstr[8]);
+    let backgroundStyling = reference.color == "transparent" ? '' : `style="background: radial-gradient(circle, rgba(69,69,69,0.69) 0%, ${reference.color} 69%"`
+   
+    return  `
+    <a class="tooltip">
+        <img src="img/${reference[selectedciv.abbr]}.png" onerror="${onImageErrorHandler}" class="icon"
+            data-index="${value}" data-info="${LZString.compressToEncodedURIComponent(tooltip)}" alt="${reference.name}"
+            ${backgroundStyling}
+        >
+    </a>`
 }
 
 //////////////////////////////////////////////////
@@ -458,7 +467,9 @@ async function loadiconsJSON() {
         if (tooltipindex < 0 || !allTooltips.item(tooltipindex).querySelector(':hover')) {
             for (var i = 0; i < allTooltips.length; i++) {
                 if (allTooltips.item(i).querySelector(':hover')) {
-                    tooltipBox.innerHTML = LZString.decompressFromEncodedURIComponent(allTooltips.item(i).firstChild.getAttribute('data-info'));
+                    let tooltip = allTooltips.item(i)
+                    let icon = tooltip.querySelector(".icon")
+                    tooltipBox.innerHTML = LZString.decompressFromEncodedURIComponent(icon.getAttribute('data-info'));
                     tooltipBox.style.display = "block";
                     tooltipindex = i;
                     return;
