@@ -27,11 +27,11 @@ thead {
     top: -1px;
     background-color: #181C29;
     z-index: 2;
-    position: sticky;
+    /*position: sticky;*/
 }
 
 th {
-    position: sticky;
+    /*position: sticky;*/
 }
 
 table tbody tr td:nth-child(2) {
