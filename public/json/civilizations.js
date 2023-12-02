@@ -72,5 +72,19 @@ export default
         "focus": "Economic, Strategic, Unique Infantry",
         "difficulty": 3,
         "uniqueunits": []
+    },
+    {
+        "civilization": "Byzantines",
+        "abbr": "BY",
+        "focus": "Economic, Strategic, Unique Infantry",
+        "difficulty": 3,
+        "uniqueunits": []
+    },
+    {
+        "civilization": "Japanese",
+        "abbr": "JA",
+        "focus": "Agriculture, Bannerman, Infantry",
+        "difficulty": 2,
+        "uniqueunits": []
     }
 ];

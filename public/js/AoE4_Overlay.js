@@ -534,6 +534,14 @@ function getCivilizationImages(civ_name) {
 
             'uilding_wonder': 'landmark_ottomans/azure-mosque-4.png'
         };
+    } else if (civ_name === 'Byzantines') {
+        return {
+            //place holder
+        };
+    } else if (civ_name === 'Japanese') {
+        return {
+            //place holder
+        };
     } else {
         return {};
     }
@@ -639,6 +647,10 @@ function civToOverlayName(input) {
         return 'Ottomans';
     } else if (input_lower.includes('rus')) {
         return 'Rus';
+    } else if (input_lower.includes('byzantines')) {
+        return 'Byzantines';
+    } else if (input_lower.includes('japanese')) {
+        return 'Japanese';
     } else {
         return 'unknown';
     }
