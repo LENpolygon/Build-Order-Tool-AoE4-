@@ -35,5 +35,5 @@ I will use this to track issues for myself and allow others to help building thi
 
 I'm sure you can contact me through here. If you're looking for something else then you can find me on lenpolygon.com
 
-Once again, the Build Order Tool can be found on: https://age4builder.com/
+Once again, the Build Order Tool can be found on: 
 Now go make some awesome builds and enjoy the game!
