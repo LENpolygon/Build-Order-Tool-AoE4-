@@ -1,7 +1,7 @@
 # Build Order Tool for Age of Empires IV
 
 This Build Order Tool will allow users to view, create, and share build orders standard format via the web app.
-The web app can be found on: https://age4builder.com/
+The web app is no longer online; see: https://www.lenpolygon.com/post/age4builder-updated-to-v1-0
 
 ## Goals of the Build Order Tool
 
